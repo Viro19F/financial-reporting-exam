@@ -358,6 +358,11 @@ const CHAPTERS = [
         title: 'Build a multi-step income statement',
         problem: `<p>Revenue €500,000; COGS €280,000; SG&A €90,000; Depreciation €30,000; Interest €15,000; Tax rate 25%. Compute Net Income.</p>`,
         solution: `<p>GP = 500 − 280 = 220. EBIT = 220 − 90 − 30 = 100. EBT = 100 − 15 = 85. Tax = 85 × 0.25 = 21.25. <strong>NI = €63.75</strong> (€63,750).</p>`
+      },
+      {
+        title: 'Target — balance sheet snapshot (slide data)',
+        problem: `<p>Target Feb 2, 2019: Total assets $41,290M; Total liabilities $29,993M. What is total equity? Then Target Jan 29, 2022: Total assets $53,811M; Gross profit $31,042M (FY2022). Verify the BS identity holds.</p>`,
+        solution: `<p>Equity (Feb 2019) = 41,290 − 29,993 = <strong>$11,297M</strong>. Confirms A = L + E.<br>Jan 2022 total assets $53,811M is a snapshot; the $31,042M GP is a period figure (income statement). Different statements report different periodicity.</p>`
       }
     ],
     examTopics: [
@@ -540,6 +545,16 @@ const CHAPTERS = [
         title: 'Prepaid insurance',
         problem: `<p>October 1, paid $24,000 for a 24-month insurance policy and recorded it as Prepaid Insurance. What is the adjusting entry on December 31?</p>`,
         solution: `<p>3 months consumed: (3/24) × 24,000 = $3,000. <strong>Dr Insurance Expense 3,000 / Cr Prepaid Insurance 3,000</strong>.</p>`
+      },
+      {
+        title: 'Jana Juice — May 2019 income statement (pre-adjustments)',
+        problem: `<p>Jana Juice May transactions yield: cash sale $2,400 + credit sale $2,900 = $5,300 sales; COGS $1,300 (= $600 + $700); operating expenses $2,900 (advertising + supplies + wages + rent); interest expense $40 on the $4,000 loan. Compute May NI.</p>`,
+        solution: `<p>Sales 5,300 − COGS 1,300 = GP <strong>$4,000</strong>.<br>Operating income = 4,000 − 2,900 = <strong>$1,100</strong>.<br>Pre-tax income = 1,100 − 40 = $1,060.<br>(Slide shows pre-tax used as final NI figure $1,060 since May is intra-period; tax accrued at June year-end.)</p>`
+      },
+      {
+        title: 'Jana Juice — June 30 balance sheet check',
+        problem: `<p>After all June adjusting entries (NI $1,414; dividend $400 declared), Jana Juice\'s books show: Common Stock $10,000; ending RE $1,974. Confirm the balance sheet identity.</p>`,
+        solution: `<p>Total equity = 10,000 + 1,974 = <strong>$11,974</strong>.<br>Slide shows total assets <strong>$28,650</strong> = total liabilities <strong>$16,676</strong> + equity <strong>$11,974</strong>. ✓<br>RE roll-forward: Beg RE 960 + NI 1,414 − Div 400 = $1,974.</p>`
       }
     ],
     examTopics: [
@@ -716,7 +731,8 @@ const CHAPTERS = [
     theory: [
       {
         title: 'IFRS 15 / ASC 606 — the 5-step model',
-        body: `<ol>
+        body: `<p>The converged standard <strong>ASC 606 / IFRS 15</strong> became effective for public companies in January 2018.</p>
+        <ol>
           <li><strong>Identify the contract</strong> with the customer.</li>
           <li><strong>Identify the performance obligations</strong> (each must be distinct).</li>
           <li><strong>Determine the transaction price</strong> (includes variable consideration: discounts, rebates, bonuses, royalties).</li>
@@ -802,6 +818,11 @@ const CHAPTERS = [
         title: 'Cleaver Construction — useful life manipulation',
         problem: `<p>$21M building, originally 30-year life. After 12 years, life extended to 36 years. Compute the change in annual depreciation.</p>`,
         solution: `<p>Original annual dep = 21M / 30 = $700,000.<br>BV after 12 years = 21M − 12 × 700K = $12.6M. Remaining new life = 36 − 12 = 24 yrs.<br>New annual dep = 12.6M / 24 = $525,000.<br><strong>NI is overstated by $175,000/yr</strong> going forward — useful-life manipulation is an earnings-management tool.</p>`
+      },
+      {
+        title: 'Mouser, Inc. — full aging method problem (slide)',
+        problem: `<p>Mouser\'s aging analysis shows specific %-of-uncollectible per bucket totaling required allowance. During 2024: $12,512 of specific accounts written off. Beginning Allowance balance: $11,880. Required ending Allowance per aging analysis = $14,800. Compute (A) bad debt expense and (B) ending NRV given ending gross AR of $510,000.</p>`,
+        solution: `<p>Allowance T-account: Beg 11,880 (credit) − Write-offs 12,512 = (632) DEBIT balance pre-adjustment.<br>(A) Bad Debt Expense = Required ending − Existing balance = 14,800 − (−632) = <strong>$15,432</strong>.<br>(B) End NRV = Gross AR − Ending Allowance = 510,000 − 14,800 = <strong>$495,200</strong>.</p>`
       }
     ],
     examTopics: [
@@ -1009,6 +1030,12 @@ const CHAPTERS = [
         body: `<p><strong>Inventory Turnover = COGS / Average Inventory</strong>.</p>
         <p><strong>Days Inventory Outstanding (DIO) = 365 / Inventory Turnover</strong>.</p>
         <p>Higher turnover usually favorable. JIT and demand-pull production reduce inventory investment.</p>`
+      },
+      {
+        title: 'What drives changes in GPM and turnover?',
+        body: `<p><strong>GPM moves because of:</strong> stale product line; change in product mix; new competitors; macro decline; overstocked inventory; pricing changes.</p>
+        <p><strong>Inventory turnover moves because of:</strong> mix shift to higher/lower margin products; excessive purchases; missed demand trends; increased competition; promotion changes; manufacturing efficiency improvements.</p>
+        <p>Higher turnover is usually good, but read it together with GPM — a company "selling fast" by deeply discounting is a different story than one selling fast at full price.</p>`
       }
     ],
     formulas: [
@@ -1039,6 +1066,11 @@ const CHAPTERS = [
         title: 'Chevron vs Total — LIFO/FIFO adjustment (slide case study)',
         problem: `<p>Chevron uses LIFO. 2014 LIFO Inv $6,505, Reserve $8,135. 2015 LIFO Inv $6,334, Reserve $3,745. LIFO COGS 2015 = $69,751. Compute FIFO-adjusted Inventory and FIFO COGS for 2015.</p>`,
         solution: `<p>FIFO Inv 2014 = 6,505 + 8,135 = $14,640. FIFO Inv 2015 = 6,334 + 3,745 = $10,079.<br>Δ LIFO Reserve = 3,745 − 8,135 = −$4,390 (reserve fell).<br>FIFO COGS = 69,751 − (−4,390) = <strong>$74,141</strong>.<br><em>Without adjustment, Chevron looked ~10.87× turnover; after adjustment, ~6.00× — closer to Total\'s 6.83× and far less impressive.</em></p>`
+      },
+      {
+        title: 'VTech — illustrative inventory ratios (slide)',
+        problem: `<p>VTech: Inventory $372.6M at Mar 31, 2020. Inventory turnover ~4.0×. Compute DIO. Comment on the GPM trend if it dropped from ~33% (2018) to ~30% (2019-20).</p>`,
+        solution: `<p>DIO = 365 / 4.0 ≈ <strong>91 days</strong> (vs ~89 days in 2018-19 → slowing).<br>GPM ↓ 33% → 30% suggests competitive pressure, mix shift, or input-cost inflation outpacing pricing power.</p>`
       }
     ],
     examTopics: [
@@ -1289,6 +1321,21 @@ const CHAPTERS = [
         title: 'Goodwill on acquisition',
         problem: `<p>Company A acquires Company B for $5M cash. B\'s identifiable net assets have a fair value of $4.2M. Compute goodwill.</p>`,
         solution: `<p>Goodwill = 5,000,000 − 4,200,000 = <strong>$800,000</strong>. Indefinite life; tested annually for impairment.</p>`
+      },
+      {
+        title: 'Tanner Truck — Units-of-Production schedule (slide)',
+        problem: `<p>Same Tanner truck: cost $80,000; salvage $8,000; estimated total 80,000 miles. Year 1 driven 18,000 miles. Compute Year 1 depreciation expense and Year 1 ending book value.</p>`,
+        solution: `<p>Rate = (80,000 − 8,000) / 80,000 = <strong>$0.90/mile</strong>.<br>Year 1 dep = 18,000 × $0.90 = <strong>$16,200</strong>.<br>Year 1 BV = 80,000 − 16,200 = <strong>$63,800</strong>.</p>`
+      },
+      {
+        title: 'Tanner Truck — impairment journal entry (slide)',
+        problem: `<p>Tanner truck is impaired by $6,000. Show the journal entry.</p>`,
+        solution: `<p><strong>Dr Impairment Expense $6,000 / Cr Truck $6,000</strong>.<br>Impairment hits the income statement (loss). Future depreciation will be recomputed on the lower book value.</p>`
+      },
+      {
+        title: 'SatCo trademark impairment (slide)',
+        problem: `<p>SatCo carries a trademark at BV $62,000. Fair market value falls to $40,000. Compute the impairment loss and entry.</p>`,
+        solution: `<p>Impairment = 62,000 − 40,000 = <strong>$22,000</strong>.<br>Dr Impairment Loss 22,000 / Cr Trademark 22,000.<br>Under IFRS, this loss could later be reversed (up to original cost) if FMV recovers; under US GAAP it cannot.</p>`
       }
     ],
     examTopics: [
@@ -1538,6 +1585,26 @@ const CHAPTERS = [
         title: 'Times interest earned (mock-style)',
         problem: `<p>NI €160,000; tax €60,000; interest €40,000. Compute TIE.</p>`,
         solution: `<p>TIE = (160 + 60 + 40) / 40 = <strong>6.5 times</strong>.</p>`
+      },
+      {
+        title: 'Drone Delivery — financial leverage decision (slide)',
+        problem: `<p>Company has $100,000 equity, generates $20,000 NI/year (20% ROE). It can buy $100,000 of new drones expected to earn an additional $20,000/year. Choice: issue $100,000 new stock OR borrow $100,000 at 8% interest. Which is favorable for ROE, and why?</p>`,
+        solution: `<p><strong>Borrowing is favorable when project return (20%) > borrowing cost (8%).</strong><br>If borrow at 8%: extra income = 20,000 − 100,000×8% = $12,000. New NI = 32,000. Equity unchanged at 100,000 → <strong>ROE = 32%</strong>.<br>If issue stock: NI = 40,000. Equity = 200,000 → <strong>ROE = 20%</strong> (unchanged).<br>Leverage boosted ROE from 20% to 32% — positive financial leverage.</p>`
+      },
+      {
+        title: 'Bikes R Us — short-term note accrual (slide)',
+        problem: `<p>Bikes R Us borrows $3,000 at 6% on January 1; quarterly interest payments. Compute the interest accrual at March 31.</p>`,
+        solution: `<p>Interest = 3,000 × 6% × 3/12 = <strong>$45</strong>.<br>Dr Interest Expense 45 / Cr Interest Payable 45.</p>`
+      },
+      {
+        title: 'Sunshine bonds — early retirement at premium (slide)',
+        problem: `<p>Same Sunshine $400,000 / 8% / 10-period bonds, originally issued at premium ($434,121). After 3 years, carrying value is $414,869. Bond retired at 102% of face. Compute gain/loss and journal entry.</p>`,
+        solution: `<p>Cash paid = 400,000 × 1.02 = $408,000.<br>Gain = Carrying value − Cash = 414,869 − 408,000 = <strong>$6,869 gain</strong>.<br>Entry: Dr Bond Payable 400,000, Dr Bond Premium 14,869 / Cr Cash 408,000, Cr Gain on Retirement 6,869.</p>`
+      },
+      {
+        title: 'Effective cost of debt — over the bond\'s life (slide)',
+        problem: `<p>For Sunshine\'s $400,000 / 8% / 10-period bond, compare TOTAL cost across the three issue scenarios: par, discount (10% market), premium (6% market).</p>`,
+        solution: `<p>Cash interest paid is identical: 10 × $16,000 = $160,000 in all cases.<br><strong>Par</strong>: total cost = $160,000 (just interest).<br><strong>Discount</strong> ($30,887 discount): total cost = 160,000 + 30,887 = <strong>$190,887</strong> (paid more in interest because issued cheap).<br><strong>Premium</strong> ($34,121 premium): total cost = 160,000 − 34,121 = <strong>$125,879</strong> (got premium upfront, repaid only face).</p>`
       }
     ],
     examTopics: [
@@ -1833,9 +1900,19 @@ const CHAPTERS = [
         </ul>`
       },
       {
+        title: 'Three sources of financing',
+        body: `<p>Companies fund their operations from three sources:</p>
+        <ol>
+          <li><strong>Creditors</strong> (debt financing) — banks, bondholders. Legal obligation to repay; interest is tax-deductible.</li>
+          <li><strong>New equity issuance</strong> — selling new shares to investors. No repayment obligation; dilutes ownership.</li>
+          <li><strong>Reinvested retained earnings</strong> — profits not paid out as dividends. Cheapest funding source; no new shares, no new debt.</li>
+        </ol>`
+      },
+      {
         title: 'Dividends, splits, stock dividends',
         body: `<ul>
           <li><strong>Cash dividend</strong>: declaration → Dr RE / Cr Dividends Payable; payment → Dr Dividends Payable / Cr Cash. <em>No effect on NI.</em></li>
+          <li><strong>Property dividend</strong>: distribution of NON-cash assets (e.g., shares of a subsidiary, inventory). Recorded at fair value; difference vs. book value goes to NI as gain/loss.</li>
           <li><strong>Stock dividend</strong>: distribution of additional shares; reduces RE, increases contributed capital. NO cash effect.</li>
           <li><strong>Stock split</strong> (e.g., 2-for-1): NO journal entry; doubles shares, halves par. No financial statement effect.</li>
         </ul>
@@ -1895,6 +1972,11 @@ const CHAPTERS = [
         title: 'Phelps — Basic EPS (slide)',
         problem: `<p>2016 NI $8,000; preferred dividends $1,000. 8,000 common shares outstanding at start of year. April 1: 800 treasury shares repurchased. Compute basic EPS.</p>`,
         solution: `<p>Weighted avg shares = 8,000 × 3/12 + 7,200 × 9/12 = 2,000 + 5,400 = <strong>7,400</strong>.<br>Basic EPS = (8,000 − 1,000) / 7,400 = <strong>$0.946</strong>.</p>`
+      },
+      {
+        title: 'Phelps — cash dividend journal entry (slide)',
+        problem: `<p>Phelps pays a $780 quarterly cash dividend. Show the entry. What is the effect on net income?</p>`,
+        solution: `<p>Declaration: Dr RE 780 / Cr Dividends Payable 780.<br>Payment: Dr Dividends Payable 780 / Cr Cash 780.<br><strong>No effect on net income</strong> — dividend reduces equity directly via RE.</p>`
       }
     ],
     examTopics: [
@@ -2180,6 +2262,16 @@ const CHAPTERS = [
     subtitle: 'Indirect method, three sections, free cash flow, OCFCL.',
     theory: [
       {
+        title: 'What the SCF tells you',
+        body: `<p>The Statement of Cash Flows explains how a company <strong>generates</strong> cash and how it <strong>uses</strong> cash. Users read it to assess:</p>
+        <ul>
+          <li><strong>Liquidity</strong> — ability to pay near-term liabilities.</li>
+          <li><strong>Solvency</strong> — ability to pay long-term liabilities.</li>
+          <li><strong>Financial flexibility</strong> — ability to generate cash for unexpected needs.</li>
+        </ul>
+        <p>The SCF explains the change in <strong>Cash and Cash Equivalents</strong> between the start and end of the period.</p>`
+      },
+      {
         title: 'Three sections of the SCF',
         body: `<ul>
           <li><strong>Operating (CFO)</strong>: cash from running the business — receipts from customers, payments to suppliers/employees, taxes, interest.</li>
@@ -2224,6 +2316,26 @@ const CHAPTERS = [
           <li><strong>Operating Cash Flow to Current Liabilities (OCFCL) = CFO / Avg Current Liabilities</strong>. Liquidity measure.</li>
           <li><strong>Operating Cash Flow to CapEx (OCFCX) = CFO / CapEx</strong>. Self-funding ability.</li>
         </ul>`
+      },
+      {
+        title: 'Required supplemental disclosures',
+        body: `<p>Three disclosures required alongside the main SCF:</p>
+        <ol>
+          <li><strong>Cash paid for income taxes and interest</strong> (especially under indirect method, where these are buried in NI).</li>
+          <li><strong>Schedule of all noncash investing and financing activities</strong> (e.g., issuing stock for land, acquiring equipment by signing a note).</li>
+          <li><strong>Policy for determining cash equivalents</strong> (typically: original maturity ≤ 3 months).</li>
+        </ol>`
+      },
+      {
+        title: 'SCF pattern interpretation',
+        body: `<p>The combination of CFO / CFI / CFF signs tells a story about the company\'s stage:</p>
+        <ul>
+          <li><strong>+CFO, −CFI, −CFF</strong> = mature, profitable, returning cash to investors (e.g., Coca-Cola, Apple).</li>
+          <li><strong>+CFO, −CFI, +CFF</strong> = growing — operations profitable, investing in growth, raising capital.</li>
+          <li><strong>−CFO, −CFI, +CFF</strong> = early-stage / start-up — burning cash, raising capital to invest.</li>
+          <li><strong>+CFO, +CFI, −CFF</strong> = potentially declining — selling assets, returning cash, possibly winding down.</li>
+        </ul>
+        <p><em>Slide example — Facebook 2019</em>: CFO €36.3B generated; CFI ($19.8B) spent on investments; CFF ($7.3B) spent → mature, profitable tech company.</p>`
       }
     ],
     formulas: [
@@ -2454,7 +2566,27 @@ const CHAPTERS = [
           <li>Hard to benchmark diversified firms.</li>
           <li>International comparison: IFRS vs GAAP, FIFO vs LIFO can distort.</li>
           <li>Different accounting policies, seasonal effects, one-off items distort comparisons.</li>
+          <li>"Average" performance is not necessarily good — industry averages can be mediocre baselines.</li>
         </ul>`
+      },
+      {
+        title: 'Issues with using debt financing',
+        body: `<p>Debt is cheaper than equity (interest is tax-deductible) and boosts ROE when project return > borrowing cost. But high leverage brings real risks:</p>
+        <ul>
+          <li><strong>Covenants</strong>: lender restrictions on operating activities (maintain D/E below X, cap dividends, no asset sales without consent). Designed to protect debtholders; constrain management.</li>
+          <li><strong>Default risk</strong>: more debt = higher probability of missing a payment, especially in a downturn.</li>
+          <li><strong>Debt service</strong>: interest + principal payments soak up cash that could otherwise fund growth.</li>
+        </ul>`
+      },
+      {
+        title: 'Quality of financial reporting',
+        body: `<p>Management has discretion within GAAP — choice of useful lives, salvage values, bad-debt percentages, fair-value estimates, etc. — which creates manipulation risk.</p>
+        <p>Ideal financial statements should:</p>
+        <ul>
+          <li>Reflect an accurate picture of financial condition and performance.</li>
+          <li>Be useful both to <em>assess the past</em> and <em>predict the future</em>.</li>
+        </ul>
+        <p>When ratios look unusually good, ask whether accounting choices (vs real performance) are driving the result.</p>`
       }
     ],
     formulas: [
@@ -2468,6 +2600,11 @@ const CHAPTERS = [
       { name: 'Gross Profit Margin', formula: 'GP / Net Sales' },
       { name: 'Operating Margin', formula: 'Operating Income / Net Sales' },
       { name: 'Net Profit Margin', formula: 'NI / Net Sales' },
+      { name: 'Expense-to-Sales (ETS)', formula: 'Specific Expense / Sales (e.g., SG&A/Sales) — disaggregates the profit margin' },
+      { name: 'PP&E Turnover', formula: 'Sales / Average Net PP&E' },
+      { name: 'Horizontal % change', formula: '(Current − Base) / Base' },
+      { name: 'Vertical (common-size) IS', formula: 'Each line as % of Revenue' },
+      { name: 'Vertical (common-size) BS', formula: 'Each line as % of Total Assets' },
       { name: 'ROA', formula: 'NI / Average Total Assets' },
       { name: 'ROE', formula: 'NI / Average Equity' },
       { name: 'Return on Financial Leverage', formula: 'ROE − ROA' },
@@ -2506,6 +2643,26 @@ const CHAPTERS = [
         title: 'CCC with no inventory',
         problem: `<p>CCC 100 days. No inventory. DPO 50 days. Compute DSO.</p>`,
         solution: `<p>CCC = DSO + 0 − 50 → DSO = <strong>150 days</strong>.</p>`
+      },
+      {
+        title: 'Lowe\'s liquidity — Quick Ratio (slide)',
+        problem: `<p>Lowe\'s FY ending Jan 30, 2015: Cash $466M; Marketable securities $125M; Current liabilities $9,348M. Compute the Quick Ratio. Interpret.</p>`,
+        solution: `<p>QR = (466 + 125) / 9,348 = 591 / 9,348 = <strong>0.063</strong> — extremely low.<br>Lowe\'s has plenty of current assets but most are inventory. Excluding inventory exposes a thin cash buffer for paying short-term obligations. Compare to Current Ratio = $10,080 / $9,348 = 1.07 (looks fine). The QR/CR gap signals heavy reliance on inventory liquidity.</p>`
+      },
+      {
+        title: 'Lowe\'s expense-to-sales & PP&E turnover (slide)',
+        problem: `<p>Lowe\'s FY2015: SG&A $13,281M; Sales $56,223M. Avg Net PP&E = ($20,834 + $20,034)/2 = $20,434M. Compute SG&A ETS and PP&E Turnover.</p>`,
+        solution: `<p>SG&A ETS = 13,281 / 56,223 = <strong>23.62%</strong> (= % of every sales dollar absorbed by SG&A).<br>PP&E Turnover = 56,223 / 20,434 = <strong>2.75 times</strong> (each $1 of PP&E generates $2.75 of sales — efficient asset use).</p>`
+      },
+      {
+        title: 'Lowe\'s — vertical & horizontal income statement (slide)',
+        problem: `<p>Lowe\'s: Total revenue $56,223M (FY2015) vs $53,417M (FY2014). NI $2,698M vs $2,286M. Cost of sales $36,665M vs $34,941M. Compute horizontal % changes for revenue and NI; compute COGS/Revenue and NI/Sales (vertical).</p>`,
+        solution: `<p>Horizontal: Revenue Δ = (56,223 − 53,417)/53,417 = <strong>+5.3%</strong>. NI Δ = (2,698 − 2,286)/2,286 = <strong>+18.0%</strong>. NI grew much faster than sales — operating leverage at work.<br>Vertical: COGS/Revenue = 36,665 / 56,223 = <strong>65.21%</strong> (vs 65.41% prior — slight margin improvement). NI/Sales = 2,698 / 56,223 = <strong>4.80%</strong> (vs 4.28% prior).</p>`
+      },
+      {
+        title: 'Lowe\'s solvency — D/E vs industry (slide)',
+        problem: `<p>Lowe\'s D/E = $21,859M / $9,968M = 2.19. Retail industry average D/E ≈ 1.10. Interpret.</p>`,
+        solution: `<p>Lowe\'s is using <strong>roughly 2× the leverage</strong> of the average retailer. This boosts ROE (Lowe\'s ROFL was 16.4 percentage points!) but also raises default risk. Compare TIE (= 9.29 for Lowe\'s) — debt service is comfortable, so the high D/E is supportable.</p>`
       }
     ],
     examTopics: [
@@ -2599,6 +2756,31 @@ const CHAPTERS = [
         prompt: 'Lowe\'s slide: COGS $36,665M; Avg AP $5,124M. Compute DPO rounded to nearest day.',
         answer: 51, units: 'days', tolerance: 0.5,
         explanation: 'AP Turnover = 36,665 / 5,124 = 7.15. DPO = 365 / 7.15 = 51 days.'
+      },
+      {
+        id: 'ch12_q14', type: 'numeric', difficulty: 'medium',
+        prompt: 'Lowe\'s FY2015: Cash $466M; Marketable securities $125M; Current liabilities $9,348M. Compute the Quick Ratio.',
+        answer: 0.063, units: '', tolerance: 0.005,
+        explanation: 'QR = (466 + 125) / 9,348 = 0.063. Excludes inventory and prepaid.'
+      },
+      {
+        id: 'ch12_q15', type: 'numeric', difficulty: 'medium',
+        prompt: 'Lowe\'s FY2015: SG&A $13,281M; Sales $56,223M. Compute the SG&A Expense-to-Sales ratio in %.',
+        answer: 23.62, units: '%', tolerance: 0.05,
+        explanation: 'ETS = 13,281 / 56,223 = 23.62%.'
+      },
+      {
+        id: 'ch12_q16', type: 'numeric', difficulty: 'medium',
+        prompt: 'Lowe\'s revenue FY2015 $56,223M; FY2014 $53,417M. Compute horizontal % change in %.',
+        answer: 5.25, units: '%', tolerance: 0.1,
+        explanation: 'Horizontal % = (56,223 − 53,417) / 53,417 = 5.25% (≈ 5.3%).'
+      },
+      {
+        id: 'ch12_q17', type: 'mcq', difficulty: 'medium',
+        prompt: 'Which of the following is a valid concern when comparing financial ratios across companies?',
+        options: ['Industry "average" ratios are always the right benchmark', 'IFRS vs US GAAP differences can distort cross-firm comparison', 'Seasonal businesses have no need for time-trend analysis', 'Diversified conglomerates are easy to benchmark against pure-play peers'],
+        correct: 1,
+        explanation: 'IFRS vs GAAP (LIFO permitted, impairment reversal allowed, etc.) is a real distortion. The other three are wrong: averages can be mediocre, seasonality requires special handling, conglomerates are HARD to benchmark.'
       }
     ]
   }
