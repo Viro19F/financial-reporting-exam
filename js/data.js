@@ -233,6 +233,40 @@ const CHAPTERS = [
         options: ['The balance sheet', 'The income statement', 'The statement of changes in equity', 'The notes to the financial statements'],
         correct: 3,
         explanation: 'The four basic reports are BS, IS, Statement of Changes in Equity, and Cash Flow Statement. Footnotes accompany the statements but are NOT one of the four statements themselves.'
+      },
+      // From Practice Quiz FRA2024
+      {
+        id: 'ch1_q19', type: 'mcq', difficulty: 'easy',
+        prompt: 'Which of the following would NOT be considered an external user of accounting data?',
+        options: ['Taxing authority representative', 'Management', 'Creditors', 'Customers'],
+        correct: 1,
+        explanation: 'Management is INTERNAL. Tax authorities, creditors, customers are all external.'
+      },
+      {
+        id: 'ch1_q20', type: 'mcq', difficulty: 'easy',
+        prompt: 'A basic assumption of accounting that requires activities of an entity be kept SEPARATE from the activities of its owner is referred to as the:',
+        options: ['Stand-alone concept', 'Monetary unit assumption', 'Corporate form of ownership', 'Economic entity assumption'],
+        correct: 3,
+        explanation: 'Economic entity assumption: the firm and its owners are distinct accounting entities. (Owner\'s personal grocery bill ≠ company expense.)'
+      },
+      {
+        id: 'ch1_q21', type: 'mcq', difficulty: 'easy',
+        prompt: 'The common characteristic possessed by ALL assets is:',
+        options: ['Long life', 'Great monetary value', 'Tangible nature', 'Future economic benefit'],
+        correct: 3,
+        explanation: 'Assets must provide future economic benefit. They need not be long-lived (cash), have great value, or be tangible (patents).'
+      },
+      {
+        id: 'ch1_q22', type: 'numeric', difficulty: 'hard',
+        prompt: 'Stahl Consulting started with total assets €200,000 and total liabilities €50,000. During the year: catering revenues €160,000; expenses €80,000; issued ordinary shares €30,000; paid dividends €50,000. Compute end-of-year equity in €.',
+        answer: 210000, units: '€', tolerance: 0.001,
+        explanation: 'Beg Equity = 200 − 50 = 150. NI = 160 − 80 = 80. ΔRE = NI − Div = 80 − 50 = 30. Plus share issuance 30. End Equity = 150 + 30 + 30 = €210,000.'
+      },
+      {
+        id: 'ch1_q23', type: 'numeric', difficulty: 'hard',
+        prompt: 'Nguyen began the year with equity $651,000. Issued shares $882,000; recorded expenses $2,520,000; paid dividends $168,000. Ending equity $1,593,000. Compute revenue for the year in $.',
+        answer: 2748000, units: '$', tolerance: 0.001,
+        explanation: 'ΔEquity = 1,593 − 651 = 942. ΔE = NI + Issuance − Div → 942 = NI + 882 − 168 → NI = 228. Rev = NI + Exp = 228 + 2,520 = $2,748,000.'
       }
     ]
   },
@@ -638,6 +672,35 @@ const CHAPTERS = [
         prompt: 'Vivid Corp Dec 31 adjusting entries: Depreciation $45,000; Recorded AR $29,000; Accrued expenses $14,000; Used insurance $5,000 (was prepaid); Rent revenue earned $3,000 (was unearned). Total assets PRIOR to entries = $430,000. Compute total assets AFTER the adjusting entries in $.',
         answer: 409000, units: '$', tolerance: 0.001,
         explanation: 'Asset effects: −Dep 45 − Used insurance 5 + Recorded AR 29 = −21. Accrued exp and rent earned affect liabilities not assets. End assets = 430 − 21 = $409,000.'
+      },
+      // From Practice Quiz FRA2024
+      {
+        id: 'ch3_q19', type: 'mcq', difficulty: 'medium',
+        prompt: 'Under accrual-basis accounting:',
+        options: ['Cash must be received before revenue is recognized', 'Net income is calculated by matching cash outflows against cash inflows', 'Events that change a company\'s financial statements are recognized in the period they occur rather than in the period in which cash is paid or received', 'The ledger accounts must be adjusted to reflect a cash basis of accounting before financial statements are prepared under IFRS'],
+        correct: 2,
+        explanation: 'Accrual: recognize when EARNED/INCURRED, not when cash moves. Required by IFRS and US GAAP.'
+      },
+      {
+        id: 'ch3_q20', type: 'mcq', difficulty: 'easy',
+        prompt: 'If an adjustment is needed for unearned revenues, the:',
+        options: ['Liability and related revenue are overstated before adjustment', 'Liability and related revenue are understated before adjustment', 'Liability is overstated and the related revenue is understated before adjustment', 'Liability is understated and the related revenue is overstated before adjustment'],
+        correct: 2,
+        explanation: 'Cash collected sits in Unearned Revenue (liability). When earned, revenue rises and liability falls. Pre-adjustment: liability too high, revenue too low.'
+      },
+      {
+        id: 'ch3_q21', type: 'mcq', difficulty: 'medium',
+        prompt: 'If a company FAILS to make an adjusting entry to record supplies expense, then:',
+        options: ['Equity will be understated', 'Expenses will be understated', 'Assets will be understated', 'Net income will be understated'],
+        correct: 1,
+        explanation: 'Supplies used but not expensed → expenses too low → NI too high → equity too high → assets (supplies) too high. Only B is correct.'
+      },
+      {
+        id: 'ch3_q22', type: 'mcq', difficulty: 'hard',
+        prompt: 'Iron Inn collected €150,000 cash in December for resort reservations and credited Unearned Revenue. By Dec 31 it had earned 1/3 (the rest in January). The required Dec 31 adjusting entry impacts the BALANCE SHEET by:',
+        options: ['Increased Equity €100,000', 'Decreased Liabilities €50,000', 'Increased Assets €150,000', 'Decreased Equity €50,000'],
+        correct: 1,
+        explanation: '1/3 × 150,000 = €50,000 earned. Adjusting entry: Dr Unearned Rev 50,000 / Cr Revenue 50,000. Liability ↓ 50,000; revenue ↑ 50,000 → equity ↑ 50,000. Choice B captures the liability side.'
       }
     ]
   },
@@ -836,6 +899,62 @@ const CHAPTERS = [
         prompt: 'A 30-year, $21M building has been depreciated for 12 years using straight-line (no salvage). Useful life is now extended to 36 years. Compute the new annual depreciation expense in $ (slide-style change-in-estimate).',
         answer: 525000, units: '$', tolerance: 0.001,
         explanation: 'Original annual = 700,000. BV after 12 yrs = 21M − 8.4M = 12.6M. New remaining life = 24 yrs. New annual = 12.6M / 24 = $525,000.'
+      },
+      // From MCQ C4 textbook practice pack
+      {
+        id: 'ch4_q14', type: 'mcq', difficulty: 'medium',
+        prompt: 'Which best describes the condition(s) for revenue recognition from a contract with a customer?',
+        options: ['Cash payment must have been received from the customer', 'All performance obligations must be fulfilled', 'At least one of the contract\'s performance obligations must be fulfilled', 'There must be no uncertainty about the amount to be received'],
+        correct: 2,
+        explanation: 'Revenue is recognized as EACH performance obligation is satisfied — one at a time. Cash receipt is irrelevant; not all obligations need be done at once; some uncertainty (variable consideration) is allowed.'
+      },
+      {
+        id: 'ch4_q15', type: 'mcq', difficulty: 'medium',
+        prompt: 'When multiple products or services are bundled and sold for one price, the revenue should be:',
+        options: ['Recognised when the bundle is sold', 'Allocated among the distinct performance obligations and recognised as each is fulfilled', 'Deferred until all elements are delivered', 'Recognised when the customer pays cash'],
+        correct: 1,
+        explanation: 'Step 4 of IFRS 15: allocate by stand-alone selling price; Step 5: recognize as each obligation is satisfied (not when bundled together).'
+      },
+      {
+        id: 'ch4_q16', type: 'mcq', difficulty: 'hard',
+        prompt: 'A construction company contracts to build a production facility for a customer. It should recognize revenue as construction progresses ONLY if:',
+        options: ['It receives advance cash payments', 'It retains title until completion', 'There are no contingent payments', 'Title transfers to the customer as the project progresses'],
+        correct: 3,
+        explanation: 'Revenue over time requires control to transfer to the customer over time — ownership/title transferring as work progresses signals that.'
+      },
+      {
+        id: 'ch4_q17', type: 'mcq', difficulty: 'medium',
+        prompt: 'When management selectively excludes some revenues, expenses, gains, and losses from earnings calculated using GAAP, it is an example of:',
+        options: ['Income smoothing', 'Big bath accounting', 'Cookie jar accounting', 'Non-IFRS or pro forma earnings'],
+        correct: 3,
+        explanation: 'Pro forma / non-GAAP earnings = management\'s own version of NI. Useful for adjustments but a red flag if used to mask poor performance.'
+      },
+      {
+        id: 'ch4_q18', type: 'mcq', difficulty: 'medium',
+        prompt: 'If bad debts expense is determined by estimating uncollectible AR, the entry to record the WRITE-OFF of a specific uncollectible account would DECREASE:',
+        options: ['Allowance for uncollectible accounts', 'Net income', 'Net book value of accounts receivable', 'Bad debts expense'],
+        correct: 0,
+        explanation: 'Write-off: Dr Allowance / Cr AR. Both gross AR and allowance decrease by the same amount. NRV unchanged; NI unchanged; bad debt expense unchanged.'
+      },
+      {
+        id: 'ch4_q19', type: 'mcq', difficulty: 'hard',
+        prompt: 'If management intentionally UNDERESTIMATES bad debts expense, then net income is:',
+        options: ['Overstated and assets are understated', 'Understated and assets are overstated', 'Understated and assets are understated', 'Overstated and assets are overstated'],
+        correct: 3,
+        explanation: 'Underestimated BDE → expense too low → NI too high. Allowance too low → AR (net) too high → assets too high. Both overstated.'
+      },
+      // From Practice Quiz FRA2024 (allowance method)
+      {
+        id: 'ch4_q20', type: 'numeric', difficulty: 'hard',
+        prompt: 'Hahn Co uses % of receivables method. Year-end AR $1,500,000. Allowance has $2,000 DEBIT balance. Estimates 1% of AR will be uncollectible. Compute the bad debt expense to record in $.',
+        answer: 17000, units: '$', tolerance: 0.001,
+        explanation: 'Required ending allowance = 1% × 1,500,000 = $15,000. With $2,000 DEBIT balance (rather than credit), need to add 15,000 + 2,000 = $17,000 to the allowance. So BDE = $17,000.'
+      },
+      {
+        id: 'ch4_q21', type: 'numeric', difficulty: 'medium',
+        prompt: 'Cash realizable value of AR was $33,000 BEFORE the write-off of a $2,000 account. Compute the cash realizable value AFTER the write-off in $.',
+        answer: 33000, units: '$', tolerance: 0.001,
+        explanation: 'Write-off reduces both gross AR and allowance by the same amount. NRV unchanged at $33,000.'
       }
     ]
   },
@@ -1268,6 +1387,49 @@ const CHAPTERS = [
         options: ['Half the useful life has passed', 'Book value reaches salvage value', 'Cumulative depreciation equals depreciable base', 'Never — depreciation continues to zero'],
         correct: 1,
         explanation: 'Stop when BV = salvage. The Year 5 expense in the Tanner example was capped to bring BV exactly to $8,000.'
+      },
+      // From MCQ C6 textbook practice pack
+      {
+        id: 'ch6_q14', type: 'mcq', difficulty: 'medium',
+        prompt: 'Burgstahler bought a lot to construct a new corporate office building. An older building on the lot was razed immediately so the new one could be built. The cost of razing the older building should be:',
+        options: ['Recorded as part of the cost of the LAND', 'Written off as a loss in the year of purchase', 'Written off as an extraordinary item', 'Recorded as part of the cost of the new building'],
+        correct: 0,
+        explanation: 'Cost of preparing land for use (razing existing structures, grading) is capitalized to LAND, not the new building.'
+      },
+      {
+        id: 'ch6_q15', type: 'mcq', difficulty: 'easy',
+        prompt: 'The purpose of recording PERIODIC depreciation of long-term PP&E assets is to:',
+        options: ['Report declining asset values on the balance sheet', 'Allocate asset costs over the periods benefited by use of the assets', 'Account for costs to reflect change in general price levels', 'Set aside funds to replace assets when their economic usefulness expires'],
+        correct: 1,
+        explanation: 'Depreciation = systematic allocation of cost over useful life. NOT a valuation adjustment, NOT inflation-adjusted, NOT a cash reserve.'
+      },
+      {
+        id: 'ch6_q16', type: 'mcq', difficulty: 'medium',
+        prompt: 'When the estimate of an asset\'s useful life is changed:',
+        options: ['Depreciation expense for ALL past periods must be recalculated', 'There is no change in the amount of depreciation expense recorded for future years', 'Only depreciation expense for current and future years is affected', 'Only depreciation expense in the current year is affected'],
+        correct: 2,
+        explanation: 'Change in estimate is treated PROSPECTIVELY — recompute over remaining life, no restatement of past periods.'
+      },
+      {
+        id: 'ch6_q17', type: 'mcq', difficulty: 'medium',
+        prompt: 'If the sale of a depreciable asset results in a LOSS, the proceeds from the sale were:',
+        options: ['Less than current fair value', 'Greater than cost', 'Greater than book value', 'Less than book value'],
+        correct: 3,
+        explanation: 'Loss = Proceeds < Book Value. (Gain = Proceeds > BV.) Cost and current FV are not what triggers the gain/loss.'
+      },
+      {
+        id: 'ch6_q18', type: 'mcq', difficulty: 'medium',
+        prompt: 'Which best describes the current method of accounting for R&D costs (under US GAAP)?',
+        options: ['Revenue recognition method', 'Systematic and rational allocation', 'Immediate recognition as an expense', 'Income tax minimization'],
+        correct: 2,
+        explanation: 'US GAAP: ALL R&D is expensed immediately. (IFRS: research expensed; development may be capitalized if specific criteria met.)'
+      },
+      {
+        id: 'ch6_q19', type: 'mcq', difficulty: 'medium',
+        prompt: 'Goodwill should be recorded on the balance sheet as an intangible asset only when:',
+        options: ['It is sold to another company', 'It is acquired through the purchase of another business', 'A company reports above-normal earnings for five or more consecutive years', 'A definite benefit can be established (e.g., excellent service reputation)'],
+        correct: 1,
+        explanation: 'Goodwill arises ONLY from an acquisition (price paid > FV of identifiable net assets). Internally generated goodwill, however valuable, is never capitalized.'
       }
     ]
   },
@@ -2091,6 +2253,16 @@ const CHAPTERS = [
         title: 'Jana Juice June 2019 SCF (slide reconciliation)',
         problem: `<p>Operating CF $2,300. Investing CF −$10,200 (fixtures). Financing CF: loans +$12,000 − dividends $100 = $11,900. Beg cash $6,460. Compute ending cash.</p>`,
         solution: `<p>Net Δ cash = 2,300 − 10,200 + 11,900 = $4,000.<br>Ending cash = 6,460 + 4,000 = <strong>$10,460</strong>.</p>`
+      },
+      {
+        title: 'National Beverage Corp — full SCF case (in $ thousands)',
+        problem: `<p>For the year ended May 3, 2014. NI $43,635. D&A $10,063. AR Apr 27, 2013 = 64,069 → May 3, 2014 = 58,205. Inventory 39,234 → 43,914. Prepaid 5,706 → 8,405. AP 44,261 → 45,606. Accrued 19,176 → 18,917. Investing: PP&E purchases $12,124, PP&E disposal proceeds $62, ST investment purchases $1,463, ST investment sales $2,443. Financing: LT debt repayment $22,772, treasury stock repurchase $7,024, dividends $726. Beg cash $18,267. Build the full cash flow statement.</p>`,
+        solution: `<p><strong>Operating</strong>:<br>NI 43,635<br>+ D&A 10,063<br>+ ΔAR (decrease) 5,864<br>− ΔInventory (increase) 4,680<br>− ΔPrepaid (increase) 2,699<br>+ ΔAP (increase) 1,345<br>− ΔAccrued (decrease) 259<br>= <strong>CFO $53,269</strong>.<br><br><strong>Investing</strong>:<br>− PP&E purchase 12,124<br>+ PP&E disposal 62<br>− ST investment purchase 1,463<br>+ ST investment sale 2,443<br>= <strong>CFI ($11,082)</strong>.<br><br><strong>Financing</strong>:<br>− LT debt repayment 22,772<br>− Treasury repurchase 7,024<br>− Dividends 726<br>= <strong>CFF ($30,522)</strong>.<br><br>Net Δ cash = 53,269 − 11,082 − 30,522 = <strong>$11,665</strong>.<br>End cash = 18,267 + 11,665 = <strong>$29,932 ✓</strong>.</p>`
+      },
+      {
+        title: 'Juanito Pizza / Computer Services — full SCF case ($)',
+        problem: `<p>NI $145,000. Depreciation $9,000 (building $6K + equipment $3K). Loss on disposal of equipment $3,000. AR 30,000 → 20,000. Inventory 10,000 → 15,000. Prepaid 1,000 → 5,000. AP 12,000 → 28,000. Income tax payable 8,000 → 6,000. Bought building for cash $120,000. Bought equipment for cash $25,000. Sold equipment for $4,000 cash (cost $8,000, accum dep $1,000 → BV $7,000, loss $3,000). Issued shares $20,000 cash. Paid dividends $29,000. Issued $110,000 LT bonds DIRECTLY in exchange for land. Beg cash $33,000. Build the full SCF.</p>`,
+        solution: `<p><strong>Operating</strong>:<br>NI 145,000 + Dep 9,000 + Loss 3,000 + ΔAR 10,000 − ΔInv 5,000 − ΔPrepaid 4,000 + ΔAP 16,000 − ΔIncome tax 2,000 = <strong>CFO $172,000</strong>.<br><br><strong>Investing</strong>: − Building 120,000 − Equipment 25,000 + Equipment sale 4,000 = <strong>CFI ($141,000)</strong>.<br><br><strong>Financing</strong>: + Issued shares 20,000 − Dividends 29,000 = <strong>CFF ($9,000)</strong>.<br><br>Net Δ cash = 172 − 141 − 9 = <strong>$22,000</strong>.<br>End cash = 33,000 + 22,000 = <strong>$55,000 ✓</strong>.<br><br><em>Non-cash disclosure: $110,000 LT bonds issued for land — disclosed separately, NOT in main SCF.</em></p>`
       }
     ],
     examTopics: [
@@ -2175,6 +2347,32 @@ const CHAPTERS = [
         prompt: 'CFO €120,000. Average current liabilities €240,000. Compute OCFCL.',
         answer: 0.5, units: '', tolerance: 0.01,
         explanation: 'OCFCL = 120 / 240 = 0.50.'
+      },
+      // From National Beverage Corp case
+      {
+        id: 'ch11_q12', type: 'numeric', difficulty: 'hard',
+        prompt: 'National Beverage 2014 (case): NI $43,635; D&A $10,063; ΔAR −5,864 (decrease); ΔInventory +4,680; ΔPrepaid +2,699; ΔAP +1,345; ΔAccrued −259. Compute net CFO in $ (thousands).',
+        answer: 53269, units: '$K', tolerance: 1,
+        explanation: '43,635 + 10,063 + 5,864 − 4,680 − 2,699 + 1,345 − 259 = $53,269K. (AR DOWN = ADD; Inv/Prepaid UP = SUBTRACT; AP UP = ADD; Accrued DOWN = SUBTRACT.)'
+      },
+      {
+        id: 'ch11_q13', type: 'numeric', difficulty: 'hard',
+        prompt: 'National Beverage investing: PP&E purchases ($12,124); PP&E disposal $62; ST investments purchased ($1,463); ST investments sold $2,443. Compute net CFI in $ (thousands, negative for outflow).',
+        answer: -11082, units: '$K', tolerance: 1,
+        explanation: '−12,124 + 62 − 1,463 + 2,443 = −$11,082K outflow.'
+      },
+      {
+        id: 'ch11_q14', type: 'numeric', difficulty: 'hard',
+        prompt: 'Juanito Pizza case: NI $145,000; Dep $9,000; Loss on disposal $3,000; ΔAR −$10,000 (decrease); ΔInv +$5,000; ΔPrepaid +$4,000; ΔAP +$16,000; ΔIncome tax payable −$2,000. Compute net CFO in $.',
+        answer: 172000, units: '$', tolerance: 1,
+        explanation: '145 + 9 + 3 + 10 − 5 − 4 + 16 − 2 = $172,000.'
+      },
+      {
+        id: 'ch11_q15', type: 'mcq', difficulty: 'medium',
+        prompt: 'In the Juanito Pizza case, the company issued $110,000 of long-term bonds in DIRECT EXCHANGE for land (no cash changed hands). Where does this transaction appear on the SCF?',
+        options: ['$110,000 financing inflow + $110,000 investing outflow', 'Only as a financing inflow of $110,000', 'Only as an investing outflow of $110,000', 'In supplemental noncash disclosure — NOT in the main SCF sections'],
+        correct: 3,
+        explanation: 'Noncash investing/financing transactions are disclosed in supplemental notes. The main SCF only reports actual cash flows.'
       }
     ]
   },
