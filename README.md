@@ -27,10 +27,17 @@ Five study modes:
 | 7 | Liabilities & Bonds | Premium/discount, retirement, TIE |
 | 8 | Leases | IFRS 16 ROU model |
 | 9 | Equity | Treasury, dividends, equity method |
+| 10 | Financial Investments | Three-tier framework, fair value hierarchy, debt investments |
 | 11 | Cash Flow Statement | Indirect method, classifications |
 | 12 | Ratios | Profitability, liquidity, solvency, CCC |
 
-(Chapter 10 is not part of this course.)
+## Mock exams
+
+- **Mock Final 21** — 20 MCQ + 9 numeric (older format)
+- **Final 2024 V1** — 15 MCQ + 15 numeric (current format)
+- **Final 2025 V1** — 15 MCQ + 15 numeric (current format)
+
+All are full reproductions of actual past IE exams.
 
 ## Stack
 

@@ -203,7 +203,36 @@ const CHAPTERS = [
         prompt: 'A company\'s assets increased by $80,000. Liabilities increased by $30,000 and net income was $40,000 (no dividends or share issuances). Reconcile the change in equity.',
         options: ['Equity increased $50,000 — matches NI plus a $10,000 adjustment', 'Equity increased $50,000 — but NI was only $40,000, so $10,000 must be unaccounted for', 'Equity increased $50,000 (= ΔA − ΔL) — this exceeds NI, suggesting other comprehensive income or share issuance the question denied', 'No reconciliation possible from this data'],
         correct: 2,
-        explanation: 'ΔE = ΔA − ΔL = 80 − 30 = 50. NI explains 40 of that; the missing 10 must come from OCI or share activity. The data inconsistency is the testable insight.'
+        explanation: 'ΔE = ΔA − ΔL = 80 − 30 = 50. NI explains 40 of that; the missing 10 must come from OCI or share activity.'
+      },
+      // From MCQ C1 textbook practice pack
+      {
+        id: 'ch1_q15', type: 'mcq', difficulty: 'easy',
+        prompt: 'Which of the following is a potential cost of the public disclosure of accounting information?',
+        options: ['Loss of competitive advantage caused by revealing information to competitors', 'Potential increased regulation and taxes due to reporting excessive profits in politically sensitive industries', 'Raising and then failing to meet the expectations of investors', 'All of the above are potential costs of disclosure'],
+        correct: 3,
+        explanation: 'All three are real costs. Disclosure also has benefits (lower borrowing rates, better supplier terms) — companies must weigh both sides.'
+      },
+      {
+        id: 'ch1_q16', type: 'mcq', difficulty: 'easy',
+        prompt: 'Banks that lend money to corporations are considered:',
+        options: ['Creditors', 'Shareholders / stockholders', 'Both a and b', 'Neither a nor b'],
+        correct: 0,
+        explanation: 'Banks providing loans = creditors (debt financing). Shareholders provide equity financing.'
+      },
+      {
+        id: 'ch1_q17', type: 'mcq', difficulty: 'medium',
+        prompt: 'Which of the following expressions is a correct statement of the accounting equation?',
+        options: ['Equity + Assets = Liability', 'Assets − (Liabilities + Equity) = 0', 'Liabilities − Equity = Assets', 'Liabilities + Assets = Equity'],
+        correct: 1,
+        explanation: 'A = L + E ⇒ A − (L + E) = 0. The other rearrangements are wrong.'
+      },
+      {
+        id: 'ch1_q18', type: 'mcq', difficulty: 'medium',
+        prompt: 'Which of the following is NOT one of the four basic financial reports?',
+        options: ['The balance sheet', 'The income statement', 'The statement of changes in equity', 'The notes to the financial statements'],
+        correct: 3,
+        explanation: 'The four basic reports are BS, IS, Statement of Changes in Equity, and Cash Flow Statement. Footnotes accompany the statements but are NOT one of the four statements themselves.'
       }
     ]
   },
@@ -568,6 +597,47 @@ const CHAPTERS = [
         prompt: 'Pre-tax income $2,020. Tax rate 30%. Compute net income in $.',
         answer: 1414, units: '$', tolerance: 0.001,
         explanation: 'Tax = 2,020 × 0.30 = 606. NI = 2,020 − 606 = $1,414.'
+      },
+      // From MCQ C3 textbook practice pack
+      {
+        id: 'ch3_q13', type: 'mcq', difficulty: 'easy',
+        prompt: 'A journal entry that contains more than two accounts is called:',
+        options: ['A posted journal entry', 'An adjusting journal entry', 'An erroneous journal entry', 'A compound journal entry'],
+        correct: 3,
+        explanation: 'Compound entry = involves more than 2 accounts. Common with adjusting entries that touch multiple accounts.'
+      },
+      {
+        id: 'ch3_q14', type: 'mcq', difficulty: 'easy',
+        prompt: 'Posting refers to the process whereby journal entry information is transferred from:',
+        options: ['Journal to general ledger accounts', 'General ledger accounts to a journal', 'Source documents to a journal', 'A journal to source documents'],
+        correct: 0,
+        explanation: 'The accounting cycle: source docs → journal → POST → general ledger.'
+      },
+      {
+        id: 'ch3_q15', type: 'mcq', difficulty: 'medium',
+        prompt: 'Which of the following is an example of an ADJUSTING entry?',
+        options: ['Recording the purchase of supplies on account', 'Recording depreciation expense on a truck', 'Recording cash received from customers for services rendered', 'Recording the cash payment of wages to employees'],
+        correct: 1,
+        explanation: 'Depreciation is a deferred-expense adjusting entry (allocates a prepaid asset to expense). The others are routine cash/credit transactions.'
+      },
+      {
+        id: 'ch3_q16', type: 'numeric', difficulty: 'medium',
+        prompt: 'Equipment placed in service Jan 1, 2013 cost $20,000 with no salvage and an 8-year life. Compute ACCUMULATED depreciation at end of fiscal year 2015 (3rd year) in $ using straight-line.',
+        answer: 7500, units: '$', tolerance: 0.001,
+        explanation: 'Annual SL = 20,000 / 8 = $2,500. After 3 yrs (2013, 2014, 2015): Accum Dep = 3 × 2,500 = $7,500.'
+      },
+      {
+        id: 'ch3_q17', type: 'numeric', difficulty: 'hard',
+        prompt: 'Custom Cakes received $24,000 in customer deposits during November. Unearned Revenue balance was $4,000 at start of November and $6,000 at end. How much revenue did Custom Cakes recognize during November in $?',
+        answer: 22000, units: '$', tolerance: 0.001,
+        explanation: 'Beg unearned + Cash received − End unearned = Revenue recognized = 4,000 + 24,000 − 6,000 = $22,000.'
+      },
+      // From Final Exam 2025 V1 (Vivid adjusting entries)
+      {
+        id: 'ch3_q18', type: 'numeric', difficulty: 'hard',
+        prompt: 'Vivid Corp Dec 31 adjusting entries: Depreciation $45,000; Recorded AR $29,000; Accrued expenses $14,000; Used insurance $5,000 (was prepaid); Rent revenue earned $3,000 (was unearned). Total assets PRIOR to entries = $430,000. Compute total assets AFTER the adjusting entries in $.',
+        answer: 409000, units: '$', tolerance: 0.001,
+        explanation: 'Asset effects: −Dep 45 − Used insurance 5 + Recorded AR 29 = −21. Accrued exp and rent earned affect liabilities not assets. End assets = 430 − 21 = $409,000.'
       }
     ]
   },
@@ -951,6 +1021,61 @@ const CHAPTERS = [
         options: ['Finished Goods → WIP → Raw Materials', 'Raw Materials → Finished Goods → WIP', 'Raw Materials → Work-in-Process → Finished Goods', 'WIP → Raw Materials → Finished Goods'],
         correct: 2,
         explanation: 'Raw Materials → WIP → Finished Goods → COGS.'
+      },
+      // From MCQ C5 textbook practice pack
+      {
+        id: 'ch5_q15', type: 'mcq', difficulty: 'easy',
+        prompt: 'Which is NOT normally reported as part of total manufacturing inventory cost?',
+        options: ['Work-in-process', 'Finished goods', 'Property, plant, and equipment', 'Raw materials'],
+        correct: 2,
+        explanation: 'PP&E is a separate line on the balance sheet (long-term operating assets). Manufacturing inventory = Raw Materials + WIP + Finished Goods.'
+      },
+      {
+        id: 'ch5_q16', type: 'mcq', difficulty: 'medium',
+        prompt: 'When the current year\'s ENDING inventory amount is OVERSTATED, then:',
+        options: ['Current year\'s COGS is overstated', 'Current year\'s total assets are understated', 'Current year\'s net income is overstated', 'Next year\'s income is overstated'],
+        correct: 2,
+        explanation: 'COGS = Beg + Purch − End. Overstated End → understated COGS → overstated NI. (Self-corrects in the following year as overstated End becomes overstated Beg.)'
+      },
+      {
+        id: 'ch5_q17', type: 'mcq', difficulty: 'medium',
+        prompt: 'In a period of rising prices, the inventory cost allocation method that tends to result in the LOWEST reported net income is:',
+        options: ['LIFO', 'FIFO', 'Average cost', 'Specific identification'],
+        correct: 0,
+        explanation: 'LIFO uses newest (highest) costs for COGS → highest COGS → lowest gross profit → lowest NI.'
+      },
+      {
+        id: 'ch5_q18', type: 'numeric', difficulty: 'hard',
+        prompt: 'Beyer Corp: Beg 2,000 units @ $50 = $100,000. Purchase 5,000 @ $75 = $375,000. Sold 6,000 units. Compute LIFO ENDING INVENTORY in $.',
+        answer: 50000, units: '$', tolerance: 0.001,
+        explanation: 'Available 7,000, sold 6,000, ending 1,000. LIFO leaves OLDEST units: 1,000 × $50 = $50,000. (Note FIFO ending would be 1,000 × $75 = $75,000.)'
+      },
+      {
+        id: 'ch5_q19', type: 'numeric', difficulty: 'hard',
+        prompt: 'Sletten Industries (LIFO): Sales $200M, LIFO COGS $135M. LIFO Reserve was $14M at Jan 1 and $22M at Dec 31. If Sletten had used FIFO, what would 2017 GROSS PROFIT have been in $M?',
+        answer: 73, units: '$M', tolerance: 0.5,
+        explanation: 'ΔLIFO Reserve = +$8M. FIFO COGS = LIFO COGS − ΔReserve = 135 − 8 = $127M. FIFO GP = 200 − 127 = $73M.'
+      },
+      // From Final Exam 2024 V1 — Square9 LIFO
+      {
+        id: 'ch5_q20', type: 'numeric', difficulty: 'hard',
+        prompt: 'Square9 laptops: Beg 160 @ $460; Purchases 260 @ $510, 360 @ $560, 230 @ $610. Sold 900. Compute LIFO COGS in $.',
+        answer: 497500, units: '$', tolerance: 0.001,
+        explanation: 'Available 1,010 units, sold 900, ending 110 units. LIFO ending = 110 oldest × $460 = $50,600. Total cost of goods avail = 73,600+132,600+201,600+140,300 = $548,100. LIFO COGS = 548,100 − 50,600 = $497,500.'
+      },
+      // From Final Exam 2024 V1 — Gummy turnover
+      {
+        id: 'ch5_q21', type: 'numeric', difficulty: 'medium',
+        prompt: 'Gummy Co: Beg inventory $118,000; End $110,000; Net sales $999,000; Gross profit $303,000. Compute inventory turnover (in times).',
+        answer: 6.11, units: 'times', tolerance: 0.05,
+        explanation: 'COGS = 999 − 303 = 696. Avg Inv = (118+110)/2 = 114. Turnover = 696 / 114 = 6.11×.'
+      },
+      // From Final Exam 2025 V1 — Communicated FIFO
+      {
+        id: 'ch5_q22', type: 'numeric', difficulty: 'hard',
+        prompt: 'Communicated Inc mobile phones: Beg 270 @ $570; Purchases 370 @ $620, 470 @ $670, 285 @ $720. Sold 1,175. Compute FIFO ENDING INVENTORY in $.',
+        answer: 158400, units: '$', tolerance: 0.001,
+        explanation: 'Available 1,395, sold 1,175, ending 220 units. FIFO ending = newest units = 220 from the 285-unit Oct batch at $720 = $158,400.'
       }
     ]
   },
@@ -1705,6 +1830,185 @@ const CHAPTERS = [
   },
 
   // =============================================================
+  // CHAPTER 10
+  // =============================================================
+  {
+    id: 'ch10',
+    number: 10,
+    title: 'Financial Investments',
+    subtitle: 'Debt & equity investments, three-tier influence framework, fair value hierarchy.',
+    theory: [
+      {
+        title: 'What are financial investments?',
+        body: `<p><strong>Financial investments</strong> = purchases of securities (debt or equity) issued by other organizations.</p>
+        <p>The accounting treatment depends on TWO things:</p>
+        <ol>
+          <li>The <strong>type</strong> of security (debt vs. equity).</li>
+          <li>The <strong>amount</strong> purchased — which determines the degree of influence over the investee.</li>
+        </ol>
+        <p>Two broad asset classes: <strong>debt investments</strong> (bonds and notes) and <strong>share/equity investments</strong> (passive, significant influence, or controlling).</p>`
+      },
+      {
+        title: 'Three-tier influence framework',
+        body: `<table style="width:100%;border-collapse:collapse;font-size:14px;margin-top:8px">
+          <tr style="border-bottom:1px solid var(--border)"><th style="text-align:left;padding:6px;color:var(--text-muted);font-weight:500;font-size:11px;text-transform:uppercase">Ownership %</th><th style="text-align:left;padding:6px;color:var(--text-muted);font-weight:500;font-size:11px;text-transform:uppercase">Influence</th><th style="text-align:left;padding:6px;color:var(--text-muted);font-weight:500;font-size:11px;text-transform:uppercase">Investee called</th><th style="text-align:left;padding:6px;color:var(--text-muted);font-weight:500;font-size:11px;text-transform:uppercase">Method</th></tr>
+          <tr><td style="padding:6px"><strong>&lt; 20%</strong></td><td style="padding:6px">Passive</td><td style="padding:6px">(no special label)</td><td style="padding:6px"><strong>Fair value</strong></td></tr>
+          <tr><td style="padding:6px"><strong>20–50%</strong></td><td style="padding:6px">Significant influence (presumed)</td><td style="padding:6px">"Associate"</td><td style="padding:6px"><strong>Equity method</strong></td></tr>
+          <tr><td style="padding:6px"><strong>≥ 50%</strong></td><td style="padding:6px">Controlling</td><td style="padding:6px">"Subsidiary"</td><td style="padding:6px"><strong>Consolidation</strong></td></tr>
+        </table>
+        <p style="margin-top:10px"><strong>Important — these are presumptions, not bright-line rules:</strong></p>
+        <ul>
+          <li><strong>Significant influence</strong> can also arise from being a <em>sole supplier/customer</em> or via legal agreements.</li>
+          <li><strong>Control</strong> can arise <em>below</em> 50% through legal agreements or technology licensing.</li>
+        </ul>
+        <p>Control is evidenced by ability to <em>elect a majority of the board</em>, <em>affect strategic direction</em>, and <em>affect hiring of executive management</em>.</p>`
+      },
+      {
+        title: 'Debt investments — lifecycle',
+        body: `<ol>
+          <li><strong>Acquisition at cost</strong>: cost = purchase price + brokerage/commission + other necessary acquisition expenditures.</li>
+          <li><strong>Interest revenue</strong>: recognized on the income statement as it is earned.</li>
+          <li><strong>Sale</strong>: recognize gain/loss = (Sale price − Brokerage fees) − Cost = Net Proceeds − Cost.</li>
+        </ol>`
+      },
+      {
+        title: 'Fair value & the 3-level hierarchy',
+        body: `<p><strong>Fair value</strong> = the amount an independent buyer would be willing to pay.</p>
+        <p>For actively traded assets: <strong>mark-to-market</strong> (= price observed in the market).</p>
+        <p>When no active market exists: <strong>mark-to-model</strong> — uses valuation models. <em>More subjective than mark-to-market.</em></p>
+        <p><strong>Fair Value Hierarchy:</strong></p>
+        <ul>
+          <li><strong>Level 1</strong> — quoted prices in active markets for IDENTICAL assets/liabilities. <em>Example: a common share traded on an active exchange.</em></li>
+          <li><strong>Level 2</strong> — observable inputs other than Level 1 (quoted prices for similar assets, interest rates, yield curves). <em>Example: a bond infrequently traded but similar to actively traded bonds.</em></li>
+          <li><strong>Level 3</strong> — inputs observable only to the reporting entity (management estimates and assumptions). <em>Example: an operating asset judged to be impaired.</em></li>
+        </ul>
+        <p>Level 1 is most objective; Level 3 is most subjective and requires the most disclosure.</p>`
+      },
+      {
+        title: 'Earnings management risk',
+        body: `<p>Different categories of investments have different rules for whether changes in fair value flow through the income statement, retained earnings, or AOCI. This creates earnings-management opportunities:</p>
+        <ul>
+          <li><strong>Cherry-picking</strong>: <em>sell</em> investments to recognize a gain (or loss), then <em>buy them back later</em>. Recognizes the unrealized gain in income as if it were realized.</li>
+          <li><strong>Reclassification AFS → Trading</strong>: moves <em>unrealised</em> gains from AOCI onto the income statement.</li>
+        </ul>
+        <p><strong>Preventive disclosure</strong>: <em>realised</em> gains and losses on AFS securities must be reported in the <strong>footnotes</strong> so users can identify cherry-picking.</p>`
+      }
+    ],
+    formulas: [
+      { name: 'Cost of debt investment at acquisition', formula: 'Cost = Purchase Price + Brokerage Fees + Other Acquisition Expenditures' },
+      { name: 'Net proceeds on sale', formula: 'Net Proceeds = Sale Price − Brokerage Fees' },
+      { name: 'Gain/Loss on sale of debt investment', formula: 'Gain/Loss = Net Proceeds − Cost' },
+      { name: 'Interest revenue', formula: 'Interest Rev = Face × Rate × (Time/12)' }
+    ],
+    examples: [
+      {
+        title: 'Debt investment lifecycle',
+        problem: `<p>An investor buys $10,000 face value bonds for $10,200 plus $50 brokerage fees. Over the year, $600 of interest is earned and received. Later, the bonds are sold for $10,400 net of $30 brokerage fees. Compute the gain or loss.</p>`,
+        solution: `<p>Cost = 10,200 + 50 = $10,250.<br>Net Proceeds = 10,400 (already net of fees).<br>Gain = 10,400 − 10,250 = <strong>$150 gain</strong>.<br>Interest revenue $600 was recognized on the IS during the holding period (separate from the gain).</p>`
+      },
+      {
+        title: 'Fair value hierarchy classification',
+        problem: `<p>Classify each as Level 1, 2, or 3:<br>(a) Apple shares listed on NASDAQ.<br>(b) A 10-year corporate bond that trades infrequently; valued by reference to similar actively-traded bonds.<br>(c) An impaired piece of specialized manufacturing equipment with no active market.</p>`,
+        solution: `<p>(a) <strong>Level 1</strong> — quoted price in active market for identical asset.<br>(b) <strong>Level 2</strong> — observable inputs (similar securities, rates).<br>(c) <strong>Level 3</strong> — entity-specific assumptions, no observable market data.</p>`
+      },
+      {
+        title: 'Influence override',
+        problem: `<p>Investor owns 18% of Investee but holds three of seven board seats and a tech-licensing agreement that gives veto rights over strategic decisions. Which method should the investor use?</p>`,
+        solution: `<p>Although below the 20% threshold, the board representation and veto rights give <strong>significant influence</strong> in substance. Use the <strong>equity method</strong>. The 20%/50% lines are presumptions, not bright-line rules — substance over form.</p>`
+      }
+    ],
+    examTopics: [
+      'Match ownership % to accounting method (passive < 20% → fair value; 20–50% → equity method/associate; ≥50% → consolidation/subsidiary)',
+      'Influence overrides — control below 50% via legal/tech agreements; significant influence via sole supplier/customer',
+      'Fair Value Hierarchy: Level 1 (active market, identical), Level 2 (similar/observable), Level 3 (entity-specific)',
+      'Mark-to-market vs mark-to-model — model is more subjective',
+      'Debt investment cost includes brokerage fees',
+      'Gain/Loss on sale = Net Proceeds − Cost',
+      'Interest revenue is recognized on the IS as earned',
+      'Earnings-management red flags: cherry-picking gains, AFS→Trading reclassification',
+      'AFS realized gains/losses must be disclosed in footnotes',
+      'Distinguish "associate" (equity method) vs "subsidiary" (consolidation)'
+    ],
+    questions: [
+      {
+        id: 'ch10_q1', type: 'mcq', difficulty: 'easy',
+        prompt: 'Investor owns 35% of the voting shares of Investee Co. Which accounting method should the Investor use?',
+        options: ['Fair value', 'Equity method', 'Consolidation', 'Cost method'],
+        correct: 1,
+        explanation: '20–50% triggers significant influence (presumed) → equity method. The investee is called an "associate."'
+      },
+      {
+        id: 'ch10_q2', type: 'mcq', difficulty: 'medium',
+        prompt: 'A company is classified as a "subsidiary" of an investor when:',
+        options: ['Investor owns less than 20% of voting shares', 'Investor owns between 20% and 50% of voting shares', 'Investor has control (typically ≥50% of voting shares, or below via legal/technology agreements)', 'Investor has any minority interest'],
+        correct: 2,
+        explanation: 'Subsidiary = controlled entity. Threshold is generally ≥50%, but control can also arise below 50% through legal/tech agreements.'
+      },
+      {
+        id: 'ch10_q3', type: 'mcq', difficulty: 'medium',
+        prompt: 'Which of the following is a Level 1 input under the Fair Value Hierarchy?',
+        options: ['Management\'s discounted cash flow estimate of an impaired asset\'s value', 'Quoted price for similar bonds in an inactive market', 'The closing price of a NYSE-listed common share', 'A broker quote for an over-the-counter derivative'],
+        correct: 2,
+        explanation: 'Level 1 = quoted price in active market for IDENTICAL asset. NYSE-listed share = Level 1.'
+      },
+      {
+        id: 'ch10_q4', type: 'mcq', difficulty: 'medium',
+        prompt: 'A bond that does not trade actively is valued by reference to similar bonds that DO trade actively. This is a:',
+        options: ['Level 1 input', 'Level 2 input', 'Level 3 input', 'Mark-to-model with no observable inputs'],
+        correct: 1,
+        explanation: 'Level 2 = observable inputs other than identical-asset prices (similar assets, interest rates, yield curves).'
+      },
+      {
+        id: 'ch10_q5', type: 'numeric', difficulty: 'medium',
+        prompt: 'Investor buys $20,000 of bonds for $19,800 plus $120 brokerage fees. Compute the cost recorded for the investment in $.',
+        answer: 19920, units: '$', tolerance: 0.001,
+        explanation: 'Cost = Purchase price + Brokerage = 19,800 + 120 = $19,920. The face value ($20,000) is irrelevant for recording cost.'
+      },
+      {
+        id: 'ch10_q6', type: 'numeric', difficulty: 'medium',
+        prompt: 'Same bonds. Sold for $20,500 net of $80 brokerage fees on sale. Compute the gain/loss in $ (positive = gain).',
+        answer: 580, units: '$', tolerance: 0.001,
+        explanation: 'Net Proceeds = 20,500 − 80 = 20,420. Gain = 20,420 − 19,920 = $500. (If problem states $20,500 is already NET of fees, then gain = 20,500 − 19,920 = $580.)'
+      },
+      {
+        id: 'ch10_q7', type: 'mcq', difficulty: 'hard',
+        prompt: 'Mark-to-market vs mark-to-model: which is GENERALLY considered more subjective?',
+        options: ['Mark-to-market — relies on potentially manipulated market prices', 'Mark-to-model — uses valuation models with assumptions', 'Both are equally objective', 'Neither — fair value is always inherently subjective'],
+        correct: 1,
+        explanation: 'Mark-to-market uses observable market prices (objective). Mark-to-model relies on assumptions and valuation models — more subjective.'
+      },
+      {
+        id: 'ch10_q8', type: 'mcq', difficulty: 'medium',
+        prompt: 'A company sells appreciated AFS securities at a gain and immediately buys them back at the same price. The earnings-management red flag this represents is:',
+        options: ['Channel stuffing', 'Cherry-picking gains', 'Big bath', 'Income smoothing'],
+        correct: 1,
+        explanation: 'Cherry-picking = selling to crystallize an unrealized gain into reported income, then repurchasing.'
+      },
+      {
+        id: 'ch10_q9', type: 'mcq', difficulty: 'medium',
+        prompt: 'Investor owns 18% of Investee but has 3 of 7 board seats and veto rights over strategic decisions through a licensing agreement. Which method applies?',
+        options: ['Fair value (passive — below 20% threshold)', 'Equity method (significant influence in substance, despite <20% ownership)', 'Consolidation', 'No accounting required for this stake'],
+        correct: 1,
+        explanation: 'The 20%/50% rules are presumptions. Substance: significant influence exists via board seats and veto rights → equity method.'
+      },
+      {
+        id: 'ch10_q10', type: 'mcq', difficulty: 'medium',
+        prompt: 'Why must realized gains and losses on AFS securities be disclosed in the footnotes?',
+        options: ['IFRS prohibits AFS securities from being on the balance sheet', 'To allow users to identify "cherry-picking" — selling appreciated AFS securities just to boost reported income', 'AFS gains and losses are not allowed in net income', 'Footnote disclosure replaces income statement reporting for AFS'],
+        correct: 1,
+        explanation: 'Disclosing realized AFS gains/losses lets analysts spot suspicious trading patterns that may be earnings management.'
+      },
+      {
+        id: 'ch10_q11', type: 'mcq', difficulty: 'easy',
+        prompt: 'An investee in which the investor owns 25% is referred to as:',
+        options: ['A subsidiary', 'An associate', 'A passive investment', 'A controlled entity'],
+        correct: 1,
+        explanation: '20–50% ownership = associate (significant influence, equity method).'
+      }
+    ]
+  },
+
+  // =============================================================
   // CHAPTER 11
   // =============================================================
   {
@@ -2143,6 +2447,88 @@ const MOCKS = [
       { id: 'mock21_calc7', type: 'numeric', difficulty: 'medium', prompt: 'Flynn Corporation: NI €6,000,000 in 2019. NI decreased 70% in 2020 (vs 2019 base). Compute Flynn\'s 2020 NI in €.', answer: 1800000, units: '€', tolerance: 0.001, explanation: '6M × 30% = €1.8M.' },
       { id: 'mock21_calc8', type: 'numeric', difficulty: 'medium', prompt: 'Fryman Company 2020: NI €160,000; income tax €60,000; interest expense €40,000. Compute Times Interest Earned (in times).', answer: 6.5, units: 'times', tolerance: 0.01, explanation: 'TIE = 260 / 40 = 6.5.' },
       { id: 'mock21_calc9', type: 'numeric', difficulty: 'medium', prompt: 'Yonge\'s 2015: Interest $435M; NI $602M; Sales $90,374M; Avg total assets $23,491M; Tax rate 35%. Compute the profit margin (decimal).', answer: 0.0067, units: '', tolerance: 0.001, explanation: 'PM = 602 / 90,374 ≈ 0.0067.' }
+    ]
+  },
+  // =============================================================
+  // FINAL EXAM 2024 V1 — full reproduction (15 MCQ + 15 numeric)
+  // =============================================================
+  {
+    id: 'mock_2024',
+    title: 'IE Final Exam 2024 V1',
+    durationMinutes: 90,
+    source: 'Actual past exam — full reproduction (30 questions)',
+    questions: [
+      { id: 'm24_1', type: 'mcq', difficulty: 'easy', prompt: 'A dividend is:', options: ['A distribution of the company\'s earnings to its shareholders', 'Equal to liabilities minus equity', 'Equal to assets minus equity', 'Equal to revenues less expenses'], correct: 0, explanation: 'Dividend = distribution of earnings to shareholders. Reduces RE.' },
+      { id: 'm24_2', type: 'mcq', difficulty: 'easy', prompt: 'Equity is best depicted by:', options: ['Assets = Liabilities', 'Liabilities + Assets', 'Residual equity + Assets', 'Assets − Liabilities'], correct: 3, explanation: 'A = L + E ⇒ E = A − L.' },
+      { id: 'm24_3', type: 'mcq', difficulty: 'hard', prompt: 'If inventory at the end of the year is UNDERSTATED by $60,000, what will this error cause?', options: ['An understatement of COGS by $60,000', 'An overstatement of gross profit by $60,000', 'An overstatement of inventory by $60,000', 'An understatement of net income by $60,000'], correct: 3, explanation: 'COGS = Beg + Purch − End. Understated End → overstated COGS → understated GP and NI.' },
+      { id: 'm24_4', type: 'mcq', difficulty: 'medium', prompt: 'Goodwill can be recorded as an asset when:', options: ['An offer is received to purchase the business above asset value', 'A business has above-normal profitability', 'A business is purchased and payment made in excess of fair value of net assets', 'A business creates customer goodwill internally'], correct: 2, explanation: 'Goodwill = price paid − FV of net identifiable assets in an acquisition. Internally generated goodwill is NEVER recorded.' },
+      { id: 'm24_5', type: 'mcq', difficulty: 'medium', prompt: 'Quechua issued $400,000, 10-year, 10% coupon bonds. Market rate 12%. The bonds were issued at:', options: ['A price below $400,000', 'A higher price than $400,000', 'A price of $400,000', 'All incorrect'], correct: 0, explanation: 'Coupon (10%) < Market (12%) → discount → price below face.' },
+      { id: 'm24_6', type: 'mcq', difficulty: 'medium', prompt: 'Why might a company repurchase its own shares?', options: ['It feels the market undervalues its shares', 'To offset dilutive effects of employee share options', 'To increase the number of shares outstanding', 'A and B'], correct: 3, explanation: 'Both A (signal undervaluation) and B (offset dilution) are valid reasons. C is wrong: repurchase REDUCES shares outstanding.' },
+      { id: 'm24_7', type: 'mcq', difficulty: 'medium', prompt: 'Which transaction impacting current liabilities has a corresponding entry on the income statement?', options: ['Purchase inventory on credit Jan 1', 'Pay Feb 1 for the Jan 1 purchase', 'Interest accrued on a note payable', 'Pay employees in March for February wages'], correct: 2, explanation: 'Accrued interest = expense (IS) + payable (BS). The others are pure asset/liability movements with no IS impact (assuming wages were already accrued in Feb).' },
+      { id: 'm24_8', type: 'mcq', difficulty: 'easy', prompt: 'All of the following increase revenue EXCEPT:', options: ['Issuance of ordinary shares by British Airways', 'Sale of clothing by French Connection', 'Performance of accounting services by PwC', 'Sale of petroleum by Royal Dutch Shell'], correct: 0, explanation: 'Share issuance is FINANCING, not revenue. The others are operating revenues.' },
+      { id: 'm24_9', type: 'mcq', difficulty: 'medium', prompt: 'At what level of investment ownership is significant influence often presumed?', options: ['Greater than 20% of voting shares', 'Between 20% and 50% of voting shares', 'Greater than 50% of voting shares', 'Greater than 20% of voting shares OR market value'], correct: 1, explanation: '20–50% = significant influence (presumed) → equity method.' },
+      { id: 'm24_10', type: 'mcq', difficulty: 'medium', prompt: 'Law firm received $2,000 for legal services to be provided in the future, credited Unearned Service Revenue. Service is performed before period end, but no adjusting entry. This causes:', options: ['Expenses to be overstated', 'Net income to be overstated', 'Liabilities to be understated', 'Revenues to be understated'], correct: 3, explanation: 'Without the entry: Unearned Revenue (liability) too high, Revenue too low → revenues understated, NI understated.' },
+      { id: 'm24_11', type: 'mcq', difficulty: 'medium', prompt: 'Willie\'s RE increased $15,000. Dividends declared $28,000. Compute net income or loss.', options: ['Net income $13,000', 'Net income $43,000', 'Net loss $43,000', 'Net loss $13,000'], correct: 1, explanation: 'ΔRE = NI − Div → 15,000 = NI − 28,000 → NI = $43,000.' },
+      { id: 'm24_12', type: 'mcq', difficulty: 'medium', prompt: 'Which event will NOT appear in INVESTING cash flows?', options: ['Purchase of treasury stock', 'Purchase of long-term investments', 'Purchase of a building', 'Sale of a machine'], correct: 0, explanation: 'Treasury stock purchase is FINANCING (involves the company\'s own equity). Other three involve external assets.' },
+      { id: 'm24_13', type: 'mcq', difficulty: 'medium', prompt: 'Which statement is FALSE?', options: ['SCF explains how cash balance changed during a period', 'PP&E acquisition/disposition cash flows are investing', 'Under indirect method, an INCREASE in AR will be ADDED to NI', 'CFF includes cash flows of issuing/retiring long-term debt and equity'], correct: 2, explanation: 'AR up = cash tied up → SUBTRACT from NI, not add. Others are true.' },
+      { id: 'm24_14', type: 'mcq', difficulty: 'medium', prompt: 'Gummy: Beg inventory $118,000; End $110,000; Net sales $999,000; GP $303,000. Inventory turnover is closest to:', options: ['2.57', '2.75', '8.76', '6.11'], correct: 3, explanation: 'COGS = 999 − 303 = 696. Avg Inv = 114. Turnover = 696 / 114 = 6.11.' },
+      { id: 'm24_15', type: 'mcq', difficulty: 'hard', prompt: 'Three-company table. A: D/E 2.4, CR 0.9, NP 4K/Sales 150K. B: D/E 1.8, CR 0.7, NP 6.6K/Sales 250K. C: D/E 0.6, CR 1.1, NP 4K/Sales 30K. Which is TRUE?', options: ['Company A has the best solvency ratio', 'Company B has the best liquidity ratio', 'Company C has the best profitability ratios', 'Company A and C have the same profitability ratios'], correct: 2, explanation: 'C has lowest D/E (best solvency), highest CR (best liquidity), AND highest NPM (4/30=13.3% vs A 2.7% and B 2.6%). C has the best profitability ratios.' },
+      { id: 'm24_16', type: 'numeric', difficulty: 'hard', prompt: '$10M warehouse contract, total estimated cost $7.5M. 2022 costs $2.625M. Compute 2022 revenue under percentage-of-completion in $.', answer: 3500000, units: '$', tolerance: 0.001, explanation: '% complete = 2,625 / 7,500 = 35%. Revenue = 35% × 10M = $3,500,000.' },
+      { id: 'm24_17', type: 'numeric', difficulty: 'hard', prompt: 'Sumantra sold a machine for $115,000. Cost $175,000 five years ago; SL over 12 years to $25,000 salvage. Compute the gain (loss) reported in $.', answer: 2500, units: '$', tolerance: 0.001, explanation: 'Annual SL = (175−25)/12 = 12,500. After 5 yrs, Accum Dep = 62,500. BV = 112,500. Gain = 115,000 − 112,500 = $2,500.' },
+      { id: 'm24_18', type: 'numeric', difficulty: 'medium', prompt: 'Watch Station: Beg RE $0; NI $1,750,000; Dividends paid $300,000. Compute ending RE in $.', answer: 1450000, units: '$', tolerance: 0.001, explanation: 'End RE = 0 + 1,750,000 − 300,000 = $1,450,000.' },
+      { id: 'm24_19', type: 'numeric', difficulty: 'hard', prompt: 'Gel IQ: NI $570K; AP ↓ $49K; Prepaid ↑ $38K; Dep $68.5K; AR ↓ $48K; Loss on sale $38K; Wages payable ↑ $22.5K; Unearned rev ↓ $38K. Compute net cash from OPERATING activities in $.', answer: 622000, units: '$', tolerance: 0.001, explanation: '570 − 49 − 38 + 68.5 + 48 + 38 + 22.5 − 38 = $622,000.' },
+      { id: 'm24_20', type: 'numeric', difficulty: 'medium', prompt: 'Kobo: NI $27,000; Total assets $40,500; Total equity $19,100. Compute D/E.', answer: 1.12, units: '', tolerance: 0.01, explanation: 'Total Liab = 40,500 − 19,100 = 21,400. D/E = 21,400 / 19,100 = 1.12.' },
+      { id: 'm24_21', type: 'numeric', difficulty: 'medium', prompt: 'Signoria: Issued bonds $67,000; cash dividends $9,700; treasury stock $16,700; new equipment $20,700. Compute net CFF in $.', answer: 40600, units: '$', tolerance: 0.001, explanation: '67 − 9.7 − 16.7 = $40,600. Equipment is investing.' },
+      { id: 'm24_22', type: 'numeric', difficulty: 'medium', prompt: 'Pitti: Sold equipment $130,000; bought building $3,255,000; sold long-term investments $145,000; paid dividends $15,000. Compute net CFI in $ (negative for outflow).', answer: -2980000, units: '$', tolerance: 0.001, explanation: '130 − 3,255 + 145 = −$2,980,000. Dividends are financing.' },
+      { id: 'm24_23', type: 'numeric', difficulty: 'hard', prompt: 'Fiorentella: EBIT $133,000; Interest $18,300; Tax $29,800; Avg Equity $693,000. Compute ROE in %.', answer: 12.25, units: '%', tolerance: 0.05, explanation: 'NI = 133 − 18.3 − 29.8 = 84.9. ROE = 84.9 / 693 = 12.25%.' },
+      { id: 'm24_24', type: 'numeric', difficulty: 'hard', prompt: 'Vaporetto: NI $304,500; Loss on sale $19,450; Dep $42,250. AR 400→500; Inv 100→75; AP 200→280; Accrued 300→260. Compute net cash from OPERATING in $.', answer: 331200, units: '$', tolerance: 0.001, explanation: '304.5 + 19.45 + 42.25 − 100 (ΔAR) + 25 (ΔInv) + 80 (ΔAP) − 40 (ΔAccrued) = $331,200.' },
+      { id: 'm24_25', type: 'numeric', difficulty: 'medium', prompt: 'Madagascar: Sales 100K; Interest 10K; Op Exp 20K; COGS 30K; Tax 5K; Dep 6K; Inventory 40K. Compute Gross Profit Margin in %.', answer: 70, units: '%', tolerance: 0.01, explanation: 'GPM = (Sales − COGS) / Sales = (100 − 30) / 100 = 70%.' },
+      { id: 'm24_26', type: 'numeric', difficulty: 'hard', prompt: 'Rainbow: CFO $362,400; NI $310,800; Interest $33,600; Tax $248,400. Compute Times Interest Earned (in times).', answer: 17.64, units: 'times', tolerance: 0.05, explanation: 'TIE = (NI + Tax + Interest) / Interest = (310.8 + 248.4 + 33.6) / 33.6 = 17.64.' },
+      { id: 'm24_27', type: 'numeric', difficulty: 'hard', prompt: 'Agnes: CA 153K; Total liab 303K; Avg AR 12.9K; Inv 41K; LT liab 203K; Sales 139K; COGS 87K. Compute DSO in days (365-day year).', answer: 33.87, units: 'days', tolerance: 0.05, explanation: 'ART = Sales / Avg AR = 139 / 12.9 = 10.78. DSO = 365 / 10.78 = 33.87 days.' },
+      { id: 'm24_28', type: 'numeric', difficulty: 'hard', prompt: 'Anna\'s Antiques: aging analysis estimates $8,120 uncollectible. AR balance $250,000. Allowance has $1,625 CREDIT balance pre-adjustment. Compute Bad Debt Expense in $.', answer: 6495, units: '$', tolerance: 0.001, explanation: 'BDE = Required ending allowance − existing balance = 8,120 − 1,625 = $6,495.' },
+      { id: 'm24_29', type: 'numeric', difficulty: 'medium', prompt: 'Ricardus: Sold a machine. Cost $60,000; accum dep $45,000; gain $6,000. Compute the selling price in $.', answer: 21000, units: '$', tolerance: 0.001, explanation: 'BV = 60 − 45 = 15. Gain = Price − BV → Price = 15 + 6 = $21,000.' },
+      { id: 'm24_30', type: 'numeric', difficulty: 'hard', prompt: 'Square9 laptops: Beg 160 @ $460; Purch 260 @ $510, 360 @ $560, 230 @ $610. Sold 900. Compute LIFO COGS in $.', answer: 497500, units: '$', tolerance: 0.001, explanation: 'Available 1,010, sold 900, ending 110 (oldest @ $460 = $50,600). Total cost avail = $548,100. LIFO COGS = 548,100 − 50,600 = $497,500.' }
+    ]
+  },
+  // =============================================================
+  // FINAL EXAM 2025 V1 — full reproduction (15 MCQ + 15 numeric)
+  // =============================================================
+  {
+    id: 'mock_2025',
+    title: 'IE Final Exam 2025 V1',
+    durationMinutes: 90,
+    source: 'Actual past exam — full reproduction (30 questions)',
+    questions: [
+      { id: 'm25_1', type: 'mcq', difficulty: 'easy', prompt: 'Which describes the primary objective of the BALANCE SHEET?', options: ['To measure the net income of a business up to a particular point in time', 'To report the difference between cash inflows and outflows for the period', 'To report the financial position of the reporting entity at a particular point in time', 'To report changes in common stock and retained earnings for the period'], correct: 2, explanation: 'BS = financial position at a point in time.' },
+      { id: 'm25_2', type: 'mcq', difficulty: 'medium', prompt: 'A corporation purchased factory equipment using cash. Which is correct?', options: ['Cost is an expense on the IS at time of purchase', 'Total assets will not change', 'Total liabilities will increase', 'Stockholders\' equity will decrease'], correct: 1, explanation: 'Equipment ↑, Cash ↓ by same amount → total assets unchanged.' },
+      { id: 'm25_3', type: 'mcq', difficulty: 'medium', prompt: 'Initially recording deferred/unearned revenue when cash is received from a customer:', options: ['Revenue is increased', 'Liabilities are not affected', 'Retained earnings increase', 'Net income is not affected'], correct: 3, explanation: 'Dr Cash / Cr Unearned Revenue (liability). No revenue, no NI effect at this point.' },
+      { id: 'm25_4', type: 'mcq', difficulty: 'medium', prompt: 'Under IFRS, which would NOT be recorded as an intangible asset?', options: ['Internally generated goodwill', 'Franchise rights', 'Purchased patents', 'Purchased copyrights'], correct: 0, explanation: 'Internally generated goodwill is never capitalized.' },
+      { id: 'm25_5', type: 'mcq', difficulty: 'medium', prompt: 'HarborView SA: NI €210,000; Interest €28,000; Tax €32,000. Compute Times Interest Earned.', options: ['8.43', '9.64', '7.50', '6.56'], correct: 1, explanation: 'TIE = (210 + 32 + 28) / 28 = 270 / 28 = 9.64.' },
+      { id: 'm25_6', type: 'mcq', difficulty: 'medium', prompt: 'Which transaction results in an INCREASE when using indirect method to calculate operating cash flows?', options: ['Decrease in inventory', 'Increase in accounts receivable', 'Increase in prepaid expenses', 'Decrease in accounts payable'], correct: 0, explanation: 'Decrease in inventory frees up cash → ADD. The other three are subtractions.' },
+      { id: 'm25_7', type: 'mcq', difficulty: 'hard', prompt: 'MapleTech sold equipment for €58,000 cash. Cost €120,000; accum dep €75,000. Which is correct?', options: ['Investing CF +€45,000; no gain or loss', 'Investing CF +€58,000; gain of €13,000', 'Financing CF +€58,000; gain of €45,000', 'Financing CF +€58,000; loss of €13,000'], correct: 1, explanation: 'BV = 120 − 75 = 45. Gain = 58 − 45 = €13,000. Cash proceeds (€58,000) appear in INVESTING.' },
+      { id: 'm25_8', type: 'mcq', difficulty: 'medium', prompt: 'Pinky Promise has +CFO, −CFI, −CFF. What does this pattern suggest?', options: ['More assets being sold than CAPEX', 'The company is in start-up growth stage', 'The company is losing money from operations', 'The company is a mature company'], correct: 3, explanation: '+CFO (profitable operations) + −CFI (investing in growth) + −CFF (returning cash to investors via debt repayment & dividends) = mature, profitable.' },
+      { id: 'm25_9', type: 'mcq', difficulty: 'medium', prompt: 'Aqua Bona: D/E rose from 1.2 to 2.8; Interest coverage fell from 5× to 2×. This indicates:', options: ['Lower financial risk', 'Increased solvency', 'Higher leverage risk', 'Improved profitability'], correct: 2, explanation: 'D/E up = more debt; coverage down = less ability to pay interest. Both signal HIGHER leverage / financial risk.' },
+      { id: 'm25_10', type: 'mcq', difficulty: 'hard', prompt: 'Luna SA repurchased €500,000 face-value bonds. Carrying value €512,000; gain on retirement €7,000. What were cash proceeds paid and where on the SCF?', options: ['€512,000 paid; Financing outflow', '€505,000 paid; Financing outflow', '€519,000 paid; Investing outflow', '€507,000 paid; Financing outflow'], correct: 1, explanation: 'Gain = CV − Cash → 7,000 = 512,000 − Cash → Cash = €505,000. Bond retirement is FINANCING.' },
+      { id: 'm25_11', type: 'mcq', difficulty: 'hard', prompt: 'Bunny: retired ONE-FOURTH of $419,000 of bonds payable for $99,800. Originally issued at par in 2019. Which is correct?', options: ['Loss of $4,950 will be reported', 'Gain of $319,200 will be reported', 'Gain of $4,950 will be reported', 'SE not affected'], correct: 2, explanation: 'Face retired = 419,000/4 = 104,750. Issued at par → BV = 104,750. Gain = 104,750 − 99,800 = $4,950.' },
+      { id: 'm25_12', type: 'mcq', difficulty: 'medium', prompt: 'Company repurchased shares of its own common stock for $20,600. Originally issued in 2022 for $16,000 with $6,600 par. Which is correct for 2024?', options: ['Stockholders\' equity decreases $20,600', 'NI increases by $9,400', 'NI decreases by $9,400', 'SE increases by $16,000'], correct: 0, explanation: 'Treasury stock = contra-equity. SE ↓ by repurchase cost = $20,600. NEVER any P&L gain or loss.' },
+      { id: 'm25_13', type: 'mcq', difficulty: 'hard', prompt: 'Days table. Alpha: DIO 45, DSO 70, DPO 40. Beta: 110/35/60. Gamma: 28/90/25. Which statement is WRONG?', options: ['Gamma has the slowest collection of receivables', 'Beta takes the longest time to sell inventory', 'Gamma has the best days payable outstanding', 'Alpha has the best CCC cycle'], correct: 2, explanation: 'A true (Gamma DSO 90 highest); B true (Beta DIO 110 highest); D true (Alpha CCC = 75 lowest); C WRONG: Gamma\'s DPO is the LOWEST (25), which is WORST not best — companies want HIGH DPO to delay paying suppliers.' },
+      { id: 'm25_14', type: 'mcq', difficulty: 'medium', prompt: 'A: CR 2.1, QR 1.4, NPM 6%, ROA 7%. B: CR 1.3, QR 0.9, NPM 11%, ROA 13%. Most accurate interpretation?', options: ['A is more liquid; B is more profitable', 'A is more profitable; B is more liquid', 'B is both more liquid and more profitable', 'A is both more liquid and more profitable'], correct: 0, explanation: 'A has higher CR and QR (more liquid). B has higher NPM and ROA (more profitable).' },
+      { id: 'm25_15', type: 'mcq', difficulty: 'medium', prompt: 'Which of the following REDUCES Cash Flow from Financing (CFF)?', options: ['Issuance of common stock for cash', 'Purchase of long-term investments using cash', 'Repayment of long-term debt with cash', 'Issuance of bonds at a premium for cash'], correct: 2, explanation: 'Debt repayment is a financing OUTFLOW. Stock/bond issuance are inflows. Long-term investment purchase is INVESTING (not financing).' },
+      { id: 'm25_16', type: 'numeric', difficulty: 'medium', prompt: 'Eagle Crest: Common stock $12K → $16K; APIC ↑ $3.7K; RE $70K → $91K; NI $38K. Compute dividends paid in $.', answer: 17000, units: '$', tolerance: 0.001, explanation: 'ΔRE = NI − Div → 21,000 = 38,000 − Div → Div = $17,000.' },
+      { id: 'm25_17', type: 'numeric', difficulty: 'hard', prompt: 'Vivid Corp Dec 31 adjustments: Dep $45K; Recorded AR $29K; Accrued exp $14K; Used insurance $5K (was prepaid); Rent earned $3K (was unearned). Total assets PRIOR = $430K. Compute total assets AFTER in $.', answer: 409000, units: '$', tolerance: 0.001, explanation: 'Asset effects: −45 (Dep) + 29 (AR) − 5 (insurance) = −21. Accrued exp & rent earned hit liabilities. End assets = 430 − 21 = $409,000.' },
+      { id: 'm25_18', type: 'numeric', difficulty: 'hard', prompt: 'Hudson Co: NRV of AR estimated $226,000. AR balance Dec 31 $272,500. Write-offs during year $21,300. Allowance Jan 1 $31,500. Compute 2024 Bad Debt Expense in $.', answer: 36300, units: '$', tolerance: 0.001, explanation: 'Required ending allowance = 272.5 − 226 = 46.5. BDE = required + write-offs − beg allowance = 46.5 + 21.3 − 31.5 = $36,300.' },
+      { id: 'm25_19', type: 'numeric', difficulty: 'medium', prompt: 'Bayfield: Beg inventory $220,000; COGS $920,000; End inventory $170,000. Compute purchases in $.', answer: 870000, units: '$', tolerance: 0.001, explanation: 'COGS = Beg + Purch − End → 920 = 220 + P − 170 → P = $870,000.' },
+      { id: 'm25_20', type: 'numeric', difficulty: 'medium', prompt: 'Solaris equipment list price $72,000. Paid $55,000 cash + financed $17,000. Shipping $2,600. Installation $3,800. Compute the recorded cost in $.', answer: 78400, units: '$', tolerance: 0.001, explanation: 'Capitalize all costs to acquire and prepare for use: 72,000 + 2,600 + 3,800 = $78,400. Financing source is irrelevant.' },
+      { id: 'm25_21', type: 'numeric', difficulty: 'medium', prompt: 'Evans Suppliers: Oct 1, 2024 signed 1-year, 6%, $160,000 note. Calendar year basis. Compute interest expense for 2024 in $.', answer: 2400, units: '$', tolerance: 0.001, explanation: 'Interest = 160,000 × 6% × 3/12 = $2,400 (3 months: Oct, Nov, Dec).' },
+      { id: 'm25_22', type: 'numeric', difficulty: 'hard', prompt: 'Artemis: 10,500,000 shares issued (par $1). APIC $27,300,000. 9,900,000 outstanding. Treasury repurchase price $12/share. Compute net contributed capital in $.', answer: 30600000, units: '$', tolerance: 0.001, explanation: 'Common Stock = 10,500,000 × $1 = 10.5M. APIC = 27.3M. Treasury = 600,000 × $12 = 7.2M. Net = 10.5 + 27.3 − 7.2 = $30,600,000.' },
+      { id: 'm25_23', type: 'numeric', difficulty: 'hard', prompt: 'SkyBridge SA: NI €150K; Dep €35K; AR ↑ €19K; Inv ↑ €14K; Unearned ↑ €7K; Prepaid ↓ €4K. Compute CFO in €.', answer: 163000, units: '€', tolerance: 0.001, explanation: '150 + 35 − 19 − 14 + 7 + 4 = €163,000.' },
+      { id: 'm25_24', type: 'numeric', difficulty: 'hard', prompt: 'Revenue €1,200; Op Exp (excl D&A) €120; D&A €60; COGS €720; Interest €30; Tax €54. Compute Net Profit Margin in %.', answer: 18, units: '%', tolerance: 0.05, explanation: 'GP = 480. EBIT = 480 − 120 − 60 = 300. EBT = 270. NI = 216. NPM = 216 / 1,200 = 18%.' },
+      { id: 'm25_25', type: 'numeric', difficulty: 'medium', prompt: 'Y1 Total assets €900; Y2 Total assets €1,300; Y2 NI €180. Compute ROA Y2 in %.', answer: 16.36, units: '%', tolerance: 0.05, explanation: 'Avg Assets = (900 + 1,300)/2 = 1,100. ROA = 180 / 1,100 = 16.36%.' },
+      { id: 'm25_26', type: 'numeric', difficulty: 'medium', prompt: 'SilverStone: Y1 COGS €3,900; Y2 COGS €4,200. Inventory Y1 €520; Y2 €600. Compute Inventory Turnover for Y2 (in times).', answer: 7.5, units: 'times', tolerance: 0.05, explanation: 'Avg Inv Y2 = (520 + 600)/2 = 560. Turnover = 4,200 / 560 = 7.50.' },
+      { id: 'm25_27', type: 'numeric', difficulty: 'easy', prompt: 'Aurora: DIO 52; DPO 34; DSO 35. Compute Cash Conversion Cycle in days.', answer: 53, units: 'days', tolerance: 0.001, explanation: 'CCC = DIO + DSO − DPO = 52 + 35 − 34 = 53 days.' },
+      { id: 'm25_28', type: 'numeric', difficulty: 'hard', prompt: 'Communicated mobile phones: Beg 270 @ $570; Purch 370 @ $620, 470 @ $670, 285 @ $720. Sold 1,175. Compute FIFO ENDING INVENTORY in $.', answer: 158400, units: '$', tolerance: 0.001, explanation: 'Available 1,395, sold 1,175, ending 220 units. FIFO leaves NEWEST units: 220 × $720 (from the Oct 285-unit batch) = $158,400.' },
+      { id: 'm25_29', type: 'numeric', difficulty: 'medium', prompt: 'Frame Industries: Jan 1, 2024 purchased delivery vehicle costing $26,300; 6-year life; $2,900 residual. Compute book value as of Dec 31, 2025 (SL method) in $.', answer: 18500, units: '$', tolerance: 0.001, explanation: 'Annual SL = (26,300 − 2,900)/6 = $3,900. After 2 yrs: Accum Dep = $7,800. BV = 26,300 − 7,800 = $18,500.' },
+      { id: 'm25_30', type: 'numeric', difficulty: 'hard', prompt: 'SilverPeak 2024: Issued shares €620K; dividends €95K; treasury repurchase €25K; loan repaid €40K; equipment purchased €30K. Compute Financing CF in €.', answer: 460000, units: '€', tolerance: 0.001, explanation: 'CFF = +620 − 95 − 25 − 40 = €460,000. Equipment is INVESTING.' }
     ]
   }
 ];
