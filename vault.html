@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formula vault — FRA Exam Hub</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="wrap">
+    <header class="topbar">
+      <div class="brand"><a href="index.html">FRA <em>Exam Hub</em></a></div>
+      <div class="crumbs"><a href="index.html">← Home</a></div>
+      <div class="topbar-actions">
+        <button class="icon-btn" id="theme-toggle" title="Toggle dark mode">☾</button>
+      </div>
+    </header>
+
+    <div class="eyebrow">Mode 05</div>
+    <h1 class="display"><em>Formula</em> vault.</h1>
+    <p class="lede">Every formula across all 11 chapters. Search by name or term.</p>
+
+    <input type="text" id="vault-search" class="vault-search" placeholder="Search formulas — e.g. ROE, COGS, depreciation, interest...">
+
+    <div id="vault-list"></div>
+
+    <p class="footnote">Tip: open this on your phone the morning of the exam.</p>
+  </div>
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/vault.js"></script>
+</body>
+</html>

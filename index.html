@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FRA Exam Hub — Financial Reporting & Analysis</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="wrap">
+    <header class="topbar">
+      <div class="brand"><a href="index.html">FRA <em>Exam Hub</em></a></div>
+      <div class="topbar-actions">
+        <button class="icon-btn" id="reset-btn" title="Reset progress">↻</button>
+        <button class="icon-btn" id="theme-toggle" title="Toggle dark mode">☾</button>
+      </div>
+    </header>
+
+    <div class="eyebrow">IE University · Final Exam Prep</div>
+    <h1 class="display">Master <em>Financial</em> Reporting<br>and Analysis.</h1>
+    <p class="lede">A complete study system: review every chapter, drill exam-realistic questions, and time yourself on full mock exams. Built around the actual past exam.</p>
+
+    <div class="modes">
+      <a class="mode" href="chapters.html">
+        <div class="mode-num">01</div>
+        <div class="mode-body">
+          <h3>Review chapters</h3>
+          <p>Concepts, formulas and worked examples for all 11 chapters.</p>
+        </div>
+        <div class="mode-arrow">→</div>
+      </a>
+      <a class="mode" href="practice.html">
+        <div class="mode-num">02</div>
+        <div class="mode-body">
+          <h3>Practice questions</h3>
+          <p>Drill MCQ and numeric problems chapter by chapter, instant feedback.</p>
+        </div>
+        <div class="mode-arrow">→</div>
+      </a>
+      <a class="mode" href="mocks.html">
+        <div class="mode-num">03</div>
+        <div class="mode-body">
+          <h3>Mock exams</h3>
+          <p>Timed full-length finals modeled on the IE Mock Final Exam.</p>
+        </div>
+        <div class="mode-arrow">→</div>
+      </a>
+      <a class="mode" href="master.html">
+        <div class="mode-num">04</div>
+        <div class="mode-body">
+          <h3>Master quiz</h3>
+          <p>Every question in one bank. Filter by chapter or difficulty.</p>
+        </div>
+        <div class="mode-arrow">→</div>
+      </a>
+      <a class="mode" href="vault.html">
+        <div class="mode-num">05</div>
+        <div class="mode-body">
+          <h3>Formula vault</h3>
+          <p>Searchable reference of every formula on the exam.</p>
+        </div>
+        <div class="mode-arrow">→</div>
+      </a>
+    </div>
+
+    <h2 class="section">How to use this hub</h2>
+    <div class="section-block">
+      <p>1 — <strong>Read</strong> a chapter end-to-end in <em>Review</em>. Don't skip the worked examples.</p>
+      <p style="margin-top:8px">2 — <strong>Drill</strong> that chapter in <em>Practice</em> until you can answer 80% cold.</p>
+      <p style="margin-top:8px">3 — When all chapters are drilled, sit a full <em>Mock</em> with the timer running.</p>
+      <p style="margin-top:8px">4 — Use <em>Master quiz</em> to hammer your weakest chapters in the final 48 hours.</p>
+      <p style="margin-top:8px">5 — Open <em>Formula vault</em> the morning of the exam.</p>
+    </div>
+
+    <div id="progress-summary"></div>
+
+    <p class="footnote">Built from IE FRA chapter slides 1–12 + Mock Final Exam 21. Grounded, exam-realistic, no filler.</p>
+  </div>
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+  <script>renderProgressSummary();</script>
+</body>
+</html>
