@@ -537,6 +537,101 @@ p.lede {
 }
 .results-summary .label { color: var(--text-muted); font-size: 14px; margin-top: 6px; }
 
+/* Formula chains */
+.chain-block {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 24px 26px;
+  margin-bottom: 18px;
+}
+.chain-head {
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 14px;
+  margin-bottom: 18px;
+}
+.chain-title-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.chain-title {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 26px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+.chain-chapter {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+}
+.chain-intro {
+  font-size: 14px;
+  color: var(--text-muted);
+  margin-top: 6px;
+  line-height: 1.5;
+}
+.chain-tree { display: flex; flex-direction: column; gap: 0; }
+.chain-node {
+  position: relative;
+  padding: 6px 0;
+}
+.chain-row {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+  padding: 10px 12px;
+  border-radius: 8px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  transition: background 0.12s ease, border-color 0.12s ease;
+}
+.chain-row:hover {
+  background: var(--bg-elev);
+  border-color: var(--accent);
+}
+.chain-arrow {
+  color: var(--text-faint);
+  font-size: 14px;
+  font-family: var(--mono);
+  flex: 0 0 auto;
+  margin-top: 1px;
+}
+.chain-content { flex: 1; min-width: 0; }
+.chain-formula {
+  font-family: var(--mono);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--accent);
+  line-height: 1.4;
+  word-break: break-word;
+}
+.chain-note {
+  font-size: 12.5px;
+  color: var(--text-muted);
+  margin-top: 4px;
+  line-height: 1.45;
+}
+.chain-node[data-depth="0"] > .chain-row {
+  background: var(--accent-soft);
+  border-color: var(--accent);
+}
+.chain-node[data-depth="0"] > .chain-row .chain-formula {
+  font-weight: 600;
+  font-size: 15px;
+}
+
+@media (max-width: 600px) {
+  .chain-block { padding: 18px 16px; }
+  .chain-node { margin-left: 0 !important; padding-left: var(--child-indent, 0); }
+  .chain-formula { font-size: 13px; }
+}
+
 /* Footer */
 .footnote {
   margin-top: 60px;

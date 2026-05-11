@@ -2912,3 +2912,359 @@ const MOCKS = [
     ]
   }
 ];
+
+// =============================================================
+// FORMULA CHAINS — derive each formula from the one above so you only
+// have to memorize the anchor. Each chain is a tree of formulas.
+// =============================================================
+const CHAINS = [
+  {
+    id: 'accounting_eq',
+    title: 'The Accounting Equation',
+    chapters: 'Ch 1 · Ch 2 · Ch 3',
+    intro: 'Memorize the top one. Everything else is algebra.',
+    nodes: [
+      {
+        formula: 'Assets = Liabilities + Equity',
+        note: 'The fundamental identity. Always holds.',
+        children: [
+          {
+            formula: 'Equity = Assets − Liabilities',
+            note: 'Solve for Equity.'
+          },
+          {
+            formula: 'ΔAssets = ΔLiabilities + ΔEquity',
+            note: 'Same identity in change-form. Mock 21: ΔL=−45, ΔE=−10 ⇒ ΔA=−55.'
+          },
+          {
+            formula: 'A = L + Share Capital + RE + Revenues − Expenses − Dividends',
+            note: 'Expand Equity into its sources.',
+            children: [
+              {
+                formula: 'Net Income = Revenues − Expenses',
+                note: 'Combine the IS items.'
+              },
+              {
+                formula: 'End RE = Beg RE + NI − Dividends',
+                note: 'Retained earnings roll-forward.',
+                children: [
+                  { formula: 'Dividends = Beg RE + NI − End RE', note: 'Solve for dividends paid.' },
+                  { formula: 'NI = End RE − Beg RE + Dividends', note: 'Solve for NI from RE movement.' }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'income_statement',
+    title: 'Income Statement Build-Down',
+    chapters: 'Ch 2 · Ch 12',
+    intro: 'Each subtotal is the previous one minus a category of expense.',
+    nodes: [
+      {
+        formula: 'Revenue (Sales)',
+        note: 'Top line.',
+        children: [
+          {
+            formula: 'Gross Profit = Revenue − COGS',
+            note: 'GPM = GP / Revenue.',
+            children: [
+              {
+                formula: 'Operating Income (EBIT) = GP − Operating Expenses',
+                note: 'Operating expenses = SG&A + R&D + Depreciation. Operating Margin = EBIT / Revenue.',
+                children: [
+                  {
+                    formula: 'Pre-tax Income (EBT) = EBIT − Interest Expense',
+                    note: 'Interest is non-operating.',
+                    children: [
+                      {
+                        formula: 'Net Income = EBT − Tax = EBT × (1 − tax rate)',
+                        note: 'Bottom line. NPM = NI / Revenue.'
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'cogs_chain',
+    title: 'Inventory & COGS',
+    chapters: 'Ch 5',
+    intro: 'One core equation; rearrange to solve for any unknown.',
+    nodes: [
+      {
+        formula: 'Goods Available for Sale = Beg Inventory + Purchases',
+        note: 'Everything you could have sold.',
+        children: [
+          {
+            formula: 'COGS = GAFS − End Inventory = Beg + Purchases − End',
+            note: 'What you actually sold.',
+            children: [
+              { formula: 'Purchases = COGS + End − Beg', note: 'Solve for purchases (Mock 2025 Q19: 920 + 170 − 220 = 870).' },
+              { formula: 'End Inventory = Beg + Purchases − COGS', note: 'Solve for ending inventory.' },
+              { formula: 'Beg Inventory = COGS + End − Purchases', note: 'Solve for beginning inventory.' }
+            ]
+          },
+          { formula: 'Gross Profit = Revenue − COGS', note: 'Connect to the income statement.' },
+          { formula: 'Inventory Turnover = COGS / Avg Inventory', note: 'How fast you sell.' },
+          { formula: 'DIO = 365 / Inventory Turnover', note: 'Days inventory sits.' }
+        ]
+      },
+      {
+        formula: 'LIFO Reserve = FIFO Inv − LIFO Inv',
+        note: 'Difference because of cost-flow assumption.',
+        children: [
+          { formula: 'FIFO Inv = LIFO Inv + LIFO Reserve', note: 'Adjust LIFO firm to FIFO basis (Chevron case).' },
+          { formula: 'FIFO COGS = LIFO COGS − Δ LIFO Reserve', note: 'Convert COGS for fair comparison.' }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'receivables_chain',
+    title: 'Receivables & Allowance Method',
+    chapters: 'Ch 4',
+    intro: 'Allowance is a contra-asset. Track gross AR, allowance, and NRV separately.',
+    nodes: [
+      {
+        formula: 'NRV = Gross AR − Allowance for Doubtful Accounts',
+        note: 'Cash you actually expect to collect.',
+        children: [
+          { formula: 'Allowance = Gross AR − NRV', note: 'Solve for allowance balance.' },
+          { formula: 'Gross AR = NRV + Allowance', note: 'Solve for gross AR.' }
+        ]
+      },
+      {
+        formula: 'Bad Debt Expense (% of sales) = Net Credit Sales × %',
+        note: 'Income-statement approach. Existing allowance balance is IGNORED.'
+      },
+      {
+        formula: 'Bad Debt Expense (aging) = Required Ending Allowance − Existing Balance + Write-offs',
+        note: 'Balance-sheet approach. Solve the allowance T-account.',
+        children: [
+          { formula: 'Required Ending Allowance = sum across age buckets of (AR × uncollectible %)', note: 'Or: Gross AR − target NRV.' },
+          { formula: 'Existing Balance = Beg Allowance − Write-offs (+ recoveries)', note: 'Roll the allowance T-account forward.' }
+        ]
+      },
+      {
+        formula: 'AR Turnover = Net Credit Sales / Average AR',
+        note: 'How fast you collect.',
+        children: [
+          { formula: 'DSO = 365 / AR Turnover', note: 'Days sales outstanding.' }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'depreciation_chain',
+    title: 'Depreciation & Asset Disposal',
+    chapters: 'Ch 6',
+    intro: 'Every method shares the same definition of book value and gain/loss.',
+    nodes: [
+      {
+        formula: 'Book Value = Cost − Accumulated Depreciation',
+        note: 'The carrying amount on the balance sheet.',
+        children: [
+          { formula: 'Gain/Loss on Disposal = Sale Proceeds − Book Value', note: 'Positive = gain. (Mock 21 Q16: 80 − 50 = $30K gain.)' },
+          { formula: 'Sale Proceeds = Book Value + Gain (or − Loss)', note: 'Solve for selling price (Mock 2024 Q29: 15 + 6 = $21K).' }
+        ]
+      },
+      {
+        formula: 'Annual SL Depreciation = (Cost − Salvage) / Useful Life',
+        note: 'Equal expense each year.',
+        children: [
+          { formula: 'New Annual Dep (after change in estimate) = (Current BV − New Salvage) / New Remaining Life', note: 'Prospective treatment. Tanner truck slide.' }
+        ]
+      },
+      {
+        formula: 'DDB Annual Dep = (2 / Useful Life) × Beginning Book Value',
+        note: 'Apply rate to BV, not to depreciable base. Stop when BV = salvage.'
+      },
+      {
+        formula: 'Units-of-Production Rate = (Cost − Salvage) / Total Units',
+        note: 'Then multiply by units used in the period.'
+      },
+      {
+        formula: 'Goodwill = Purchase Price − FV of Net Identifiable Assets Acquired',
+        note: 'Only arises from an acquisition. Indefinite life; never amortized.'
+      }
+    ]
+  },
+  {
+    id: 'bonds_chain',
+    title: 'Bonds — Cash, Expense, Carrying Value',
+    chapters: 'Ch 7',
+    intro: 'Cash interest is constant; interest expense changes via amortization.',
+    nodes: [
+      {
+        formula: 'Cash Interest = Face × Coupon Rate × (Time / 12)',
+        note: 'Constant every period.'
+      },
+      {
+        formula: 'Interest Expense = Beginning Carrying Value × Market Rate × (Time / 12)',
+        note: 'Effective-interest method. Changes each period.',
+        children: [
+          { formula: 'Discount Amortization = Interest Expense − Cash Interest', note: 'Carrying value rises toward face.' },
+          { formula: 'Premium Amortization = Cash Interest − Interest Expense', note: 'Carrying value falls toward face.' },
+          { formula: 'New Carrying Value = Old CV + Discount Amort. (or − Premium Amort.)', note: 'Roll forward each period.' }
+        ]
+      },
+      {
+        formula: 'Carrying Value = Face ± Unamortized Premium/Discount',
+        note: 'Approaches face by maturity.',
+        children: [
+          { formula: 'Gain/Loss on Retirement = Carrying Value − Cash Paid', note: 'Mock 21 Q14: 590 − 588 = $2K gain. NOT (Face − Cash).' }
+        ]
+      },
+      {
+        formula: 'Bond Issue Price = PV of Face + PV of Interest Annuity (at market rate)',
+        note: 'Coupon = Market → par. Coupon < Market → discount. Coupon > Market → premium.'
+      },
+      {
+        formula: 'Times Interest Earned = (NI + Tax + Interest) / Interest = EBIT / Interest',
+        note: 'Higher = safer for creditors.'
+      }
+    ]
+  },
+  {
+    id: 'cashflow_chain',
+    title: 'Cash Flow Statement (Indirect Method)',
+    chapters: 'Ch 11',
+    intro: 'Start with NI; reverse non-cash items; adjust for working-capital changes.',
+    nodes: [
+      {
+        formula: 'Net Income (from IS)',
+        note: 'Starting point under indirect method.',
+        children: [
+          {
+            formula: '+ Depreciation, + Amortization, + Impairment',
+            note: 'Add back non-cash expenses.'
+          },
+          {
+            formula: '− Gains on disposal of LT assets, + Losses on disposal',
+            note: 'Reverse them — full cash proceeds belong in INVESTING, not operating.'
+          },
+          {
+            formula: '− Δ AR, − Δ Inventory, − Δ Prepaid (when these increase)',
+            note: 'Asset UP = cash DOWN.'
+          },
+          {
+            formula: '+ Δ AP, + Δ Accrued, + Δ Unearned (when these increase)',
+            note: 'Liability UP = cash UP.'
+          },
+          {
+            formula: '= CFO (Cash Flow from Operations)',
+            note: 'Cash actually generated by running the business.'
+          }
+        ]
+      },
+      {
+        formula: 'Net Δ Cash = CFO + CFI + CFF',
+        note: 'Reconciles beginning cash to ending cash.',
+        children: [
+          { formula: 'End Cash = Beg Cash + Net Δ Cash', note: 'Must tie to balance sheet.' }
+        ]
+      },
+      {
+        formula: 'Free Cash Flow = CFO − CapEx',
+        note: 'Cash left for investors after maintaining/expanding operations.'
+      }
+    ]
+  },
+  {
+    id: 'dupont_chain',
+    title: 'DuPont — Decomposing ROE',
+    chapters: 'Ch 12',
+    intro: 'Memorize ROE; everything else falls out.',
+    nodes: [
+      {
+        formula: 'ROE = NI / Average Equity',
+        note: 'Primary summary measure of company performance.',
+        children: [
+          {
+            formula: 'ROE = Profit Margin × Asset Turnover × Equity Multiplier',
+            note: 'DuPont decomposition.',
+            children: [
+              { formula: 'Profit Margin = NI / Sales', note: 'Profitability.' },
+              { formula: 'Asset Turnover = Sales / Avg Total Assets', note: 'Asset efficiency.' },
+              { formula: 'Equity Multiplier = Avg Total Assets / Avg Equity', note: 'Leverage.' }
+            ]
+          },
+          {
+            formula: 'ROA = NI / Avg Total Assets = Profit Margin × Asset Turnover',
+            note: 'Operating + investing return.'
+          },
+          {
+            formula: 'Return on Financial Leverage = ROE − ROA',
+            note: 'Portion of ROE attributable to debt.'
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'ccc_chain',
+    title: 'Cash Conversion Cycle',
+    chapters: 'Ch 12',
+    intro: 'Three turnovers, three days metrics, one cycle.',
+    nodes: [
+      {
+        formula: 'CCC = DIO + DSO − DPO',
+        note: 'Lower = faster cash recovery.',
+        children: [
+          {
+            formula: 'DIO = 365 / Inventory Turnover',
+            note: 'Days inventory sits.',
+            children: [{ formula: 'Inventory Turnover = COGS / Avg Inventory', note: 'How many times you sold avg inventory.' }]
+          },
+          {
+            formula: 'DSO = 365 / AR Turnover',
+            note: 'Days to collect.',
+            children: [{ formula: 'AR Turnover = Net Credit Sales / Avg AR', note: 'How many times you collected avg AR.' }]
+          },
+          {
+            formula: 'DPO = 365 / AP Turnover',
+            note: 'Days to pay suppliers (higher = better, free financing).',
+            children: [{ formula: 'AP Turnover = COGS / Avg AP', note: 'How many times you paid avg AP.' }]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'ratios_market',
+    title: 'Market Ratios',
+    chapters: 'Ch 9 · Ch 12',
+    intro: 'Start from EPS; the others are price-relative.',
+    nodes: [
+      {
+        formula: 'EPS = (NI − Preferred Dividends) / Weighted Avg Common Shares',
+        note: 'Earnings per share.',
+        children: [
+          { formula: 'P/E = Price / EPS', note: 'Price-to-earnings ratio (Mock 21: 108 / 12 = 9).' },
+          { formula: 'Payout Ratio = DPS / EPS', note: '% of earnings paid as dividends.' }
+        ]
+      },
+      {
+        formula: 'Dividend Yield = Annual DPS / Price',
+        note: 'Cash return per share.'
+      },
+      {
+        formula: 'Book Value per Share = Common Equity / Shares Outstanding',
+        note: 'Accounting value per share.',
+        children: [
+          { formula: 'Market-to-Book = Price / BVPS', note: 'Premium investors pay over book.' }
+        ]
+      }
+    ]
+  }
+];
+
