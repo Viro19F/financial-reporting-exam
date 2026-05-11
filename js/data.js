@@ -4427,339 +4427,157 @@ const REARRANGEMENTS = [
 ];
 
 // =============================================================
-// APPROACH — the THOUGHT PROCESS for each question type.
-// For every major topic: the question to ask yourself, the
-// decision rule (often a table), and how to apply it to a real
-// exam problem.
+// APPROACH — plain-English shortcuts for each question type.
+// Just the big idea + a quick example. Nothing academic.
 // =============================================================
 const APPROACH = [
-  // ==================== Ch 3 — Adjusting Entries ====================
   {
     id: 'ap_adjusting', chNum: 3, chapter: 'Ch 3',
-    title: 'Adjusting Entries — what does each one touch?',
-    ask: 'For each adjusting entry, ask: does it touch ASSET, LIABILITY, REVENUE, or EXPENSE?',
-    rule: 'There are 4 types of adjustments. Each touches exactly ONE balance-sheet account and ONE income-statement account. If you memorize this table, you can answer any total-assets / total-liabilities / NI question.',
-    table: {
-      headers: ['Type', 'Asset', 'Liability', 'Revenue', 'Expense'],
-      rows: [
-        ['Deferred (Unearned) Revenue earned', '—', '↓', '↑', '—'],
-        ['Prepaid Expense consumed', '↓', '—', '—', '↑'],
-        ['Depreciation (special prepaid)', '↓ via Accum Dep', '—', '—', '↑'],
-        ['Accrued Revenue', '↑', '—', '↑', '—'],
-        ['Accrued Expense', '—', '↑', '—', '↑']
-      ]
-    },
-    apply: 'Vivid Corp: which adjustments touch ASSETS?\n• Depreciation $45K → −45 (asset)\n• Recorded AR $29K (accrued rev) → +29 (asset)\n• Accrued exp $14K → 0 (only hits liability)\n• Insurance used $5K (prepaid) → −5 (asset)\n• Rent earned $3K (unearned) → 0 (only hits liability)\nNet Δ assets = −45 + 29 − 5 = −$21\nEnd assets = 430 − 21 = $409,000'
+    title: 'Adjusting entries → total assets question',
+    bigIdea: 'Some adjustments hit ASSETS, some hit LIABILITIES. The question only cares about assets, so SKIP anything that only touches liabilities.',
+    skipThese: 'Skip: "accrued expenses" (touches liab), "rent earned from unearned" (touches liab).',
+    counts: 'Count: depreciation (−), prepaid used (−), accrued revenue / AR recorded (+).',
+    example: 'Vivid: Start $430. Skip accrued exp $14 and rent earned $3. Left: Dep −$45, Insurance used −$5, AR +$29. Total: −$21. End = 430 − 21 = $409,000.'
   },
-
-  // ==================== Ch 11 — Cash Flow Indirect ====================
   {
-    id: 'ap_cfo', chNum: 11, chapter: 'Ch 11',
-    title: 'Cash Flow Indirect — direction of each adjustment',
-    ask: 'For each working-capital line, ask: did this tie up cash or free up cash?',
-    rule: 'Mnemonic: ASSET ↑ = CASH ↓ (cash is tied up); LIABILITY ↑ = CASH ↑ (cash conserved).',
-    table: {
-      headers: ['Account', '↑ in account', '↓ in account'],
-      rows: [
-        ['AR / Inventory / Prepaid (current assets)', 'SUBTRACT from NI', 'ADD to NI'],
-        ['AP / Accrued / Unearned (current liab)', 'ADD to NI', 'SUBTRACT from NI'],
-        ['Depreciation / Amortization', 'always ADD back (non-cash)', '—'],
-        ['Gain on disposal', 'SUBTRACT (cash goes in CFI)', '—'],
-        ['Loss on disposal', 'ADD (cash already gone, but loss is non-cash here)', '—']
-      ]
-    },
-    apply: 'NI $50; AR ↑ 6 → −6; AP ↓ 4 → −4; Unearned ↑ 1 → +1; Dep $7 → +7\nCFO = 50 + 7 − 6 − 4 + 1 = $48 (Morgan Corp from Mock 21)'
+    id: 'ap_cfo_dir', chNum: 11, chapter: 'Ch 11',
+    title: 'Cash flow — which direction?',
+    bigIdea: 'Cash and current accounts move OPPOSITE ways. If an asset went UP, cash went DOWN (you spent cash to get it).',
+    shortcut: 'Asset UP = cash DOWN. Liability UP = cash UP. Reverse the sign of every working-capital change.',
+    example: 'AR ↑ $6K → subtract $6K. AP ↓ $4K → subtract $4K. Depreciation $7K → ADD (non-cash). CFO = NI + 7 − 6 − 4 = …'
   },
-
-  // ==================== Ch 5 — Inventory Cost Flow ====================
   {
-    id: 'ap_inv_flow', chNum: 5, chapter: 'Ch 5',
-    title: 'Inventory Cost Flow — in rising prices, which method does what?',
-    ask: 'Are prices RISING or FALLING? Which method assigns NEW costs to COGS vs to ending inventory?',
-    rule: 'FIFO assigns OLDEST costs to COGS, NEWEST to ending. LIFO does the opposite.',
-    table: {
-      headers: ['Rising prices', 'Inventory on B/S', 'COGS', 'Gross Profit', 'Net Income', 'Taxes'],
-      rows: [
-        ['FIFO', 'HIGH (newest costs)', 'LOW (oldest)', 'HIGH', 'HIGH', 'HIGH'],
-        ['LIFO', 'LOW (oldest)', 'HIGH (newest)', 'LOW', 'LOW', 'LOW (cash saved)'],
-        ['Avg', 'middle', 'middle', 'middle', 'middle', 'middle']
-      ]
-    },
-    apply: 'LIFO is BANNED under IFRS. US GAAP allows it because of the cash-tax savings. In FALLING prices, every result above flips.'
+    id: 'ap_inv_rising', chNum: 5, chapter: 'Ch 5',
+    title: 'FIFO vs LIFO in rising prices',
+    bigIdea: 'FIFO sends OLD (cheap) costs to COGS and leaves NEW (expensive) inventory on the balance sheet. LIFO is the opposite.',
+    shortcut: 'Rising prices: FIFO = big profit + big inventory value. LIFO = small profit + small inventory value.',
+    example: 'Same data, both methods: FIFO COGS = $2,020 (cheap goods sold). LIFO COGS = $2,040 (expensive goods sold). Gross profit higher under FIFO.'
   },
-
-  // ==================== Ch 7 — Bonds ====================
   {
     id: 'ap_bond_price', chNum: 7, chapter: 'Ch 7',
-    title: 'Bond Issue Price — par, discount, or premium?',
-    ask: 'How does the COUPON RATE compare to the MARKET RATE at issuance?',
-    rule: 'If you remember nothing else: market rate is what investors DEMAND.',
-    table: {
-      headers: ['Relationship', 'Bond sells at', 'Why'],
-      rows: [
-        ['Coupon = Market', 'PAR (face value)', 'Bond gives exactly what investors want'],
-        ['Coupon < Market', 'DISCOUNT (below face)', 'Bond pays less — must sell cheap to attract buyers'],
-        ['Coupon > Market', 'PREMIUM (above face)', 'Bond pays more — investors will pay extra']
-      ]
-    },
-    apply: 'Quechua: 10% coupon, 12% market. 10 < 12 → DISCOUNT → issue price < $400,000.'
+    title: 'Bond — par, discount, or premium?',
+    bigIdea: 'If the bond pays LESS than what the market wants, you have to discount it to sell it. If it pays MORE, you can charge a premium.',
+    shortcut: 'Coupon < Market → DISCOUNT (sells cheap). Coupon > Market → PREMIUM (sells expensive). Equal → PAR.',
+    example: 'Quechua: 10% coupon, 12% market. 10 < 12 → discount → issue price below $400K.'
   },
   {
     id: 'ap_bond_retire', chNum: 7, chapter: 'Ch 7',
-    title: 'Bond Retirement — gain or loss?',
-    ask: 'Compare CARRYING VALUE (not face!) to CASH PAID.',
-    rule: 'Gain/Loss = Carrying Value − Cash Paid. Positive = gain (bought back cheap). Negative = loss.',
-    table: null,
-    apply: '$600K bond retired at 98 when CV is $590K.\nCash paid = 600,000 × 0.98 = $588,000\nGain = 590,000 − 588,000 = $2,000 GAIN\nTrap: do NOT compute "Face − Cash" (= 12K). Use CV.'
+    title: 'Bond retirement — gain or loss?',
+    bigIdea: 'IGNORE the face value. Compare what\'s on your books NOW (carrying value) to what you paid in cash.',
+    shortcut: 'Carrying value − Cash paid = Gain (positive) or Loss (negative). NOT face minus cash.',
+    example: '$600K bond retired at 98 when CV is $590K. Cash paid = 600 × 0.98 = $588K. Gain = 590 − 588 = $2K.'
   },
-
-  // ==================== Ch 6 — Long-Term Assets ====================
   {
     id: 'ap_disposal', chNum: 6, chapter: 'Ch 6',
-    title: 'Asset Disposal — gain or loss?',
-    ask: 'Have I UPDATED accumulated depreciation to the SALE DATE?',
-    rule: 'Three-step ritual: (1) accrue partial-year dep, (2) compute BV, (3) Gain/Loss = Proceeds − BV.',
-    table: null,
-    apply: 'Hale Kennels sells July 1: original $300K, 5-yr SL, salvage $50K, Accum Dep at Jan 1 = $225K, sale price $80K.\n1) Partial-year dep (Jan→Jul, 6 mo): annual = (300−50)/5 = 50; half = $25K\n2) Accum Dep at sale = 225 + 25 = 250 → BV = 300 − 250 = $50K\n3) Gain = 80 − 50 = $30,000 GAIN'
+    title: 'Selling an asset — gain or loss?',
+    bigIdea: 'Three steps in order: (1) update depreciation to today, (2) compute book value, (3) compare to cash received.',
+    shortcut: 'Forget to update partial-year dep and your BV is wrong. ALWAYS update first.',
+    example: 'Hale Kennels sells July 1. Annual SL = $50K. Jan→Jul = 6 mo, so +$25K dep. Updated Accum Dep = $250K. BV = 300 − 250 = $50K. Gain = 80 − 50 = $30K.'
   },
   {
-    id: 'ap_cap_vs_exp', chNum: 6, chapter: 'Ch 6',
-    title: 'Capitalize vs Expense — which is it?',
-    ask: 'Does this cost BUY/PREPARE a new asset, or just MAINTAIN an existing one?',
-    rule: 'Acquisition + preparation costs → CAPITALIZE. Routine maintenance → EXPENSE.',
-    table: {
-      headers: ['Type of cost', 'Treatment'],
-      rows: [
-        ['Purchase price + sales tax + freight', 'Capitalize'],
-        ['Installation, setup, testing', 'Capitalize'],
-        ['Legal fees to acquire', 'Capitalize'],
-        ['Asset Retirement Obligations at acquisition', 'Capitalize'],
-        ['Interest during construction (self-constructed)', 'Capitalize'],
-        ['Routine repairs and maintenance', 'EXPENSE'],
-        ['Improvements that EXTEND life / boost productivity', 'Capitalize'],
-        ['Training employees to use the asset', 'EXPENSE']
-      ]
-    },
-    apply: 'If you WRONGLY capitalize a routine repair:\n• Current-year NI OVERSTATED (expense was hidden)\n• Future depreciation OVERSTATED (asset base too high)\nMock 21 Q13: NI higher now, depreciation higher later.'
+    id: 'ap_cap_exp', chNum: 6, chapter: 'Ch 6',
+    title: 'Capitalize or expense?',
+    bigIdea: 'If the cost gets you the asset READY TO USE — capitalize. If it just keeps the asset running — expense.',
+    shortcut: 'Acquisition + setup → capitalize. Routine maintenance → expense.',
+    example: 'Solaris: $72K equipment + $2.6K shipping + $3.8K installation = $78,400 capitalized. (Note that "financed" vs "cash" payment is irrelevant — capitalize the full cost either way.)',
+    watchOut: 'If you WRONGLY capitalize a routine repair: NI is too high now, and future depreciation is too high (bigger asset base = more dep).'
   },
   {
     id: 'ap_intangible', chNum: 6, chapter: 'Ch 6',
     title: 'Intangibles — capitalize or expense?',
-    ask: 'Was this PURCHASED or INTERNALLY DEVELOPED?',
-    rule: 'Purchased → capitalize. Internally developed → expense (with a few exceptions).',
-    table: {
-      headers: ['Intangible', 'Purchased', 'Internally developed'],
-      rows: [
-        ['Patent', 'Capitalize and amortize', 'Only legal/registration fees capitalized'],
-        ['Copyright', 'Capitalize and amortize', 'Expense'],
-        ['Trademark', 'Capitalize', 'Expense (advertising never capitalized)'],
-        ['Franchise', 'Capitalize start-up + franchise fee', 'N/A'],
-        ['Goodwill', 'Capitalize on acquisition', 'NEVER capitalize']
-      ]
-    },
-    apply: 'Mock 21 Q17: "Which would NOT be recorded as an intangible asset?"\n→ Internally generated goodwill. (Patents, copyrights, franchises CAN be recorded if purchased.)'
+    bigIdea: 'PURCHASED intangibles → capitalize. Made it INTERNALLY → expense (almost always).',
+    shortcut: 'Goodwill is special: only counts if you ACQUIRED another company. Internally generated goodwill is NEVER on the balance sheet.',
+    example: 'Bought a patent → capitalize and amortize. Developed your own brand recognition → expense (advertising). Acquired Pepsi → goodwill from the deal is recognized.'
   },
-
-  // ==================== Ch 4 — Receivables ====================
   {
-    id: 'ap_bde', chNum: 4, chapter: 'Ch 4',
-    title: 'Bad Debt Expense — pick the method',
-    ask: 'Does the question say "% of sales" or "aging / % of receivables"?',
-    rule: 'The two methods compute BDE differently. Aging uses the existing allowance balance; % of sales does NOT.',
-    table: {
-      headers: ['Method', 'Formula', 'Use existing allowance balance?'],
-      rows: [
-        ['% of credit SALES', 'BDE = Net Credit Sales × %', 'NO — ignore the balance'],
-        ['Aging / % of RECEIVABLES', 'BDE = Required Ending Allowance − Existing Balance (+ Write-offs)', 'YES — solve T-account']
-      ]
-    },
-    apply: 'Hudson (aging): NRV target 226, AR 272.5, write-offs 21.3, beg allowance 31.5\n• Required ending = 272.5 − 226 = 46.5\n• Balance after write-offs = 31.5 − 21.3 = 10.2 (credit)\n• BDE = 46.5 − 10.2 = $36,300'
+    id: 'ap_bde_method', chNum: 4, chapter: 'Ch 4',
+    title: 'Bad debt expense — which method?',
+    bigIdea: 'Read the question. If it says "aging" or "% of receivables" → use the balance-sheet method (allowance balance matters). If "% of sales" → ignore the allowance balance.',
+    shortcut: 'Aging: BDE plugs the allowance to a target ending balance. % of sales: BDE = Sales × %, period.',
+    example: 'Hudson (aging): NRV target $226K, AR $272.5K → required allowance = $46.5K. After write-offs of $21.3K, balance is $10.2K. BDE = 46.5 − 10.2 = $36.3K.'
   },
   {
     id: 'ap_writeoff', chNum: 4, chapter: 'Ch 4',
-    title: 'Write-off effect — the "trick question"',
-    ask: 'What\'s the NET effect of writing off a specific account?',
-    rule: 'Write-off: Dr Allowance / Cr AR. Both fall by the same amount → NRV unchanged → NI unchanged. The expense was already recognized when the allowance was estimated.',
-    table: {
-      headers: ['Account', 'Effect of write-off'],
-      rows: [
-        ['Gross AR', '↓ (by amount written off)'],
-        ['Allowance for Doubtful Accounts', '↓ (by same amount)'],
-        ['NRV (= Gross AR − Allowance)', 'UNCHANGED'],
-        ['Bad Debt Expense', 'UNCHANGED'],
-        ['Net Income', 'UNCHANGED']
-      ]
-    },
-    apply: 'Anna\'s Antiques: NRV $33K before write-off of $2K. NRV after = still $33K.'
+    title: 'Write-off effect (the "trick" question)',
+    bigIdea: 'Writing off a specific account is just paperwork. It changes nothing on the income statement and nothing on NRV.',
+    shortcut: 'Gross AR ↓ and Allowance ↓ by the same amount → NRV stays put. Bad debt expense was already booked when you estimated the allowance.',
+    example: 'NRV $33K before writing off a $2K account → NRV $33K after. Unchanged.'
   },
-
-  // ==================== Ch 9 / 10 — Investments ====================
   {
-    id: 'ap_investment', chNum: 10, chapter: 'Ch 9 · 10',
-    title: 'Investment in another company — which method?',
-    ask: 'What % of voting shares does the investor own?',
-    rule: 'Three-tier framework. The thresholds are presumptions — substance (board seats, agreements) can override.',
-    table: {
-      headers: ['Ownership %', 'Influence', 'Method', 'Investee called'],
-      rows: [
-        ['< 20%', 'Passive (none)', 'Fair Value', '(no special label)'],
-        ['20%–50%', 'Significant', 'Equity Method', 'Associate'],
-        ['> 50%', 'Control', 'Consolidation', 'Subsidiary']
-      ]
-    },
-    apply: 'Mouns owns 40% of Darian → equity method.\nIncome = 40% × Darian\'s NI ($100K) = $40K (this hits Mouns\'s IS).\nDividends received reduce the INVESTMENT account, NOT income.'
+    id: 'ap_investment', chNum: 10, chapter: 'Ch 10',
+    title: 'Investing in another company — which method?',
+    bigIdea: 'It\'s about how much CONTROL you have. <20% you\'re just a passive investor. 20–50% you have a real say (equity method). >50% you run the place (consolidate).',
+    shortcut: '<20% = Fair Value. 20–50% = Equity Method (investee = "associate"). >50% = Consolidation (investee = "subsidiary").',
+    example: 'Mouns owns 40% of Darian → equity method. Income = 40% × Darian\'s NI. Dividends received reduce the INVESTMENT account, not income.'
   },
   {
     id: 'ap_treasury', chNum: 9, chapter: 'Ch 9',
-    title: 'Treasury Stock — the "no income" rule',
-    ask: 'Did a treasury transaction affect the income statement?',
-    rule: 'Treasury share transactions NEVER produce a gain or loss on the income statement. Reissue at a different price → difference goes to APIC.',
-    table: null,
-    apply: 'Repurchase 100 shares at $22 = Dr Treasury 2,200 / Cr Cash 2,200.\nReissue 80 at $24: Cash 1,920; cost 80×22 = 1,760. Difference $160 → Cr APIC. No P&L gain.'
+    title: 'Treasury stock — the "no income" rule',
+    bigIdea: 'Treasury stock NEVER creates profit or loss. Any "gain" from buying low and reselling high goes into APIC, not the income statement.',
+    shortcut: 'No P&L from your own shares. Difference goes to APIC.',
+    example: 'Buy back 100 shares at $22 = $2,200 in Treasury. Reissue 80 of them at $24 = cash $1,920; cost basis $1,760. Difference $160 → Cr APIC.'
   },
-
-  // ==================== Ch 1 — IFRS vs US GAAP ====================
   {
     id: 'ap_ifrs_gaap', chNum: 1, chapter: 'Ch 1',
     title: 'IFRS vs US GAAP — the four big differences',
-    ask: 'Is the question framed under IFRS or US GAAP? Does the answer change based on framework?',
-    rule: 'Memorize these four. Most IFRS-vs-GAAP exam questions test one of them.',
-    table: {
-      headers: ['Topic', 'IFRS', 'US GAAP'],
-      rows: [
-        ['LIFO inventory method', 'BANNED', 'Allowed'],
-        ['PP&E revaluation upward', 'Allowed', 'Not allowed'],
-        ['Impairment loss reversal (non-financial assets, NOT goodwill)', 'Allowed', 'NOT allowed'],
-        ['R&D — Development phase costs', 'May capitalize if criteria met', 'Always expense']
-      ]
-    },
-    apply: 'Mock 21 Q4: "Under IFRS, which inventory method is NOT permitted?" → LIFO.'
+    bigIdea: 'Most "which is allowed under X" questions are testing one of these four.',
+    shortcut: 'LIFO: GAAP yes, IFRS no. Revaluation up: IFRS yes, GAAP no. Reverse impairment (not goodwill): IFRS yes, GAAP no. Development R&D: IFRS may capitalize, GAAP expense everything.',
+    example: '"Under IFRS, which inventory method is NOT permitted?" → LIFO.'
   },
-
-  // ==================== Ch 2 — Liquidity ====================
   {
-    id: 'ap_quick_ratio', chNum: 2, chapter: 'Ch 2',
+    id: 'ap_quick', chNum: 2, chapter: 'Ch 2',
     title: 'Quick Ratio — what to exclude',
-    ask: 'Did I exclude inventory and prepaid expenses?',
-    rule: 'Quick Ratio = (Cash + Marketable Securities + AR) / Current Liabilities. Exclude inventory and prepaid — they\'re the slowest current assets to convert.',
-    table: {
-      headers: ['Item', 'In Quick Ratio?'],
-      rows: [
-        ['Cash', 'YES'],
-        ['Marketable / Short-term securities', 'YES'],
-        ['Accounts Receivable', 'YES'],
-        ['Inventory', 'NO (excluded)'],
-        ['Prepaid Expenses', 'NO (excluded)']
-      ]
-    },
-    apply: 'Lowe\'s: QR = (466 + 125) / 9,348 = 0.063 — very low because most CA is inventory. Current Ratio = 1.07 looks fine, but QR exposes the inventory dependency.'
+    bigIdea: '"Quick" means "can I pay bills WITHOUT selling inventory?" So exclude inventory. And prepaid (you can\'t hand your landlord prepaid insurance to settle a bill).',
+    shortcut: 'QR = (Cash + Marketable Sec + AR) / Current Liabilities. NO inventory. NO prepaid.',
+    example: 'Lowe\'s: QR = (466 + 125) / 9,348 = 0.063. Looks terrible — but Lowe\'s is a retailer, most CA is inventory. Current Ratio of 1.07 hides this.'
   },
-
-  // ==================== Ch 12 — Ratio Analysis ====================
   {
     id: 'ap_ccc', chNum: 12, chapter: 'Ch 12',
-    title: 'Cash Conversion Cycle — what each piece means',
-    ask: 'Do I know which piece is missing or being tested?',
-    rule: 'CCC = DIO + DSO − DPO. Lower = faster cash recovery. If the question says "no inventory", DIO = 0.',
-    table: {
-      headers: ['Days metric', 'What it tells you', '"Good" direction'],
-      rows: [
-        ['DIO = 365 / Inv Turnover', 'How long inventory sits before sale', 'LOWER'],
-        ['DSO = 365 / AR Turnover', 'How long until customers pay', 'LOWER'],
-        ['DPO = 365 / AP Turnover', 'How long until you pay suppliers', 'HIGHER (free financing)'],
-        ['CCC = DIO + DSO − DPO', 'Days of working capital tied up', 'LOWER']
-      ]
-    },
-    apply: 'No inventory + CCC 100 days + DPO 50 → DSO = CCC + DPO = 150 days (Mock 21 calc 3).'
+    title: 'Cash Conversion Cycle — what it means',
+    bigIdea: 'How many days is your cash trapped? Days inventory sitting around + Days waiting for customer payment − Days you delay paying suppliers.',
+    shortcut: 'CCC = DIO + DSO − DPO. Lower is better (cash comes back faster). No inventory? DIO = 0.',
+    example: 'Mock 21: CCC 100 days, no inventory, DPO 50. So 100 = DSO − 50 → DSO = 150 days.'
   },
   {
     id: 'ap_dupont', chNum: 12, chapter: 'Ch 12',
-    title: 'DuPont — which driver is moving ROE?',
-    ask: 'If ROE changed, which of the three drivers changed?',
-    rule: 'ROE = Profit Margin × Asset Turnover × Equity Multiplier. Each driver tells a different story.',
-    table: {
-      headers: ['Driver', 'Story it tells', 'How to improve'],
-      rows: [
-        ['Profit Margin = NI/Sales', 'Profitability per dollar of sales', 'Cut costs or raise prices'],
-        ['Asset Turnover = Sales/Assets', 'Asset efficiency', 'Sell more per $ of assets'],
-        ['Equity Multiplier = Assets/Equity', 'Leverage', 'Use more debt — but raises risk']
-      ]
-    },
-    apply: 'Lowe\'s ROFL = 16.4 pp (out of 24.7% ROE) → over 60% of ROE comes from leverage, not from operating performance.'
+    title: 'DuPont — what\'s driving ROE?',
+    bigIdea: 'ROE = Profit Margin × Asset Turnover × Equity Multiplier. Three knobs you can turn: prices, efficiency, or leverage.',
+    shortcut: 'PM up = cutting costs or charging more. AT up = using assets harder. EM up = more debt.',
+    example: 'Lowe\'s ROFL = 16.4 pp out of 24.7% ROE — over 60% comes from leverage. Not great operating performance; just lots of debt.'
   },
   {
     id: 'ap_horizontal', chNum: 12, chapter: 'Ch 12',
-    title: 'Horizontal % change — the "70% decrease" trap',
-    ask: 'Did the value decrease BY 70% or TO 70% of its base?',
-    rule: 'A "70% decrease" means new value = Base × (1 − 70%) = Base × 30%, NOT Base × 70%.',
-    table: null,
-    apply: 'Flynn: 2019 NI €6M. NI decreased 70% in 2020. New NI = 6 × 30% = €1.8M (NOT 6 × 70% = 4.2M).'
+    title: 'The "70% decrease" trap',
+    bigIdea: 'If something decreased BY 70%, it\'s now 30% of what it was. Multiply by 30%, not by 70%.',
+    shortcut: 'Decrease by X% → new = old × (1 − X%).',
+    example: 'Flynn 2019 NI €6M, decreased 70% in 2020. New NI = 6M × 30% = €1.8M. (NOT 6M × 70% = 4.2M.)'
   },
-
-  // ==================== Ch 9 — EPS ====================
   {
     id: 'ap_eps', chNum: 9, chapter: 'Ch 9',
-    title: 'Basic EPS — handle mid-year share changes',
-    ask: 'Did the share count change mid-year? If yes, use WEIGHTED AVERAGE.',
-    rule: 'Weighted Avg = Σ (shares × fraction of year held).',
-    table: null,
-    apply: 'Phelps: 8,000 shares at start, 800 repurchased April 1 (treasury) → 7,200 for the rest.\nWeighted Avg = 8,000 × (3/12) + 7,200 × (9/12) = 2,000 + 5,400 = 7,400.\nEPS = (NI 8,000 − Pref Div 1,000) / 7,400 = $0.946.'
+    title: 'EPS when shares changed mid-year',
+    bigIdea: 'Use WEIGHTED AVERAGE shares. Each share count gets multiplied by the fraction of the year it was outstanding.',
+    shortcut: '8K shares for 3 months + 7.2K for 9 months = 8K × 3/12 + 7.2K × 9/12.',
+    example: 'Phelps: 8,000 × 3/12 + 7,200 × 9/12 = 2,000 + 5,400 = 7,400. EPS = (8K − 1K) / 7.4K = $0.946.'
   },
   {
-    id: 'ap_authorized', chNum: 9, chapter: 'Ch 9',
-    title: 'Shares — authorized vs issued vs outstanding',
-    ask: 'Which of the three is being asked? They\'re NOT the same.',
-    rule: 'Outstanding = Issued − Treasury. Authorized is just the ceiling in the charter.',
-    table: {
-      headers: ['Term', 'Meaning'],
-      rows: [
-        ['Authorized', 'Maximum allowed by corporate charter (usually much higher than issued)'],
-        ['Issued', 'Total ever sold to shareholders'],
-        ['Outstanding', 'Issued − Treasury = shares currently in public hands'],
-        ['Treasury', 'Repurchased; not outstanding; contra-equity']
-      ]
-    },
-    apply: 'Skyline: Issued $600K / par $10 = 60,000 shares. Treasury $1,800 / cost $15 = 120 shares. Outstanding = 60,000 − 120 = 59,880.'
+    id: 'ap_shares', chNum: 9, chapter: 'Ch 9',
+    title: 'Authorized vs Issued vs Outstanding',
+    bigIdea: 'Authorized = the ceiling. Issued = how many we\'ve ever sold. Outstanding = how many are out there right now (= Issued − Treasury).',
+    shortcut: 'Outstanding is what matters for EPS, voting, dividends.',
+    example: 'Skyline: Issued $600K / par $10 = 60,000 shares. Treasury $1,800 / $15 = 120 shares. Outstanding = 60,000 − 120 = 59,880.'
   },
-
-  // ==================== Ch 11 — Cash Flow Classification ====================
   {
     id: 'ap_cf_class', chNum: 11, chapter: 'Ch 11',
-    title: 'Cash Flow Classification — operating, investing, or financing?',
-    ask: 'For each transaction, ask: what KIND of activity is this?',
-    rule: 'Operating = day-to-day business. Investing = long-term assets / other companies\' securities. Financing = own debt / own equity / dividends.',
-    table: {
-      headers: ['Transaction', 'Section'],
-      rows: [
-        ['Cash from customers', 'OPERATING'],
-        ['Cash to suppliers / employees', 'OPERATING'],
-        ['Interest paid (US GAAP)', 'OPERATING'],
-        ['Buy PP&E / sell PP&E', 'INVESTING'],
-        ['Buy/sell investments in other companies', 'INVESTING'],
-        ['Issue stock / repurchase treasury', 'FINANCING'],
-        ['Issue/retire bonds, repay loans', 'FINANCING'],
-        ['Pay dividends', 'FINANCING'],
-        ['Noncash (stock for land, equipment via note)', 'DISCLOSED ONLY (not in main SCF)']
-      ]
-    },
-    apply: 'Mock 21 calc 2: Donald Plastics. Building cash $200K = INV. Machinery via note $10K = NONCASH (disclose only). Dividends $20K = FIN. Competitor shares cash $30K = INV. Land sold cash $40K = INV. Depreciation = noncash (add-back in CFO). CFI = −200 − 30 + 40 = −$190K.'
+    title: 'Which section of cash flow — Op, Inv, or Fin?',
+    bigIdea: 'Operating = running the business. Investing = long-term stuff (their assets, others\' securities). Financing = your own debt, your own equity, dividends.',
+    shortcut: 'Buy equipment → INV. Issue stock or pay dividends → FIN. Cash from customers → OP. Non-cash transactions → footnote only.',
+    example: 'Building bought for cash → INV. Machinery bought with a note (no cash) → footnote only. Dividends paid → FIN.'
   },
-
-  // ==================== Universal — Test-Taking Strategy ====================
   {
     id: 'ap_strategy', chNum: 0, chapter: 'Strategy',
-    title: 'Universal exam approach — before solving any question',
-    ask: 'What\'s being asked? What\'s given? What formula(s) connect them?',
-    rule: 'Always run through this 4-step ritual before computing.',
-    table: {
-      headers: ['Step', 'Action'],
-      rows: [
-        ['1. Identify the unknown', 'Underline what they want you to compute (Revenue? CFO? Gain?)'],
-        ['2. List the givens', 'Write each given number with a label'],
-        ['3. Pick the anchor formula', 'What core equation connects unknown to givens? (Rearrange it on the side)'],
-        ['4. Plug in and verify direction', 'Plug numbers; double-check signs (asset up/down? gain or loss?)']
-      ]
-    },
-    apply: 'Nguyen: Unknown = Revenue. Givens = Beg E, End E, Issuance, Expenses, Dividends.\nAnchor: ΔE = NI + Issuance − Div, AND NI = Rev − Exp.\nSolve ΔE first → NI; then plug NI into the second equation → Rev.'
+    title: 'Universal — how to attack ANY numeric question',
+    bigIdea: 'Before you compute anything, do these 4 steps. They save you from sign errors and from using the wrong formula.',
+    shortcut: '1) UNDERLINE what they want. 2) LIST the givens. 3) PICK the formula that connects them. 4) PLUG IN and double-check signs.',
+    example: 'Nguyen: Want Revenue. Got Beg E, End E, Issuance, Expenses, Dividends. Connect via ΔE = NI + Issuance − Div, then NI = Rev − Exp. Solve ΔE first → NI → Rev.'
   }
 ];

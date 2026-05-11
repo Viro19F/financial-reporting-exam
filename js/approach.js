@@ -1,4 +1,4 @@
-// approach.html: render thought-process frameworks for each topic
+// approach.html: simple plain-English shortcuts per topic
 
 (function () {
   const root = document.getElementById('approach-list');
@@ -21,29 +21,18 @@
     });
   });
 
-  function renderTable(table) {
-    if (!table) return '';
+  function maybe(label, value) {
+    if (!value) return '';
     return `
-      <div class="ap-table-wrap">
-        <table class="ap-table">
-          <thead><tr>${table.headers.map(h => `<th>${escapeHtml(h)}</th>`).join('')}</tr></thead>
-          <tbody>
-            ${table.rows.map(row => `<tr>${row.map(c => `<td>${escapeHtml(c)}</td>`).join('')}</tr>`).join('')}
-          </tbody>
-        </table>
+      <div class="ap-line">
+        <span class="ap-line-label">${label}</span>
+        <span class="ap-line-text">${escapeHtml(value)}</span>
       </div>
     `;
   }
 
-  function escapeMulti(s) {
-    return escapeHtml(s).replace(/\n/g, '<br>');
-  }
-
   function render() {
-    const filtered = APPROACH.filter(a => {
-      if (activeChapter === 'all') return true;
-      return String(a.chNum) === activeChapter;
-    });
+    const filtered = APPROACH.filter(a => activeChapter === 'all' || String(a.chNum) === activeChapter);
 
     root.innerHTML = filtered.map(a => `
       <div class="ap-block" data-id="${a.id}">
@@ -51,18 +40,13 @@
           <span class="ap-chip">${escapeHtml(a.chapter)}</span>
           <h3 class="ap-title">${escapeHtml(a.title)}</h3>
         </div>
-        <div class="ap-section ap-ask">
-          <div class="ap-label">Ask yourself</div>
-          <div class="ap-text">${escapeHtml(a.ask)}</div>
-        </div>
-        <div class="ap-section ap-rule">
-          <div class="ap-label">The rule</div>
-          <div class="ap-text">${escapeHtml(a.rule)}</div>
-        </div>
-        ${renderTable(a.table)}
-        <div class="ap-section ap-apply">
-          <div class="ap-label">Apply it</div>
-          <div class="ap-text">${escapeMulti(a.apply)}</div>
+        <div class="ap-big-idea">${escapeHtml(a.bigIdea)}</div>
+        ${maybe('Shortcut', a.shortcut)}
+        ${maybe('Skip these', a.skipThese)}
+        ${maybe('Count these', a.counts)}
+        ${maybe('Watch out', a.watchOut)}
+        <div class="ap-example">
+          <span class="ap-example-label">Example —</span> ${escapeHtml(a.example)}
         </div>
       </div>
     `).join('');
