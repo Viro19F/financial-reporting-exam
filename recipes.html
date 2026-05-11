@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Recipes — FRA Exam Hub</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="wrap">
+    <header class="topbar">
+      <div class="brand"><a href="index.html">FRA <em>Exam Hub</em></a></div>
+      <div class="crumbs"><a href="index.html">← Home</a></div>
+      <div class="topbar-actions">
+        <button class="icon-btn" id="theme-toggle" title="Toggle dark mode">☾</button>
+      </div>
+    </header>
+
+    <div class="eyebrow">Mode 07</div>
+    <h1 class="display"><em>Recipes</em>.</h1>
+    <p class="lede">For each common multi-step exam question type: the formulas to apply, in order, with a worked example.</p>
+
+    <div class="filter-row" id="ch-filter"></div>
+    <input type="text" id="recipe-search" class="vault-search" placeholder="Search recipes — e.g. dividends, EPS, depreciation, CFO...">
+
+    <div id="recipes-list"></div>
+
+    <p class="footnote">Each recipe is modeled on an actual exam question. When you see a similar problem, follow the steps in order.</p>
+  </div>
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/recipes.js"></script>
+</body>
+</html>

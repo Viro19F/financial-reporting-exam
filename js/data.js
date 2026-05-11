@@ -3159,3 +3159,681 @@ const CHAINS = [
     ]
   }
 ];
+
+// =============================================================
+// RECIPES — step-by-step "how to solve" guides for common
+// multi-step question types. Each recipe shows the formula
+// chain and the computation, modeled on actual exam problems.
+// =============================================================
+const RECIPES = [
+  // ==================== CHAPTER 1 ====================
+  {
+    id: 'r_ch1_rev_from_eq',
+    chapter: 'Ch 1', chNum: 1,
+    title: 'Find REVENUE given equity changes, share issuance, expenses, dividends',
+    scenario: 'Beg equity, end equity, share issuance, expenses, and dividends are given. Solve for revenue.',
+    example: 'Nguyen: Beg E $651K; Issued $882K; Expenses $2,520K; Dividends $168K; End E $1,593K.',
+    steps: [
+      { formula: 'ΔEquity = End Equity − Beg Equity', compute: 'ΔE = 1,593 − 651 = 942' },
+      { formula: 'ΔEquity = Net Income + Share Issuance − Dividends', compute: '942 = NI + 882 − 168' },
+      { formula: 'Net Income = ΔEquity − Issuance + Dividends', compute: 'NI = 942 − 882 + 168 = 228' },
+      { formula: 'Net Income = Revenue − Expenses', compute: '228 = Rev − 2,520' },
+      { formula: 'Revenue = Net Income + Expenses', compute: 'Rev = 228 + 2,520 = $2,748,000' }
+    ]
+  },
+  {
+    id: 'r_ch1_end_eq',
+    chapter: 'Ch 1', chNum: 1,
+    title: 'Find ENDING EQUITY given activities (revenues, expenses, share issuance, dividends)',
+    scenario: 'Start with A − L = Beg E. Add NI − Div + Issuance.',
+    example: 'Stahl: A $200; L $50; Rev $160; Exp $80; Issued $30; Div $50.',
+    steps: [
+      { formula: 'Beg Equity = Assets − Liabilities', compute: 'Beg E = 200 − 50 = 150' },
+      { formula: 'Net Income = Revenue − Expenses', compute: 'NI = 160 − 80 = 80' },
+      { formula: 'ΔRetained Earnings = Net Income − Dividends', compute: 'ΔRE = 80 − 50 = 30' },
+      { formula: 'ΔEquity = ΔRE + Share Issuance', compute: 'ΔE = 30 + 30 = 60' },
+      { formula: 'End Equity = Beg Equity + ΔEquity', compute: 'End E = 150 + 60 = 210 → €210,000' }
+    ]
+  },
+  {
+    id: 'r_ch1_ni_from_re',
+    chapter: 'Ch 1', chNum: 1,
+    title: 'Find NET INCOME given RE change and dividends',
+    scenario: 'RE roll-forward: solve for NI.',
+    example: 'Willie: RE up $15K; Dividends $28K. Find NI.',
+    steps: [
+      { formula: 'ΔRE = Net Income − Dividends', compute: '15 = NI − 28' },
+      { formula: 'Net Income = ΔRE + Dividends', compute: 'NI = 15 + 28 = $43,000' }
+    ]
+  },
+  {
+    id: 'r_ch1_div_from_re',
+    chapter: 'Ch 1', chNum: 1,
+    title: 'Find DIVIDENDS PAID given RE roll-forward',
+    scenario: 'Solve the RE equation for dividends.',
+    example: 'Eagle Crest: Beg RE $70K; End RE $91K; NI $38K. Find dividends.',
+    steps: [
+      { formula: 'End RE = Beg RE + NI − Dividends', compute: '91 = 70 + 38 − Div' },
+      { formula: 'Dividends = Beg RE + NI − End RE', compute: 'Div = 70 + 38 − 91 = $17,000' }
+    ]
+  },
+  {
+    id: 'r_ch1_change_assets',
+    chapter: 'Ch 1', chNum: 1,
+    title: 'Find Δ ASSETS given Δ Liabilities and Δ Equity',
+    scenario: 'Use the change-form of A = L + E.',
+    example: 'Mock 21: ΔL = −¥45,000; ΔE = −¥10,000.',
+    steps: [
+      { formula: 'Assets = Liabilities + Equity (always holds)', compute: '' },
+      { formula: 'ΔAssets = ΔLiabilities + ΔEquity', compute: 'ΔA = −45,000 + (−10,000) = −¥55,000' }
+    ]
+  },
+
+  // ==================== CHAPTER 2 ====================
+  {
+    id: 'r_ch2_multi_is',
+    chapter: 'Ch 2', chNum: 2,
+    title: 'Build a multi-step INCOME STATEMENT to find Net Income',
+    scenario: 'Walk down: Revenue → GP → EBIT → EBT → NI.',
+    example: 'Rev €800K; COGS €450K; Op Exp €180K; Interest €25K; Tax 30%.',
+    steps: [
+      { formula: 'Gross Profit = Revenue − COGS', compute: 'GP = 800 − 450 = 350' },
+      { formula: 'Operating Income (EBIT) = GP − Operating Expenses', compute: 'EBIT = 350 − 180 = 170' },
+      { formula: 'Pre-tax Income (EBT) = EBIT − Interest', compute: 'EBT = 170 − 25 = 145' },
+      { formula: 'Tax = EBT × Tax Rate', compute: 'Tax = 145 × 0.30 = 43.5' },
+      { formula: 'Net Income = EBT − Tax', compute: 'NI = 145 − 43.5 = €101,500' }
+    ]
+  },
+  {
+    id: 'r_ch2_quick_ratio',
+    chapter: 'Ch 2', chNum: 2,
+    title: 'Compute QUICK RATIO (avoid the inventory trap)',
+    scenario: 'Quick ratio EXCLUDES inventory and prepaid expenses.',
+    example: 'Cash 30; AR 70; Inventory 100; Prepaid 10; CL 80.',
+    steps: [
+      { formula: 'QR Numerator = Cash + Marketable Securities + AR (no inventory, no prepaid)', compute: 'Num = 30 + 0 + 70 = 100' },
+      { formula: 'Quick Ratio = Numerator / Current Liabilities', compute: 'QR = 100 / 80 = 1.25' }
+    ]
+  },
+  {
+    id: 'r_ch2_working_cap',
+    chapter: 'Ch 2', chNum: 2,
+    title: 'Compute WORKING CAPITAL (and identify true current items)',
+    scenario: 'Sum current assets and current liabilities; long-term debt is NOT current.',
+    example: 'Cash 30; AR 70; Inv 100; Prepaid 10; AP 60; Accrued 20; LT Debt 200.',
+    steps: [
+      { formula: 'Current Assets = Cash + AR + Inv + Prepaid + Marketable Sec', compute: 'CA = 30 + 70 + 100 + 10 = 210' },
+      { formula: 'Current Liabilities = AP + Accrued + Short-term debt + Unearned (NO long-term debt)', compute: 'CL = 60 + 20 = 80' },
+      { formula: 'Working Capital = CA − CL', compute: 'WC = 210 − 80 = €130' }
+    ]
+  },
+
+  // ==================== CHAPTER 3 ====================
+  {
+    id: 'r_ch3_supplies',
+    chapter: 'Ch 3', chNum: 3,
+    title: 'Compute SUPPLIES EXPENSE',
+    scenario: 'What was used = beg + bought − ending count.',
+    example: 'Beg supplies $2,400; Purchases $9,800; End count $1,900.',
+    steps: [
+      { formula: 'Supplies Expense = Beg Supplies + Purchases − End Supplies', compute: 'Exp = 2,400 + 9,800 − 1,900 = $10,300' }
+    ]
+  },
+  {
+    id: 'r_ch3_prepaid',
+    chapter: 'Ch 3', chNum: 3,
+    title: 'Compute PREPAID INSURANCE EXPENSE for the period',
+    scenario: 'Spread the premium over the policy months; expense the months elapsed in this period.',
+    example: '$36K, 3-year (36 months) policy, paid May 1; year ends Dec 31.',
+    steps: [
+      { formula: 'Months elapsed in current period', compute: 'May→Dec = 8 months' },
+      { formula: 'Monthly cost = Total Premium / Total Policy Months', compute: 'Monthly = 36,000 / 36 = $1,000' },
+      { formula: 'Insurance Expense = Months elapsed × Monthly cost', compute: 'Exp = 8 × 1,000 = $8,000' }
+    ]
+  },
+  {
+    id: 'r_ch3_interest',
+    chapter: 'Ch 3', chNum: 3,
+    title: 'Compute ACCRUED INTEREST',
+    scenario: 'Pro-rate annual interest by months elapsed.',
+    example: '6-month, 8%, $30,000 note signed Nov 1; year-end Dec 31.',
+    steps: [
+      { formula: 'Months elapsed', compute: 'Nov + Dec = 2 months' },
+      { formula: 'Interest = Principal × Annual Rate × (Months / 12)', compute: 'Interest = 30,000 × 8% × 2/12 = $400' }
+    ]
+  },
+  {
+    id: 'r_ch3_unearned',
+    chapter: 'Ch 3', chNum: 3,
+    title: 'Compute REVENUE EARNED from unearned revenue (and balance remaining)',
+    scenario: 'Pro-rate the contract by months performed.',
+    example: '$48K collected April 1 for 12-month engagement; year-end Dec 31.',
+    steps: [
+      { formula: 'Months earned in this period', compute: 'Apr→Dec = 9 months' },
+      { formula: 'Monthly rate = Total Contract / Total Months', compute: 'Rate = 48,000 / 12 = $4,000/mo' },
+      { formula: 'Revenue Recognized = Months earned × Monthly rate', compute: 'Rev = 9 × 4,000 = $36,000' },
+      { formula: 'Unearned remaining = Total − Revenue Recognized', compute: 'Unearned = 48,000 − 36,000 = $12,000' }
+    ]
+  },
+  {
+    id: 'r_ch3_vivid',
+    chapter: 'Ch 3', chNum: 3,
+    title: 'Find TOTAL ASSETS after a batch of adjusting entries',
+    scenario: 'Identify which adjustments hit assets vs liabilities. Sum the asset deltas.',
+    example: 'Vivid: Pre-adjust assets $430K. Dep $45K, Recorded AR $29K, Accrued exp $14K, Used insurance $5K, Rent earned $3K.',
+    steps: [
+      { formula: 'Depreciation: subtract from assets (Accum Dep ↑ = contra-asset)', compute: '−45' },
+      { formula: 'Recorded AR: ADD to assets', compute: '+29' },
+      { formula: 'Used insurance (was prepaid): subtract', compute: '−5' },
+      { formula: 'Accrued expenses: NO asset effect (hits liability)', compute: '0' },
+      { formula: 'Rent earned (was unearned): NO asset effect (hits liability)', compute: '0' },
+      { formula: 'End Assets = Pre-adjust + sum of asset deltas', compute: '430 − 45 + 29 − 5 = $409,000' }
+    ]
+  },
+
+  // ==================== CHAPTER 4 ====================
+  {
+    id: 'r_ch4_aging',
+    chapter: 'Ch 4', chNum: 4,
+    title: 'Compute BAD DEBT EXPENSE under AGING method',
+    scenario: 'Solve the Allowance T-account for the plug.',
+    example: 'Hudson: Target NRV $226K; AR $272.5K; Write-offs $21.3K; Beg Allowance $31.5K credit.',
+    steps: [
+      { formula: 'Required Ending Allowance = Gross AR − Target NRV', compute: 'Required = 272.5 − 226 = 46.5' },
+      { formula: 'Allowance balance after write-offs = Beg − Write-offs', compute: '31.5 − 21.3 = 10.2 (credit)' },
+      { formula: 'BDE = Required Ending Allowance − Existing Balance', compute: 'BDE = 46.5 − 10.2 = $36,300' },
+      { formula: 'Equivalent: BDE = Required + Write-offs − Beg', compute: '46.5 + 21.3 − 31.5 = $36,300 ✓' }
+    ]
+  },
+  {
+    id: 'r_ch4_pct_sales',
+    chapter: 'Ch 4', chNum: 4,
+    title: 'Compute BAD DEBT EXPENSE under % OF SALES method',
+    scenario: 'Apply % directly to Net Credit Sales. Existing allowance balance is IGNORED.',
+    example: 'Net Credit Sales €1,800,000; estimate 1.5% uncollectible; Allowance has €3K DEBIT balance.',
+    steps: [
+      { formula: 'BDE = Net Credit Sales × Estimated %', compute: 'BDE = 1,800,000 × 1.5% = €27,000' },
+      { formula: '(Allowance balance does NOT enter the calculation)', compute: '— ignore the €3K' }
+    ]
+  },
+  {
+    id: 'r_ch4_dso',
+    chapter: 'Ch 4', chNum: 4,
+    title: 'Compute DSO (Days Sales Outstanding)',
+    scenario: 'Two steps: turnover, then 365 / turnover.',
+    example: 'Net Credit Sales €4,500,000; Beg AR €380K; End AR €420K.',
+    steps: [
+      { formula: 'Average AR = (Beg AR + End AR) / 2', compute: 'Avg AR = (380 + 420) / 2 = 400' },
+      { formula: 'AR Turnover = Net Credit Sales / Avg AR', compute: 'ART = 4,500 / 400 = 11.25' },
+      { formula: 'DSO = 365 / AR Turnover', compute: 'DSO = 365 / 11.25 ≈ 32 days' }
+    ]
+  },
+  {
+    id: 'r_ch4_pct_completion',
+    chapter: 'Ch 4', chNum: 4,
+    title: 'Compute REVENUE under percentage-of-completion',
+    scenario: 'Costs to date / total estimated costs × contract price = cumulative; subtract prior years.',
+    example: 'Haskell: $10M contract; total estimated cost $7.5M; Year 2022 costs $2.625M.',
+    steps: [
+      { formula: '% complete = Costs to date / Total estimated costs', compute: '% = 2,625 / 7,500 = 35%' },
+      { formula: 'Cumulative Revenue = % complete × Total contract', compute: 'Cum Rev = 35% × 10,000,000 = 3,500,000' },
+      { formula: 'Period Revenue = Cumulative this year − Cumulative prior years', compute: 'Year 1 = 3,500,000 − 0 = $3,500,000' }
+    ]
+  },
+
+  // ==================== CHAPTER 5 ====================
+  {
+    id: 'r_ch5_cogs',
+    chapter: 'Ch 5', chNum: 5,
+    title: 'Compute COGS via the inventory equation',
+    scenario: 'COGS = Beg + Purchases − End. Rearrange to solve for any unknown.',
+    example: 'GLF: Beg $8K; Purchases $28.4K; End count $9.6K.',
+    steps: [
+      { formula: 'COGS = Beg + Purchases − End', compute: 'COGS = 8 + 28.4 − 9.6 = $26,800' }
+    ]
+  },
+  {
+    id: 'r_ch5_purchases',
+    chapter: 'Ch 5', chNum: 5,
+    title: 'Compute PURCHASES (rearrange the COGS equation)',
+    scenario: 'Solve COGS equation for Purchases.',
+    example: 'Bayfield: Beg $220K; COGS $920K; End $170K.',
+    steps: [
+      { formula: 'COGS = Beg + Purchases − End', compute: '920 = 220 + P − 170' },
+      { formula: 'Purchases = COGS + End − Beg', compute: 'P = 920 + 170 − 220 = $870,000' }
+    ]
+  },
+  {
+    id: 'r_ch5_fifo_end',
+    chapter: 'Ch 5', chNum: 5,
+    title: 'Compute FIFO ENDING INVENTORY',
+    scenario: 'FIFO leaves the NEWEST units. Take ending units from the most recent purchase layers.',
+    example: 'Communicated: Beg 270 @ $570; Purch 370 @ $620, 470 @ $670, 285 @ $720. Sold 1,175.',
+    steps: [
+      { formula: 'Total available units = Beg + all Purchases', compute: 'Total = 270 + 370 + 470 + 285 = 1,395' },
+      { formula: 'Ending units = Total − Sold', compute: 'End units = 1,395 − 1,175 = 220' },
+      { formula: 'FIFO End Value = ending units valued at MOST RECENT cost layers', compute: '220 from the Oct 285-unit batch at $720 = $158,400' }
+    ]
+  },
+  {
+    id: 'r_ch5_lifo_cogs',
+    chapter: 'Ch 5', chNum: 5,
+    title: 'Compute LIFO COGS',
+    scenario: 'LIFO ending = OLDEST layers. COGS = total cost of GAFS − ending.',
+    example: 'Square9: Beg 160 @ $460; Purch 260@$510, 360@$560, 230@$610. Sold 900.',
+    steps: [
+      { formula: 'Total available units; ending units = Total − Sold', compute: 'Available 1,010; End = 110' },
+      { formula: 'LIFO End Value = ending units at OLDEST layers', compute: '110 × $460 = $50,600' },
+      { formula: 'Total cost of GAFS = sum of (units × cost)', compute: '160×460 + 260×510 + 360×560 + 230×610 = $548,100' },
+      { formula: 'LIFO COGS = Total cost of GAFS − LIFO End Value', compute: 'COGS = 548,100 − 50,600 = $497,500' }
+    ]
+  },
+  {
+    id: 'r_ch5_avg',
+    chapter: 'Ch 5', chNum: 5,
+    title: 'Compute WEIGHTED-AVERAGE COGS and ending inventory',
+    scenario: 'One average cost per unit; multiply by units sold and ending units.',
+    example: 'Beg 100 @ €5; Purch 1: 150 @ €6; Purch 2: 200 @ €8. Sold 350.',
+    steps: [
+      { formula: 'Total cost of GAFS = sum of (units × cost)', compute: '100×5 + 150×6 + 200×8 = 500 + 900 + 1,600 = 3,000' },
+      { formula: 'Total units available = Beg + all Purchases', compute: 'Total units = 100 + 150 + 200 = 450' },
+      { formula: 'Weighted Avg cost = Total cost / Total units', compute: 'Avg = 3,000 / 450 = €6.6667/unit' },
+      { formula: 'COGS = Units sold × Avg cost', compute: 'COGS = 350 × 6.6667 = €2,333.33' },
+      { formula: 'End Inventory = Ending units × Avg cost', compute: 'End = 100 × 6.6667 = €666.67' }
+    ]
+  },
+  {
+    id: 'r_ch5_inv_turn',
+    chapter: 'Ch 5', chNum: 5,
+    title: 'Compute INVENTORY TURNOVER and DIO',
+    scenario: 'Two-step: turnover then 365/turnover.',
+    example: 'COGS €960K; Beg Inv €120K; End Inv €100K.',
+    steps: [
+      { formula: 'Average Inventory = (Beg + End) / 2', compute: 'Avg = (120 + 100) / 2 = 110' },
+      { formula: 'Inventory Turnover = COGS / Avg Inventory', compute: 'Turn = 960 / 110 = 8.73 times' },
+      { formula: 'DIO = 365 / Inventory Turnover', compute: 'DIO = 365 / 8.73 ≈ 42 days' }
+    ]
+  },
+  {
+    id: 'r_ch5_lifo_to_fifo',
+    chapter: 'Ch 5', chNum: 5,
+    title: 'Convert LIFO firm to FIFO basis (Chevron vs Total)',
+    scenario: 'Add LIFO Reserve to inventory; subtract Δ Reserve from COGS.',
+    example: 'Chevron 2015: LIFO Inv $6,334; LIFO Reserve $3,745 (was $8,135 in 2014). LIFO COGS $69,751.',
+    steps: [
+      { formula: 'FIFO Inventory = LIFO Inventory + LIFO Reserve', compute: 'FIFO Inv = 6,334 + 3,745 = $10,079M' },
+      { formula: 'Δ LIFO Reserve = End Reserve − Beg Reserve', compute: 'Δ = 3,745 − 8,135 = −$4,390 (fell)' },
+      { formula: 'FIFO COGS = LIFO COGS − Δ LIFO Reserve', compute: 'FIFO COGS = 69,751 − (−4,390) = $74,141M' }
+    ]
+  },
+
+  // ==================== CHAPTER 6 ====================
+  {
+    id: 'r_ch6_sl',
+    chapter: 'Ch 6', chNum: 6,
+    title: 'Compute STRAIGHT-LINE depreciation (and book value at any year)',
+    scenario: 'Equal expense each year. BV decreases by annual dep.',
+    example: 'Frame Ind: Cost $26,300; salvage $2,900; 6-yr life. BV at end of Year 2?',
+    steps: [
+      { formula: 'Annual SL Dep = (Cost − Salvage) / Useful Life', compute: 'Annual = (26,300 − 2,900) / 6 = $3,900' },
+      { formula: 'Accumulated Depreciation = Annual × Years elapsed', compute: 'Accum after 2 yrs = 3,900 × 2 = $7,800' },
+      { formula: 'Book Value = Cost − Accumulated Depreciation', compute: 'BV = 26,300 − 7,800 = $18,500' }
+    ]
+  },
+  {
+    id: 'r_ch6_ddb',
+    chapter: 'Ch 6', chNum: 6,
+    title: 'Compute DDB depreciation schedule',
+    scenario: 'Apply rate to BOOK VALUE (not depreciable base). Stop when BV = salvage.',
+    example: 'Tanner truck: $80K, 5-yr, salvage $8K. Compute Y3 dep.',
+    steps: [
+      { formula: 'DDB Rate = 2 / Useful Life', compute: 'Rate = 2/5 = 40%' },
+      { formula: 'Year 1 Dep = Cost × Rate', compute: 'Y1 = 80,000 × 40% = $32,000; BV = 48,000' },
+      { formula: 'Year 2 Dep = Beg-Y2 BV × Rate', compute: 'Y2 = 48,000 × 40% = $19,200; BV = 28,800' },
+      { formula: 'Year 3 Dep = Beg-Y3 BV × Rate', compute: 'Y3 = 28,800 × 40% = $11,520' },
+      { formula: 'Final year: cap at salvage if needed', compute: 'When computed dep would push BV below salvage, cap.' }
+    ]
+  },
+  {
+    id: 'r_ch6_disposal',
+    chapter: 'Ch 6', chNum: 6,
+    title: 'Compute GAIN or LOSS on asset disposal (with mid-year sale)',
+    scenario: 'Update accumulated depreciation to sale date; compute BV; gain/loss = proceeds − BV.',
+    example: 'Hale Kennels: Cost $300K; 5-yr life; salvage $50K; Accum Dep at Jan 1 = $225K; sold July 1 for $80K.',
+    steps: [
+      { formula: 'Annual SL Dep = (Cost − Salvage) / Life', compute: 'Annual = (300 − 50)/5 = $50K' },
+      { formula: 'Partial-year dep up to sale = Annual × (months / 12)', compute: 'Jan→Jul = 6 mo → 50K × 6/12 = $25K' },
+      { formula: 'Accum Dep at sale = Beg-year Accum + Partial-year', compute: 'Accum = 225 + 25 = $250K' },
+      { formula: 'Book Value = Cost − Accum Dep', compute: 'BV = 300 − 250 = $50K' },
+      { formula: 'Gain/Loss = Proceeds − BV', compute: 'Gain = 80 − 50 = $30,000 GAIN' }
+    ]
+  },
+  {
+    id: 'r_ch6_change_estimate',
+    chapter: 'Ch 6', chNum: 6,
+    title: 'Compute NEW DEPRECIATION after change in estimate',
+    scenario: 'Prospective treatment. Use current BV and remaining life.',
+    example: 'Tanner truck after 4 yrs SL ($14,400/yr). Useful life extended from 5 → 7 yrs. New annual?',
+    steps: [
+      { formula: 'Current Book Value = Cost − Accum Dep at change date', compute: 'BV = 80,000 − 4×14,400 = $22,400' },
+      { formula: 'New Remaining Life = New total life − Years already elapsed', compute: 'Remaining = 7 − 4 = 3 yrs' },
+      { formula: 'New Annual Dep = (Current BV − Salvage) / New Remaining Life', compute: 'New = (22,400 − 8,000)/3 = $4,800' }
+    ]
+  },
+  {
+    id: 'r_ch6_capitalized_cost',
+    chapter: 'Ch 6', chNum: 6,
+    title: 'Compute CAPITALIZED COST of an asset',
+    scenario: 'Sum all costs to acquire and prepare for use. Financing source is irrelevant.',
+    example: 'Solaris: list price $72K (paid $55K cash + $17K financed); shipping $2.6K; install $3.8K.',
+    steps: [
+      { formula: 'Capitalized Cost = Purchase Price + Sales Tax + Shipping + Installation + Setup + Testing + Asset Retirement Obligations', compute: 'Cost = 72,000 + 2,600 + 3,800 = $78,400' },
+      { formula: 'Financing source (cash vs note) does NOT change capitalized cost', compute: '— $17K financed is irrelevant to the recorded cost' }
+    ]
+  },
+  {
+    id: 'r_ch6_goodwill',
+    chapter: 'Ch 6', chNum: 6,
+    title: 'Compute GOODWILL on acquisition',
+    scenario: 'Excess of price over fair value of net identifiable assets.',
+    example: 'Acquirer pays $5M for target whose identifiable net assets fair-value at $4.2M.',
+    steps: [
+      { formula: 'Net Identifiable Assets = FV of Identifiable Assets − FV of Liabilities Assumed', compute: 'Net Identifiable = $4,200,000 (given)' },
+      { formula: 'Goodwill = Purchase Price − Fair Value of Net Identifiable Assets', compute: 'Goodwill = 5,000,000 − 4,200,000 = $800,000' }
+    ]
+  },
+
+  // ==================== CHAPTER 7 ====================
+  {
+    id: 'r_ch7_par_disc_prem',
+    chapter: 'Ch 7', chNum: 7,
+    title: 'Determine if bond is at PAR / DISCOUNT / PREMIUM',
+    scenario: 'Compare coupon rate to market rate.',
+    example: 'Quechua: 10% coupon; 12% market. Issued at?',
+    steps: [
+      { formula: 'Coupon = Market → Par (face value)', compute: '—' },
+      { formula: 'Coupon < Market → Discount (below face)', compute: '10% < 12% → discount → price < $400,000' },
+      { formula: 'Coupon > Market → Premium (above face)', compute: '—' }
+    ]
+  },
+  {
+    id: 'r_ch7_effective_int',
+    chapter: 'Ch 7', chNum: 7,
+    title: 'Compute INTEREST EXPENSE under effective-interest method',
+    scenario: 'Interest expense floats with carrying value × market rate.',
+    example: 'Sunshine bond: face $1M; 5% coupon; market 6%. Issued at $950K. Y1 interest expense?',
+    steps: [
+      { formula: 'Cash Interest = Face × Coupon Rate × (Time/12)', compute: 'Cash = 1,000,000 × 5% = $50,000' },
+      { formula: 'Interest Expense = Beg Carrying Value × Market Rate × (Time/12)', compute: 'Expense = 950,000 × 6% = $57,000' },
+      { formula: 'Discount Amortization = Interest Expense − Cash Interest', compute: 'Amort = 57,000 − 50,000 = $7,000' },
+      { formula: 'New Carrying Value = Beg CV + Discount Amortization', compute: 'New CV = 950,000 + 7,000 = $957,000' }
+    ]
+  },
+  {
+    id: 'r_ch7_retirement',
+    chapter: 'Ch 7', chNum: 7,
+    title: 'Compute GAIN or LOSS on bond retirement',
+    scenario: 'Compare carrying value (NOT face) to cash paid.',
+    example: '$600K bond retired at 98 when carrying value is $590K.',
+    steps: [
+      { formula: 'Cash Paid = Face × (price / 100)', compute: 'Cash = 600,000 × 0.98 = $588,000' },
+      { formula: 'Gain/Loss = Carrying Value − Cash Paid', compute: 'Gain = 590,000 − 588,000 = $2,000 GAIN' },
+      { formula: 'Positive = gain (CV > Cash); negative = loss (CV < Cash)', compute: '—' }
+    ]
+  },
+  {
+    id: 'r_ch7_tie',
+    chapter: 'Ch 7', chNum: 7,
+    title: 'Compute TIMES INTEREST EARNED (TIE / coverage ratio)',
+    scenario: 'Two equivalent forms — pick whichever fits the data.',
+    example: 'NI €160K; Tax €60K; Interest €40K.',
+    steps: [
+      { formula: 'EBIT = NI + Tax + Interest', compute: 'EBIT = 160 + 60 + 40 = 260' },
+      { formula: 'TIE = EBIT / Interest Expense', compute: 'TIE = 260 / 40 = 6.5 times' },
+      { formula: 'Equivalent: TIE = (NI + Tax + Interest) / Interest', compute: '(160 + 60 + 40) / 40 = 6.5 ✓' }
+    ]
+  },
+  {
+    id: 'r_ch7_2_10',
+    chapter: 'Ch 7', chNum: 7,
+    title: 'Compute COST of forgoing a 2/10, n/30 cash discount',
+    scenario: 'Annualize the implicit interest in the discount.',
+    example: '$1,000 invoice, terms 2/10, n/30.',
+    steps: [
+      { formula: 'Effective rate per period = Discount % / (1 − Discount %)', compute: '2/98 ≈ 2.04%' },
+      { formula: 'Periods per year = 365 / (Net days − Discount days)', compute: '365 / (30 − 10) = 365/20 = 18.25' },
+      { formula: 'Annualized cost = Per-period rate × Periods per year', compute: '2.04% × 18.25 ≈ 37.2% per year' }
+    ]
+  },
+
+  // ==================== CHAPTER 8 ====================
+  {
+    id: 'r_ch8_initial',
+    chapter: 'Ch 8', chNum: 8,
+    title: 'Compute INITIAL LEASE LIABILITY (ROU)',
+    scenario: 'PV of all future lease payments at the discount rate.',
+    example: 'Phelps Swimming: 5-yr lease, $3,256/yr at year-end, 8% rate. PV factor (5,8%) = 3.99271.',
+    steps: [
+      { formula: 'Lease Liability = Annual Payment × PV Annuity Factor (n, r)', compute: 'Liab = 3,256 × 3.99271 = $13,000' },
+      { formula: 'Initial ROU Asset = Lease Liability + IDC + Prepayments − Incentives', compute: 'ROU = $13,000 (no IDCs)' }
+    ]
+  },
+  {
+    id: 'r_ch8_y1_exp',
+    chapter: 'Ch 8', chNum: 8,
+    title: 'Compute lease YEAR 1 expenses (depreciation + interest)',
+    scenario: 'Total expense is front-loaded in Y1.',
+    example: 'Phelps Swimming: ROU $13K; 5-yr SL; 8% rate.',
+    steps: [
+      { formula: 'Annual Depreciation = ROU Asset / Lease Term', compute: 'Dep = 13,000 / 5 = $2,600/yr' },
+      { formula: 'Y1 Interest = Beg Lease Liability × Discount Rate', compute: 'Interest = 13,000 × 8% = $1,040' },
+      { formula: 'Y1 Total IS expense = Depreciation + Interest', compute: 'Total = 2,600 + 1,040 = $3,640' },
+      { formula: 'Y1 Principal Repayment = Cash Payment − Interest', compute: 'Principal = 3,256 − 1,040 = $2,216' },
+      { formula: 'End-Y1 Lease Liability = Beg − Principal', compute: 'End Liab = 13,000 − 2,216 = $10,784' }
+    ]
+  },
+
+  // ==================== CHAPTER 9 ====================
+  {
+    id: 'r_ch9_outstanding',
+    chapter: 'Ch 9', chNum: 9,
+    title: 'Compute OUTSTANDING SHARES (Issued − Treasury)',
+    scenario: 'Convert dollar amounts to share counts using par/cost per share.',
+    example: 'Skyline: Issued shares (par €10) €600,000; Treasury (at cost €15/sh) €1,800.',
+    steps: [
+      { formula: 'Issued Shares = Issued account balance / Par Value', compute: 'Issued = 600,000 / 10 = 60,000 shares' },
+      { formula: 'Treasury Shares = Treasury cost / Cost per share', compute: 'Treasury = 1,800 / 15 = 120 shares' },
+      { formula: 'Outstanding Shares = Issued − Treasury', compute: 'Outstanding = 60,000 − 120 = 59,880 shares' }
+    ]
+  },
+  {
+    id: 'r_ch9_eps',
+    chapter: 'Ch 9', chNum: 9,
+    title: 'Compute BASIC EPS with mid-year share change',
+    scenario: 'Weighted-average shares; then (NI − Pref Div) / WAS.',
+    example: 'Phelps: NI $8K; Pref Div $1K. 8K shares all year EXCEPT 800 repurchased Apr 1.',
+    steps: [
+      { formula: 'Weighted Avg Shares = Σ (shares × fraction of year held)', compute: '8,000 × 3/12 + 7,200 × 9/12 = 2,000 + 5,400 = 7,400' },
+      { formula: 'EPS Numerator = NI − Preferred Dividends', compute: '8,000 − 1,000 = 7,000' },
+      { formula: 'Basic EPS = (NI − Pref Div) / Weighted Avg Common Shares', compute: 'EPS = 7,000 / 7,400 = $0.946' }
+    ]
+  },
+  {
+    id: 'r_ch9_equity_method',
+    chapter: 'Ch 9', chNum: 9,
+    title: 'Compute EQUITY-METHOD INCOME and investment balance',
+    scenario: 'Income = % × Investee NI. Dividends reduce investment, NOT income.',
+    example: 'Mouns owns 40% of Darian. Darian NI $100K; pays $20K div to Mouns.',
+    steps: [
+      { formula: 'Investor Income = Ownership % × Investee Net Income', compute: 'Income = 40% × 100,000 = $40,000' },
+      { formula: 'Investment Δ from NI = + (% × NI)', compute: '+40,000' },
+      { formula: 'Investment Δ from Dividends = − (% × Dividends)', compute: '−(40% × 50,000) = −20,000 (reduces investment, NOT income)' },
+      { formula: 'End Investment = Beg + Income − Dividends received', compute: 'Investment account moves; Income only reflects share of NI.' }
+    ]
+  },
+  {
+    id: 'r_ch9_contributed',
+    chapter: 'Ch 9', chNum: 9,
+    title: 'Compute NET CONTRIBUTED CAPITAL (with treasury)',
+    scenario: 'Common stock + APIC − Treasury cost.',
+    example: 'Artemis: 10.5M shares issued (par $1); APIC $27.3M; 9.9M outstanding; Treasury repurchase price $12/sh.',
+    steps: [
+      { formula: 'Common Stock = Issued Shares × Par', compute: 'CS = 10,500,000 × $1 = $10,500,000' },
+      { formula: 'Treasury Shares = Issued − Outstanding', compute: 'Treasury sh = 10.5M − 9.9M = 600,000' },
+      { formula: 'Treasury Cost = Treasury Shares × Cost per Share', compute: 'Treasury $ = 600,000 × $12 = $7,200,000' },
+      { formula: 'Net Contributed Capital = Common Stock + APIC − Treasury Stock', compute: 'Net = 10.5M + 27.3M − 7.2M = $30,600,000' }
+    ]
+  },
+
+  // ==================== CHAPTER 11 ====================
+  {
+    id: 'r_ch11_cfo',
+    chapter: 'Ch 11', chNum: 11,
+    title: 'Compute CFO via INDIRECT METHOD',
+    scenario: 'Start with NI; add back non-cash; reverse gains/losses; adjust for working capital.',
+    example: 'SkyBridge: NI €150K; Dep €35K; AR ↑ €19K; Inv ↑ €14K; Unearned ↑ €7K; Prepaid ↓ €4K.',
+    steps: [
+      { formula: 'Start: Net Income', compute: '+150,000' },
+      { formula: '+ Depreciation, + Amortization (non-cash add-back)', compute: '+35,000' },
+      { formula: '− Δ AR (asset up = cash down)', compute: '−19,000' },
+      { formula: '− Δ Inventory (asset up = cash down)', compute: '−14,000' },
+      { formula: '+ Δ Prepaid REVERSED — prepaid DOWN means cash freed up: + 4,000', compute: '+4,000 (decrease)' },
+      { formula: '+ Δ Unearned (liability up = cash up)', compute: '+7,000' },
+      { formula: '= CFO', compute: '150 + 35 − 19 − 14 + 4 + 7 = €163,000' }
+    ]
+  },
+  {
+    id: 'r_ch11_cfi',
+    chapter: 'Ch 11', chNum: 11,
+    title: 'Compute CFI (cash from investing)',
+    scenario: 'Only CASH transactions in long-term assets/investments. Ignore non-cash and dividends.',
+    example: 'Donald Plastics: Building cash $200K; Machinery via NOTE $10K; Dividends $20K; Competitor shares cash $30K; Land sold cash $40K; Depreciation $9K.',
+    steps: [
+      { formula: 'List only CASH investing flows', compute: '−Building 200; −Shares 30; +Land 40' },
+      { formula: 'Note-purchase of machinery: NON-cash → exclude', compute: '0 (disclosed in supplemental notes)' },
+      { formula: 'Dividends: FINANCING, not investing → exclude', compute: '0' },
+      { formula: 'Depreciation: NON-cash → exclude (already in CFO add-back)', compute: '0' },
+      { formula: 'CFI = sum of cash investing flows', compute: '−200 − 30 + 40 = −€190,000' }
+    ]
+  },
+  {
+    id: 'r_ch11_cff',
+    chapter: 'Ch 11', chNum: 11,
+    title: 'Back out DIVIDENDS (and CFF) from RE roll-forward',
+    scenario: 'When dividends paid is not given, derive from RE.',
+    example: 'Beg RE $80K; End RE $76K; NI $64K. LT loan: Beg $49K, End $42K, no new loans.',
+    steps: [
+      { formula: 'Dividends = Beg RE + NI − End RE', compute: 'Div = 80 + 64 − 76 = $68,000' },
+      { formula: 'Loan Repayment = Beg Loan − End Loan (if no new loans)', compute: 'Repaid = 49 − 42 = $7,000' },
+      { formula: 'CFF = − Dividends − Loan Repayment + Issuances', compute: 'CFF = −68 − 7 = −$75,000' }
+    ]
+  },
+  {
+    id: 'r_ch11_change_cash',
+    chapter: 'Ch 11', chNum: 11,
+    title: 'Compute NET CHANGE IN CASH and verify ending cash',
+    scenario: 'Sum the three sections; reconcile to balance sheet.',
+    example: 'Ranger: CFO $52K; CFF −$10K; CFI −$130K.',
+    steps: [
+      { formula: 'Net Δ Cash = CFO + CFI + CFF', compute: '52 − 10 − 130 = −$88,000' },
+      { formula: 'End Cash = Beg Cash + Net Δ Cash', compute: 'Verify against B/S' }
+    ]
+  },
+  {
+    id: 'r_ch11_fcf',
+    chapter: 'Ch 11', chNum: 11,
+    title: 'Compute FREE CASH FLOW',
+    scenario: 'Cash left for investors after maintaining/expanding operations.',
+    example: 'CFO $250K; CapEx $90K.',
+    steps: [
+      { formula: 'Free Cash Flow = CFO − Capital Expenditures (CapEx)', compute: 'FCF = 250 − 90 = $160,000' }
+    ]
+  },
+
+  // ==================== CHAPTER 12 ====================
+  {
+    id: 'r_ch12_roe',
+    chapter: 'Ch 12', chNum: 12,
+    title: 'Compute ROE',
+    scenario: 'NI / Avg Equity. Always use AVERAGE.',
+    example: 'PG: NI $12,846; Avg Equity $62,269.',
+    steps: [
+      { formula: 'Average Equity = (Beg + End) / 2', compute: 'Use given average if provided.' },
+      { formula: 'ROE = Net Income / Average Stockholders\' Equity', compute: 'ROE = 12,846 / 62,269 = 20.6%' }
+    ]
+  },
+  {
+    id: 'r_ch12_rofl',
+    chapter: 'Ch 12', chNum: 12,
+    title: 'Compute RETURN ON FINANCIAL LEVERAGE (ROFL)',
+    scenario: 'Three-step: ROE, ROA, then difference.',
+    example: 'PG: NI $12,846; Avg Equity $62,269; Avg Total Assets $131,503.',
+    steps: [
+      { formula: 'ROE = NI / Avg Equity', compute: 'ROE = 12,846 / 62,269 = 20.6%' },
+      { formula: 'ROA = NI / Avg Total Assets', compute: 'ROA = 12,846 / 131,503 = 9.8%' },
+      { formula: 'Return on Financial Leverage = ROE − ROA', compute: 'ROFL = 20.6% − 9.8% = 10.8%' }
+    ]
+  },
+  {
+    id: 'r_ch12_dupont',
+    chapter: 'Ch 12', chNum: 12,
+    title: 'DuPont decomposition (compute ROE three ways)',
+    scenario: 'Three drivers multiply to ROE.',
+    example: 'PM 8%; Asset Turnover 1.5; Equity Multiplier 2.0.',
+    steps: [
+      { formula: 'Profit Margin = Net Income / Sales', compute: 'PM = 8%' },
+      { formula: 'Asset Turnover = Sales / Average Total Assets', compute: 'AT = 1.5' },
+      { formula: 'Equity Multiplier = Avg Total Assets / Avg Equity', compute: 'EM = 2.0' },
+      { formula: 'ROE = PM × AT × EM', compute: 'ROE = 0.08 × 1.5 × 2.0 = 24%' }
+    ]
+  },
+  {
+    id: 'r_ch12_ccc',
+    chapter: 'Ch 12', chNum: 12,
+    title: 'Compute CASH CONVERSION CYCLE',
+    scenario: 'Three turnovers, three days metrics, sum.',
+    example: 'DSO 45, DIO 60, DPO 30.',
+    steps: [
+      { formula: 'DIO = 365 / Inventory Turnover', compute: '60 (given)' },
+      { formula: 'DSO = 365 / AR Turnover', compute: '45 (given)' },
+      { formula: 'DPO = 365 / AP Turnover', compute: '30 (given)' },
+      { formula: 'CCC = DIO + DSO − DPO', compute: 'CCC = 60 + 45 − 30 = 75 days' },
+      { formula: 'Special case — no inventory: CCC = DSO − DPO (DIO = 0)', compute: 'Mock 21 calc 3: 100 = DSO − 50 → DSO = 150' }
+    ]
+  },
+  {
+    id: 'r_ch12_pe',
+    chapter: 'Ch 12', chNum: 12,
+    title: 'Compute P/E RATIO',
+    scenario: 'Two-step: EPS first, then P / EPS.',
+    example: '1,000,000 outstanding shares; NI €12M; Price €108.',
+    steps: [
+      { formula: 'EPS = (NI − Preferred Dividends) / Common Shares', compute: 'EPS = 12,000,000 / 1,000,000 = €12' },
+      { formula: 'P/E = Price / EPS', compute: 'P/E = 108 / 12 = 9' }
+    ]
+  },
+  {
+    id: 'r_ch12_horizontal',
+    chapter: 'Ch 12', chNum: 12,
+    title: 'HORIZONTAL analysis — % change (and the "70% decrease" trap)',
+    scenario: 'A 70% decrease means the new value = base × 30% — NOT base × 70%.',
+    example: 'Flynn: 2019 NI €6M. NI decreased 70% in 2020.',
+    steps: [
+      { formula: 'Decrease amount = % × Base', compute: '70% × 6,000,000 = 4,200,000' },
+      { formula: 'New value = Base − Decrease', compute: '2020 NI = 6,000,000 − 4,200,000 = €1,800,000' },
+      { formula: 'Equivalent: New = Base × (1 − % decrease)', compute: '6,000,000 × 30% = €1,800,000 ✓' }
+    ]
+  },
+  {
+    id: 'r_ch12_de',
+    chapter: 'Ch 12', chNum: 12,
+    title: 'Compute D/E ratio when liabilities are split',
+    scenario: 'Sum CL + Non-current Liab; equity = Assets − Total Liab.',
+    example: 'Total Assets €1,200,000; CL €140,000; Non-current Liab €340,000.',
+    steps: [
+      { formula: 'Total Liabilities = CL + Non-current Liab', compute: 'Total L = 140 + 340 = 480,000' },
+      { formula: 'Total Equity = Total Assets − Total Liabilities', compute: 'Equity = 1,200 − 480 = 720,000' },
+      { formula: 'D/E = Total Liabilities / Total Equity', compute: 'D/E = 480 / 720 = 0.667' }
+    ]
+  }
+];
