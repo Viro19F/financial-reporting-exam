@@ -1,38 +1,41 @@
-// chains.html: render formula chains as nested derivation trees
+// chains.html: render formula chains as numbered lists where each line's
+// first word/term comes from a previous line.
 
 (function () {
   const root = document.getElementById('chains-list');
   if (!root || typeof CHAINS === 'undefined') return;
 
-  function renderNode(node, depth) {
-    const arrow = depth > 0 ? '<span class="chain-arrow">↳</span>' : '';
-    const childrenHtml = (node.children || []).map(c => renderNode(c, depth + 1)).join('');
-    return `
-      <div class="chain-node" style="margin-left:${depth * 22}px" data-depth="${depth}">
-        <div class="chain-row">
-          ${arrow}
-          <div class="chain-content">
-            <div class="chain-formula">${escapeHtml(node.formula)}</div>
-            ${node.note ? `<div class="chain-note">${escapeHtml(node.note)}</div>` : ''}
+  function renderChain(chain) {
+    const stepsHtml = chain.steps.map((step, i) => {
+      const num = i + 1;
+      const isAnchor = i === 0;
+      return `
+        <div class="chain-step ${isAnchor ? 'anchor' : ''}">
+          <div class="step-num">${num}</div>
+          <div class="step-body">
+            <div class="step-formula">${escapeHtml(step.formula)}</div>
+            ${step.note ? `<div class="step-note">${escapeHtml(step.note)}</div>` : ''}
           </div>
         </div>
-        ${childrenHtml}
+        ${i < chain.steps.length - 1 ? '<div class="chain-link">↓</div>' : ''}
+      `;
+    }).join('');
+
+    return `
+      <div class="chain-block" data-id="${chain.id}">
+        <div class="chain-head">
+          <div class="chain-title-row">
+            <h2 class="chain-title">${escapeHtml(chain.title)}</h2>
+            <span class="chain-chapter">${escapeHtml(chain.chapters)}</span>
+          </div>
+          ${chain.intro ? `<p class="chain-intro">${escapeHtml(chain.intro)}</p>` : ''}
+        </div>
+        <div class="chain-steps">
+          ${stepsHtml}
+        </div>
       </div>
     `;
   }
 
-  root.innerHTML = CHAINS.map(chain => `
-    <div class="chain-block" data-id="${chain.id}">
-      <div class="chain-head">
-        <div class="chain-title-row">
-          <h2 class="chain-title">${escapeHtml(chain.title)}</h2>
-          <span class="chain-chapter">${escapeHtml(chain.chapters)}</span>
-        </div>
-        ${chain.intro ? `<p class="chain-intro">${escapeHtml(chain.intro)}</p>` : ''}
-      </div>
-      <div class="chain-tree">
-        ${chain.nodes.map(n => renderNode(n, 0)).join('')}
-      </div>
-    </div>
-  `).join('');
+  root.innerHTML = CHAINS.map(renderChain).join('');
 })();

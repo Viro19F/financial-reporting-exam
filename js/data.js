@@ -2917,185 +2917,102 @@ const MOCKS = [
 // FORMULA CHAINS — derive each formula from the one above so you only
 // have to memorize the anchor. Each chain is a tree of formulas.
 // =============================================================
+// New chain rule: every formula's first word/term must appear somewhere in a
+// previous formula in the same chain. Memorize the anchor at the top; you can
+// derive every line below by following the linked words.
+
 const CHAINS = [
   {
     id: 'accounting_eq',
     title: 'The Accounting Equation',
     chapters: 'Ch 1 · Ch 2 · Ch 3',
-    intro: 'Memorize the top one. Everything else is algebra.',
-    nodes: [
-      {
-        formula: 'Assets = Liabilities + Equity',
-        note: 'The fundamental identity. Always holds.',
-        children: [
-          {
-            formula: 'Equity = Assets − Liabilities',
-            note: 'Solve for Equity.'
-          },
-          {
-            formula: 'ΔAssets = ΔLiabilities + ΔEquity',
-            note: 'Same identity in change-form. Mock 21: ΔL=−45, ΔE=−10 ⇒ ΔA=−55.'
-          },
-          {
-            formula: 'A = L + Share Capital + RE + Revenues − Expenses − Dividends',
-            note: 'Expand Equity into its sources.',
-            children: [
-              {
-                formula: 'Net Income = Revenues − Expenses',
-                note: 'Combine the IS items.'
-              },
-              {
-                formula: 'End RE = Beg RE + NI − Dividends',
-                note: 'Retained earnings roll-forward.',
-                children: [
-                  { formula: 'Dividends = Beg RE + NI − End RE', note: 'Solve for dividends paid.' },
-                  { formula: 'NI = End RE − Beg RE + Dividends', note: 'Solve for NI from RE movement.' }
-                ]
-              }
-            ]
-          }
-        ]
-      }
+    intro: 'Memorize the anchor at top. Every line below starts with a word from a line above.',
+    steps: [
+      { formula: 'Assets = Liabilities + Equity', note: 'Anchor. Always holds.' },
+      { formula: 'Equity = Assets − Liabilities', note: '"Equity" was in the line above. Just rearrange.' },
+      { formula: 'Liabilities = Assets − Equity', note: '"Liabilities" was in line 1. Same rearrangement.' },
+      { formula: 'Equity = Contributed Capital + Retained Earnings', note: 'Expand "Equity" into its sources.' },
+      { formula: 'Contributed Capital = Common Stock (par) + APIC − Treasury Stock', note: 'Break down "Contributed Capital" from line 4.' },
+      { formula: 'Retained Earnings (end) = Retained Earnings (beg) + Net Income − Dividends', note: 'RE roll-forward — "Retained Earnings" was in line 4.' },
+      { formula: 'Net Income = Revenues − Expenses', note: '"Net Income" was in line 6.' },
+      { formula: 'Revenues = Net Income + Expenses', note: '"Revenues" was in line 7. Solve for it.' },
+      { formula: 'Expenses = Revenues − Net Income', note: '"Expenses" was in line 7. Solve for it.' },
+      { formula: 'Dividends = Beg RE + Net Income − End RE', note: '"Dividends" was in line 6. Solve to back out dividends paid.' }
     ]
   },
   {
     id: 'income_statement',
     title: 'Income Statement Build-Down',
     chapters: 'Ch 2 · Ch 12',
-    intro: 'Each subtotal is the previous one minus a category of expense.',
-    nodes: [
-      {
-        formula: 'Revenue (Sales)',
-        note: 'Top line.',
-        children: [
-          {
-            formula: 'Gross Profit = Revenue − COGS',
-            note: 'GPM = GP / Revenue.',
-            children: [
-              {
-                formula: 'Operating Income (EBIT) = GP − Operating Expenses',
-                note: 'Operating expenses = SG&A + R&D + Depreciation. Operating Margin = EBIT / Revenue.',
-                children: [
-                  {
-                    formula: 'Pre-tax Income (EBT) = EBIT − Interest Expense',
-                    note: 'Interest is non-operating.',
-                    children: [
-                      {
-                        formula: 'Net Income = EBT − Tax = EBT × (1 − tax rate)',
-                        note: 'Bottom line. NPM = NI / Revenue.'
-                      }
-                    ]
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      }
+    intro: 'Each subtotal contains the previous one — every term reappears below.',
+    steps: [
+      { formula: 'Revenue − COGS = Gross Profit', note: 'Anchor. Top line minus cost of sales.' },
+      { formula: 'Revenue = Gross Profit + COGS', note: '"Revenue" was in line 1.' },
+      { formula: 'COGS = Revenue − Gross Profit', note: '"COGS" was in line 1.' },
+      { formula: 'Gross Profit − Operating Expenses = Operating Income (EBIT)', note: '"Gross Profit" carries down from line 1; introduces "Operating".' },
+      { formula: 'Gross Profit Margin = Gross Profit / Revenue', note: '"Gross Profit" again.' },
+      { formula: 'Operating Income − Interest Expense = Pre-tax Income (EBT)', note: '"Operating Income" was in line 4; introduces "Pre-tax".' },
+      { formula: 'Operating Margin = Operating Income / Revenue', note: '"Operating" was in line 4.' },
+      { formula: 'Pre-tax Income − Tax = Net Income', note: '"Pre-tax Income" was in line 6.' },
+      { formula: 'Pre-tax Income × Tax Rate = Tax', note: '"Pre-tax Income" again.' },
+      { formula: 'Net Income = Pre-tax Income × (1 − Tax Rate)', note: '"Net Income" was in line 8.' },
+      { formula: 'Net Profit Margin = Net Income / Revenue', note: '"Net Income" again.' }
     ]
   },
   {
     id: 'cogs_chain',
     title: 'Inventory & COGS',
     chapters: 'Ch 5',
-    intro: 'One core equation; rearrange to solve for any unknown.',
-    nodes: [
-      {
-        formula: 'Goods Available for Sale = Beg Inventory + Purchases',
-        note: 'Everything you could have sold.',
-        children: [
-          {
-            formula: 'COGS = GAFS − End Inventory = Beg + Purchases − End',
-            note: 'What you actually sold.',
-            children: [
-              { formula: 'Purchases = COGS + End − Beg', note: 'Solve for purchases (Mock 2025 Q19: 920 + 170 − 220 = 870).' },
-              { formula: 'End Inventory = Beg + Purchases − COGS', note: 'Solve for ending inventory.' },
-              { formula: 'Beg Inventory = COGS + End − Purchases', note: 'Solve for beginning inventory.' }
-            ]
-          },
-          { formula: 'Gross Profit = Revenue − COGS', note: 'Connect to the income statement.' },
-          { formula: 'Inventory Turnover = COGS / Avg Inventory', note: 'How fast you sell.' },
-          { formula: 'DIO = 365 / Inventory Turnover', note: 'Days inventory sits.' }
-        ]
-      },
-      {
-        formula: 'LIFO Reserve = FIFO Inv − LIFO Inv',
-        note: 'Difference because of cost-flow assumption.',
-        children: [
-          { formula: 'FIFO Inv = LIFO Inv + LIFO Reserve', note: 'Adjust LIFO firm to FIFO basis (Chevron case).' },
-          { formula: 'FIFO COGS = LIFO COGS − Δ LIFO Reserve', note: 'Convert COGS for fair comparison.' }
-        ]
-      }
+    intro: 'One core equation — solve for whichever piece is missing.',
+    steps: [
+      { formula: 'COGS = Beg Inventory + Purchases − End Inventory', note: 'Anchor.' },
+      { formula: 'Beg Inventory = COGS + End Inventory − Purchases', note: '"Beg Inventory" was in line 1.' },
+      { formula: 'End Inventory = Beg Inventory + Purchases − COGS', note: '"End Inventory" was in line 1.' },
+      { formula: 'Purchases = COGS + End Inventory − Beg Inventory', note: '"Purchases" was in line 1.' },
+      { formula: 'COGS = Sales − Gross Profit', note: '"COGS" again — links to the income statement.' },
+      { formula: 'Gross Profit = Sales − COGS', note: '"Gross Profit" was in line 5.' },
+      { formula: 'Sales = COGS + Gross Profit', note: '"Sales" was in line 5.' },
+      { formula: 'Gross Profit Margin = Gross Profit / Sales', note: '"Gross Profit" again.' },
+      { formula: 'Inventory Turnover = COGS / Average Inventory', note: '"Inventory" was in line 1.' },
+      { formula: 'Inventory at FIFO = Inventory at LIFO + LIFO Reserve', note: '"Inventory" again. Introduces FIFO and LIFO.' },
+      { formula: 'LIFO Reserve = Inventory at FIFO − Inventory at LIFO', note: '"LIFO" was in line 10.' },
+      { formula: 'FIFO COGS = LIFO COGS − Δ LIFO Reserve', note: '"FIFO" was in line 10. Convert LIFO firm to FIFO.' }
     ]
   },
   {
     id: 'receivables_chain',
     title: 'Receivables & Allowance Method',
     chapters: 'Ch 4',
-    intro: 'Allowance is a contra-asset. Track gross AR, allowance, and NRV separately.',
-    nodes: [
-      {
-        formula: 'NRV = Gross AR − Allowance for Doubtful Accounts',
-        note: 'Cash you actually expect to collect.',
-        children: [
-          { formula: 'Allowance = Gross AR − NRV', note: 'Solve for allowance balance.' },
-          { formula: 'Gross AR = NRV + Allowance', note: 'Solve for gross AR.' }
-        ]
-      },
-      {
-        formula: 'Bad Debt Expense (% of sales) = Net Credit Sales × %',
-        note: 'Income-statement approach. Existing allowance balance is IGNORED.'
-      },
-      {
-        formula: 'Bad Debt Expense (aging) = Required Ending Allowance − Existing Balance + Write-offs',
-        note: 'Balance-sheet approach. Solve the allowance T-account.',
-        children: [
-          { formula: 'Required Ending Allowance = sum across age buckets of (AR × uncollectible %)', note: 'Or: Gross AR − target NRV.' },
-          { formula: 'Existing Balance = Beg Allowance − Write-offs (+ recoveries)', note: 'Roll the allowance T-account forward.' }
-        ]
-      },
-      {
-        formula: 'AR Turnover = Net Credit Sales / Average AR',
-        note: 'How fast you collect.',
-        children: [
-          { formula: 'DSO = 365 / AR Turnover', note: 'Days sales outstanding.' }
-        ]
-      }
+    intro: 'NRV is the anchor — the rest are mechanical.',
+    steps: [
+      { formula: 'NRV = Gross AR − Allowance', note: 'Anchor. Net realizable value of receivables.' },
+      { formula: 'Gross AR = NRV + Allowance', note: '"Gross AR" was in line 1.' },
+      { formula: 'Allowance = Gross AR − NRV', note: '"Allowance" was in line 1.' },
+      { formula: 'Allowance (end) = Allowance (beg) + Bad Debt Expense − Write-offs + Recoveries', note: '"Allowance" again — roll-forward.' },
+      { formula: 'Bad Debt Expense = Allowance (end) − Allowance (beg) + Write-offs − Recoveries', note: '"Bad Debt Expense" was in line 4.' },
+      { formula: 'Bad Debt Expense (% of sales method) = Net Credit Sales × Estimated %', note: '"Bad Debt Expense" again — different method.' },
+      { formula: 'Bad Debt Expense (aging) = Required Ending Allowance − Existing Balance', note: '"Bad Debt Expense" again — third version.' },
+      { formula: 'AR Turnover = Net Credit Sales / Average AR', note: '"AR" was in line 1.' },
+      { formula: 'AR Turnover × Average AR = Net Credit Sales', note: '"AR Turnover" was in line 8.' }
     ]
   },
   {
     id: 'depreciation_chain',
     title: 'Depreciation & Asset Disposal',
     chapters: 'Ch 6',
-    intro: 'Every method shares the same definition of book value and gain/loss.',
-    nodes: [
-      {
-        formula: 'Book Value = Cost − Accumulated Depreciation',
-        note: 'The carrying amount on the balance sheet.',
-        children: [
-          { formula: 'Gain/Loss on Disposal = Sale Proceeds − Book Value', note: 'Positive = gain. (Mock 21 Q16: 80 − 50 = $30K gain.)' },
-          { formula: 'Sale Proceeds = Book Value + Gain (or − Loss)', note: 'Solve for selling price (Mock 2024 Q29: 15 + 6 = $21K).' }
-        ]
-      },
-      {
-        formula: 'Annual SL Depreciation = (Cost − Salvage) / Useful Life',
-        note: 'Equal expense each year.',
-        children: [
-          { formula: 'New Annual Dep (after change in estimate) = (Current BV − New Salvage) / New Remaining Life', note: 'Prospective treatment. Tanner truck slide.' }
-        ]
-      },
-      {
-        formula: 'DDB Annual Dep = (2 / Useful Life) × Beginning Book Value',
-        note: 'Apply rate to BV, not to depreciable base. Stop when BV = salvage.'
-      },
-      {
-        formula: 'Units-of-Production Rate = (Cost − Salvage) / Total Units',
-        note: 'Then multiply by units used in the period.'
-      },
-      {
-        formula: 'Goodwill = Purchase Price − FV of Net Identifiable Assets Acquired',
-        note: 'Only arises from an acquisition. Indefinite life; never amortized.'
-      }
+    intro: 'Book value ties everything together.',
+    steps: [
+      { formula: 'Book Value = Cost − Accumulated Depreciation', note: 'Anchor.' },
+      { formula: 'Cost = Book Value + Accumulated Depreciation', note: '"Cost" was in line 1.' },
+      { formula: 'Accumulated Depreciation = Cost − Book Value', note: '"Accumulated Depreciation" was in line 1.' },
+      { formula: 'Depreciation Expense (SL) = (Cost − Salvage) / Useful Life', note: '"Depreciation" was in line 1; introduces "Salvage" and "Useful Life".' },
+      { formula: 'Depreciation Expense (DDB) = (2 / Useful Life) × Beginning Book Value', note: '"Depreciation" again — accelerated method.' },
+      { formula: 'Useful Life = (Cost − Salvage) / Annual SL Depreciation', note: '"Useful Life" was in line 4.' },
+      { formula: 'Salvage = Cost − (Annual SL Dep × Useful Life)', note: '"Salvage" was in line 4.' },
+      { formula: 'Book Value (end of year) = Book Value (beg of year) − Depreciation Expense', note: '"Book Value" again — roll-forward.' },
+      { formula: 'Book Value at Sale = Cost − Accumulated Depreciation at Sale', note: '"Book Value" again — at disposal date.' },
+      { formula: 'Sale Proceeds − Book Value at Sale = Gain (positive) or Loss (negative)', note: '"Sale" was in line 9.' },
+      { formula: 'Sale Proceeds = Book Value + Gain (or − Loss)', note: '"Sale Proceeds" was in line 10. Solve for selling price.' }
     ]
   },
   {
@@ -3103,168 +3020,142 @@ const CHAINS = [
     title: 'Bonds — Cash, Expense, Carrying Value',
     chapters: 'Ch 7',
     intro: 'Cash interest is constant; interest expense changes via amortization.',
-    nodes: [
-      {
-        formula: 'Cash Interest = Face × Coupon Rate × (Time / 12)',
-        note: 'Constant every period.'
-      },
-      {
-        formula: 'Interest Expense = Beginning Carrying Value × Market Rate × (Time / 12)',
-        note: 'Effective-interest method. Changes each period.',
-        children: [
-          { formula: 'Discount Amortization = Interest Expense − Cash Interest', note: 'Carrying value rises toward face.' },
-          { formula: 'Premium Amortization = Cash Interest − Interest Expense', note: 'Carrying value falls toward face.' },
-          { formula: 'New Carrying Value = Old CV + Discount Amort. (or − Premium Amort.)', note: 'Roll forward each period.' }
-        ]
-      },
-      {
-        formula: 'Carrying Value = Face ± Unamortized Premium/Discount',
-        note: 'Approaches face by maturity.',
-        children: [
-          { formula: 'Gain/Loss on Retirement = Carrying Value − Cash Paid', note: 'Mock 21 Q14: 590 − 588 = $2K gain. NOT (Face − Cash).' }
-        ]
-      },
-      {
-        formula: 'Bond Issue Price = PV of Face + PV of Interest Annuity (at market rate)',
-        note: 'Coupon = Market → par. Coupon < Market → discount. Coupon > Market → premium.'
-      },
-      {
-        formula: 'Times Interest Earned = (NI + Tax + Interest) / Interest = EBIT / Interest',
-        note: 'Higher = safer for creditors.'
-      }
+    steps: [
+      { formula: 'Cash Interest = Face × Coupon Rate × (Time / 12)', note: 'Anchor. Constant every period.' },
+      { formula: 'Face = Cash Interest / (Coupon Rate × Time / 12)', note: '"Face" was in line 1.' },
+      { formula: 'Coupon Rate = Cash Interest / (Face × Time / 12)', note: '"Coupon Rate" was in line 1.' },
+      { formula: 'Interest Expense = Carrying Value × Market Rate × (Time / 12)', note: '"Interest" was in line 1; introduces "Carrying Value".' },
+      { formula: 'Carrying Value = Face + Premium − Discount', note: '"Carrying Value" was in line 4; introduces "Premium" and "Discount".' },
+      { formula: 'Premium = Carrying Value − Face', note: '"Premium" was in line 5 (when carrying > face).' },
+      { formula: 'Discount = Face − Carrying Value', note: '"Discount" was in line 5 (when carrying < face).' },
+      { formula: 'Discount Amortization = Interest Expense − Cash Interest', note: '"Discount" again — period-by-period.' },
+      { formula: 'Premium Amortization = Cash Interest − Interest Expense', note: '"Premium" again — opposite sign.' },
+      { formula: 'Carrying Value (at issuance) = PV of Face + PV of Cash Interest Annuity', note: '"Carrying Value" again — bond pricing.' },
+      { formula: 'Carrying Value − Cash Paid (at retirement) = Gain (positive) or Loss (negative)', note: '"Carrying Value" again — at retirement.' },
+      { formula: 'Cash Paid = Carrying Value − Gain (or + Loss)', note: '"Cash Paid" was in line 11. Solve for retirement price.' }
     ]
   },
   {
     id: 'cashflow_chain',
     title: 'Cash Flow Statement (Indirect Method)',
     chapters: 'Ch 11',
-    intro: 'Start with NI; reverse non-cash items; adjust for working-capital changes.',
-    nodes: [
-      {
-        formula: 'Net Income (from IS)',
-        note: 'Starting point under indirect method.',
-        children: [
-          {
-            formula: '+ Depreciation, + Amortization, + Impairment',
-            note: 'Add back non-cash expenses.'
-          },
-          {
-            formula: '− Gains on disposal of LT assets, + Losses on disposal',
-            note: 'Reverse them — full cash proceeds belong in INVESTING, not operating.'
-          },
-          {
-            formula: '− Δ AR, − Δ Inventory, − Δ Prepaid (when these increase)',
-            note: 'Asset UP = cash DOWN.'
-          },
-          {
-            formula: '+ Δ AP, + Δ Accrued, + Δ Unearned (when these increase)',
-            note: 'Liability UP = cash UP.'
-          },
-          {
-            formula: '= CFO (Cash Flow from Operations)',
-            note: 'Cash actually generated by running the business.'
-          }
-        ]
-      },
-      {
-        formula: 'Net Δ Cash = CFO + CFI + CFF',
-        note: 'Reconciles beginning cash to ending cash.',
-        children: [
-          { formula: 'End Cash = Beg Cash + Net Δ Cash', note: 'Must tie to balance sheet.' }
-        ]
-      },
-      {
-        formula: 'Free Cash Flow = CFO − CapEx',
-        note: 'Cash left for investors after maintaining/expanding operations.'
-      }
+    intro: 'Start with NI; reverse non-cash items; adjust for working capital.',
+    steps: [
+      { formula: 'Net Income = Starting point (from Income Statement)', note: 'Anchor for indirect method.' },
+      { formula: 'Net Income + Depreciation + Amortization = Subtotal 1', note: '"Net Income" again — add back non-cash expenses.' },
+      { formula: 'Subtotal 1 + Losses on disposal − Gains on disposal = Subtotal 2', note: '"Subtotal" was in line 2 — reverse gains/losses (they belong in investing).' },
+      { formula: 'Subtotal 2 ± Δ Working Capital = CFO', note: '"Subtotal" again. Introduces CFO.' },
+      { formula: 'Δ Working Capital = − Δ AR − Δ Inventory − Δ Prepaid + Δ AP + Δ Accrued + Δ Unearned', note: '"Δ Working Capital" was in line 4 — asset up = cash down; liability up = cash up.' },
+      { formula: 'CFO + CFI + CFF = Net Δ Cash', note: '"CFO" was in line 4. Three sections sum to the change in cash.' },
+      { formula: 'CFO − CapEx = Free Cash Flow (FCF)', note: '"CFO" again — cash left for investors.' },
+      { formula: 'CFI = Investing inflows − Investing outflows', note: '"CFI" was in line 6.' },
+      { formula: 'CFF = Financing inflows − Financing outflows', note: '"CFF" was in line 6.' },
+      { formula: 'Net Δ Cash = Ending Cash − Beginning Cash', note: '"Net Δ Cash" was in line 6.' },
+      { formula: 'Ending Cash = Beginning Cash + Net Δ Cash', note: '"Ending Cash" was in line 10. Closing identity.' }
     ]
   },
   {
     id: 'dupont_chain',
-    title: 'DuPont — Decomposing ROE',
+    title: 'ROE / DuPont Decomposition',
     chapters: 'Ch 12',
     intro: 'Memorize ROE; everything else falls out.',
-    nodes: [
-      {
-        formula: 'ROE = NI / Average Equity',
-        note: 'Primary summary measure of company performance.',
-        children: [
-          {
-            formula: 'ROE = Profit Margin × Asset Turnover × Equity Multiplier',
-            note: 'DuPont decomposition.',
-            children: [
-              { formula: 'Profit Margin = NI / Sales', note: 'Profitability.' },
-              { formula: 'Asset Turnover = Sales / Avg Total Assets', note: 'Asset efficiency.' },
-              { formula: 'Equity Multiplier = Avg Total Assets / Avg Equity', note: 'Leverage.' }
-            ]
-          },
-          {
-            formula: 'ROA = NI / Avg Total Assets = Profit Margin × Asset Turnover',
-            note: 'Operating + investing return.'
-          },
-          {
-            formula: 'Return on Financial Leverage = ROE − ROA',
-            note: 'Portion of ROE attributable to debt.'
-          }
-        ]
-      }
+    steps: [
+      { formula: 'ROE = Net Income / Average Equity', note: 'Anchor — primary summary measure of performance.' },
+      { formula: 'Net Income = ROE × Average Equity', note: '"Net Income" was in line 1.' },
+      { formula: 'Average Equity = Net Income / ROE', note: '"Average Equity" was in line 1.' },
+      { formula: 'ROE − Return on Assets (ROA) = Return on Financial Leverage', note: '"ROE" again. Introduces ROA and ROFL.' },
+      { formula: 'ROA = Net Income / Average Total Assets', note: '"ROA" was in line 4.' },
+      { formula: 'Net Income = ROA × Average Total Assets', note: '"Net Income" again.' },
+      { formula: 'Average Total Assets = Net Income / ROA', note: '"Average Total Assets" was in line 5.' },
+      { formula: 'ROE = Profit Margin × Asset Turnover × Equity Multiplier', note: '"ROE" again — DuPont decomposition.' },
+      { formula: 'Profit Margin = Net Income / Sales', note: '"Profit Margin" was in line 8.' },
+      { formula: 'Asset Turnover = Sales / Average Total Assets', note: '"Asset Turnover" was in line 8.' },
+      { formula: 'Equity Multiplier = Average Total Assets / Average Equity', note: '"Equity Multiplier" was in line 8.' },
+      { formula: 'ROA = Profit Margin × Asset Turnover', note: '"ROA" again — two-factor DuPont.' }
     ]
   },
   {
     id: 'ccc_chain',
     title: 'Cash Conversion Cycle',
     chapters: 'Ch 12',
-    intro: 'Three turnovers, three days metrics, one cycle.',
-    nodes: [
-      {
-        formula: 'CCC = DIO + DSO − DPO',
-        note: 'Lower = faster cash recovery.',
-        children: [
-          {
-            formula: 'DIO = 365 / Inventory Turnover',
-            note: 'Days inventory sits.',
-            children: [{ formula: 'Inventory Turnover = COGS / Avg Inventory', note: 'How many times you sold avg inventory.' }]
-          },
-          {
-            formula: 'DSO = 365 / AR Turnover',
-            note: 'Days to collect.',
-            children: [{ formula: 'AR Turnover = Net Credit Sales / Avg AR', note: 'How many times you collected avg AR.' }]
-          },
-          {
-            formula: 'DPO = 365 / AP Turnover',
-            note: 'Days to pay suppliers (higher = better, free financing).',
-            children: [{ formula: 'AP Turnover = COGS / Avg AP', note: 'How many times you paid avg AP.' }]
-          }
-        ]
-      }
+    intro: 'Three days metrics, three turnovers, one cycle.',
+    steps: [
+      { formula: 'Cash Conversion Cycle (CCC) = DIO + DSO − DPO', note: 'Anchor. Days inventory + days collecting − days paying.' },
+      { formula: 'CCC = Days Inventory Outstanding + Days Sales Outstanding − Days Payable Outstanding', note: '"CCC" was in line 1 — same formula spelled out.' },
+      { formula: 'Days Inventory Outstanding (DIO) = 365 / Inventory Turnover', note: '"Days" was in line 2.' },
+      { formula: 'Days Sales Outstanding (DSO) = 365 / AR Turnover', note: '"Days" again.' },
+      { formula: 'Days Payable Outstanding (DPO) = 365 / AP Turnover', note: '"Days" again.' },
+      { formula: 'Inventory Turnover = COGS / Average Inventory', note: '"Inventory Turnover" was in line 3.' },
+      { formula: 'AR Turnover = Net Credit Sales / Average AR', note: '"AR Turnover" was in line 4.' },
+      { formula: 'AP Turnover = COGS / Average AP', note: '"AP Turnover" was in line 5.' },
+      { formula: 'Inventory Turnover × Average Inventory = COGS', note: '"Inventory Turnover" again — solve for COGS.' },
+      { formula: 'AR Turnover × Average AR = Net Credit Sales', note: '"AR Turnover" again.' },
+      { formula: 'AP Turnover × Average AP = COGS', note: '"AP Turnover" again.' }
     ]
   },
   {
-    id: 'ratios_market',
+    id: 'market_ratios',
     title: 'Market Ratios',
     chapters: 'Ch 9 · Ch 12',
-    intro: 'Start from EPS; the others are price-relative.',
-    nodes: [
-      {
-        formula: 'EPS = (NI − Preferred Dividends) / Weighted Avg Common Shares',
-        note: 'Earnings per share.',
-        children: [
-          { formula: 'P/E = Price / EPS', note: 'Price-to-earnings ratio (Mock 21: 108 / 12 = 9).' },
-          { formula: 'Payout Ratio = DPS / EPS', note: '% of earnings paid as dividends.' }
-        ]
-      },
-      {
-        formula: 'Dividend Yield = Annual DPS / Price',
-        note: 'Cash return per share.'
-      },
-      {
-        formula: 'Book Value per Share = Common Equity / Shares Outstanding',
-        note: 'Accounting value per share.',
-        children: [
-          { formula: 'Market-to-Book = Price / BVPS', note: 'Premium investors pay over book.' }
-        ]
-      }
+    intro: 'EPS is the anchor; everything price-related grows from it.',
+    steps: [
+      { formula: 'EPS = (Net Income − Preferred Dividends) / Weighted Avg Common Shares', note: 'Anchor.' },
+      { formula: 'Net Income = EPS × Weighted Avg Common Shares + Preferred Dividends', note: '"Net Income" was in line 1.' },
+      { formula: 'Weighted Avg Common Shares = (Net Income − Preferred Dividends) / EPS', note: '"Weighted Avg Common Shares" was in line 1.' },
+      { formula: 'Preferred Dividends = Net Income − (EPS × Weighted Avg Common Shares)', note: '"Preferred Dividends" was in line 1.' },
+      { formula: 'EPS × P/E = Price', note: '"EPS" again. Introduces P/E and Price.' },
+      { formula: 'Price / EPS = P/E Ratio', note: '"Price" was in line 5.' },
+      { formula: 'Price = EPS × P/E', note: '"Price" again.' },
+      { formula: 'EPS = Price / P/E', note: '"EPS" again — solve for EPS given price and P/E.' },
+      { formula: 'Common Dividends / Common Shares = DPS (Dividends Per Share)', note: '"Common Shares" was in line 1.' },
+      { formula: 'DPS / EPS = Payout Ratio', note: '"DPS" was in line 9.' },
+      { formula: 'DPS / Price = Dividend Yield', note: '"DPS" again.' },
+      { formula: 'Common Equity / Common Shares Outstanding = Book Value per Share (BVPS)', note: '"Common" again.' },
+      { formula: 'BVPS = Common Equity / Common Shares', note: '"BVPS" was in line 12.' },
+      { formula: 'Price / BVPS = Market-to-Book Ratio', note: '"Price" again.' }
+    ]
+  },
+  {
+    id: 'solvency_chain',
+    title: 'Solvency & Leverage',
+    chapters: 'Ch 7 · Ch 12',
+    intro: 'Total liabilities and total equity link every leverage ratio.',
+    steps: [
+      { formula: 'Debt-to-Equity = Total Liabilities / Total Equity', note: 'Anchor.' },
+      { formula: 'Total Liabilities = Debt-to-Equity × Total Equity', note: '"Total Liabilities" was in line 1.' },
+      { formula: 'Total Equity = Total Liabilities / Debt-to-Equity', note: '"Total Equity" was in line 1.' },
+      { formula: 'Debt-to-Assets = Total Liabilities / Total Assets', note: '"Debt-to" carries from line 1; introduces Total Assets.' },
+      { formula: 'Total Assets = Total Liabilities + Total Equity', note: '"Total Assets" was in line 4 — accounting equation refresher.' },
+      { formula: 'Equity Multiplier = Total Assets / Total Equity', note: '"Equity" was in line 1, 3, 5.' },
+      { formula: 'Equity Multiplier = 1 + Debt-to-Equity', note: '"Equity Multiplier" was in line 6.' },
+      { formula: 'Total Assets / Total Equity = Equity Multiplier', note: '"Total Assets" again — same as line 6.' }
+    ]
+  },
+  {
+    id: 'tie_chain',
+    title: 'Times Interest Earned (Coverage)',
+    chapters: 'Ch 7 · Ch 12',
+    intro: 'Two equivalent forms — cycle through them with algebra.',
+    steps: [
+      { formula: 'Times Interest Earned (TIE) = EBIT / Interest Expense', note: 'Anchor.' },
+      { formula: 'EBIT = TIE × Interest Expense', note: '"EBIT" was in line 1.' },
+      { formula: 'Interest Expense = EBIT / TIE', note: '"Interest Expense" was in line 1.' },
+      { formula: 'EBIT = Net Income + Tax + Interest Expense', note: '"EBIT" again — back-out form.' },
+      { formula: 'Net Income = EBIT − Tax − Interest Expense', note: '"Net Income" was in line 4.' },
+      { formula: 'TIE = (Net Income + Tax + Interest) / Interest Expense', note: '"TIE" again — substitute the EBIT expansion.' }
+    ]
+  },
+  {
+    id: 'equity_method_chain',
+    title: 'Equity Method Investment',
+    chapters: 'Ch 9 · Ch 10',
+    intro: 'Investment moves with investee NI and dividends.',
+    steps: [
+      { formula: 'Investment (end) = Investment (beg) + (% × Investee NI) − (% × Investee Dividends)', note: 'Anchor for 20–50% ownership.' },
+      { formula: 'Investment (beg) = Investment (end) − (% × NI) + (% × Dividends)', note: '"Investment (beg)" was in line 1.' },
+      { formula: 'Investor Equity-Method Income = Ownership % × Investee Net Income', note: '"Investor" / "Equity" / "%" all in line 1.' },
+      { formula: 'Ownership % = Investor Equity-Method Income / Investee Net Income', note: '"Ownership %" was in line 3.' },
+      { formula: 'Investee Net Income = Investor Income / Ownership %', note: '"Investee Net Income" was in line 3.' }
     ]
   }
 ];
-
