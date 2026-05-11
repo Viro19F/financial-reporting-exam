@@ -873,6 +873,122 @@ p.lede {
   .rearr-formula { font-size: 12.5px; }
 }
 
+/* Approach — thought-process frameworks */
+.ap-block {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 24px 26px;
+  margin-bottom: 18px;
+}
+.ap-head {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border);
+}
+.ap-chip {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--accent);
+  background: var(--accent-soft);
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-weight: 600;
+}
+.ap-title {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 22px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  flex: 1;
+  min-width: 0;
+}
+.ap-section {
+  margin-bottom: 14px;
+}
+.ap-section:last-of-type { margin-bottom: 0; }
+.ap-label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-weight: 600;
+  color: var(--text-muted);
+  margin-bottom: 6px;
+}
+.ap-text {
+  font-size: 14.5px;
+  line-height: 1.6;
+  color: var(--text);
+}
+.ap-ask .ap-text {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 17px;
+  color: var(--accent);
+  line-height: 1.4;
+}
+.ap-rule .ap-text {
+  background: var(--accent-soft);
+  border-left: 3px solid var(--accent);
+  padding: 11px 14px;
+  border-radius: 0 8px 8px 0;
+  font-size: 14px;
+}
+.ap-apply .ap-text {
+  background: var(--bg-elev);
+  padding: 12px 14px;
+  border-radius: 8px;
+  font-family: var(--mono);
+  font-size: 13px;
+  line-height: 1.6;
+}
+.ap-table-wrap {
+  overflow-x: auto;
+  margin: 12px 0 16px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+}
+.ap-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+.ap-table th,
+.ap-table td {
+  padding: 10px 12px;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+.ap-table th {
+  background: var(--bg-elev);
+  color: var(--text-muted);
+  font-weight: 600;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.ap-table tr:last-child td { border-bottom: none; }
+.ap-table tr:hover td { background: var(--bg-elev); }
+.ap-table td:first-child {
+  font-weight: 600;
+  color: var(--text);
+}
+
+@media (max-width: 600px) {
+  .ap-block { padding: 18px 16px; }
+  .ap-title { font-size: 18px; }
+  .ap-ask .ap-text { font-size: 15px; }
+  .ap-table th,
+  .ap-table td { padding: 8px 10px; font-size: 12px; }
+}
+
 /* Footer */
 .footnote {
   margin-top: 60px;
