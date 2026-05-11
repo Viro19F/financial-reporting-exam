@@ -3837,3 +3837,591 @@ const RECIPES = [
     ]
   }
 ];
+
+// =============================================================
+// REARRANGEMENTS — every core formula shown with all its
+// algebraic forms. Pick the form that solves for the unknown.
+// =============================================================
+const REARRANGEMENTS = [
+  // ==================== Ch 1 — Foundations ====================
+  {
+    id: 're_acc_eq', chNum: 1, chapter: 'Ch 1',
+    name: 'Accounting Equation',
+    base: 'Assets = Liabilities + Equity',
+    note: 'Always holds. Same logic in change-form: ΔA = ΔL + ΔE.',
+    forms: [
+      { var: 'Assets', formula: 'Assets = Liabilities + Equity' },
+      { var: 'Liabilities', formula: 'Liabilities = Assets − Equity' },
+      { var: 'Equity', formula: 'Equity = Assets − Liabilities' }
+    ]
+  },
+  {
+    id: 're_ni', chNum: 1, chapter: 'Ch 1 · 2',
+    name: 'Net Income',
+    base: 'Net Income = Revenue − Expenses',
+    forms: [
+      { var: 'Net Income', formula: 'Net Income = Revenue − Expenses' },
+      { var: 'Revenue', formula: 'Revenue = Net Income + Expenses' },
+      { var: 'Expenses', formula: 'Expenses = Revenue − Net Income' }
+    ]
+  },
+  {
+    id: 're_re_roll', chNum: 1, chapter: 'Ch 1 · 9',
+    name: 'Retained Earnings Roll-Forward',
+    base: 'End RE = Beg RE + Net Income − Dividends',
+    forms: [
+      { var: 'End RE', formula: 'End RE = Beg RE + Net Income − Dividends' },
+      { var: 'Beg RE', formula: 'Beg RE = End RE − Net Income + Dividends' },
+      { var: 'Net Income', formula: 'Net Income = End RE − Beg RE + Dividends' },
+      { var: 'Dividends', formula: 'Dividends = Beg RE + Net Income − End RE' }
+    ]
+  },
+  {
+    id: 're_eq_change', chNum: 1, chapter: 'Ch 1 · 9',
+    name: 'Change in Equity',
+    base: 'ΔEquity = Net Income + Share Issuance − Dividends',
+    note: 'Treasury repurchases also reduce equity (subtract).',
+    forms: [
+      { var: 'ΔEquity', formula: 'ΔEquity = Net Income + Share Issuance − Dividends' },
+      { var: 'Net Income', formula: 'Net Income = ΔEquity − Share Issuance + Dividends' },
+      { var: 'Share Issuance', formula: 'Share Issuance = ΔEquity − Net Income + Dividends' },
+      { var: 'Dividends', formula: 'Dividends = Net Income + Share Issuance − ΔEquity' }
+    ]
+  },
+
+  // ==================== Ch 2 — Working Capital & Liquidity ====================
+  {
+    id: 're_wc', chNum: 2, chapter: 'Ch 2',
+    name: 'Working Capital',
+    base: 'Working Capital = Current Assets − Current Liabilities',
+    forms: [
+      { var: 'Working Capital', formula: 'Working Capital = Current Assets − Current Liabilities' },
+      { var: 'Current Assets', formula: 'Current Assets = Working Capital + Current Liabilities' },
+      { var: 'Current Liabilities', formula: 'Current Liabilities = Current Assets − Working Capital' }
+    ]
+  },
+  {
+    id: 're_cr', chNum: 2, chapter: 'Ch 2',
+    name: 'Current Ratio',
+    base: 'Current Ratio = Current Assets / Current Liabilities',
+    forms: [
+      { var: 'Current Ratio', formula: 'Current Ratio = Current Assets / Current Liabilities' },
+      { var: 'Current Assets', formula: 'Current Assets = Current Ratio × Current Liabilities' },
+      { var: 'Current Liabilities', formula: 'Current Liabilities = Current Assets / Current Ratio' }
+    ]
+  },
+  {
+    id: 're_qr', chNum: 2, chapter: 'Ch 2',
+    name: 'Quick Ratio (excludes inventory & prepaid)',
+    base: 'Quick Ratio = (Cash + Marketable Sec + AR) / Current Liabilities',
+    forms: [
+      { var: 'Quick Ratio', formula: 'Quick Ratio = (Cash + Marketable Sec + AR) / Current Liabilities' },
+      { var: 'Quick Assets numerator', formula: 'Quick Assets = Cash + Marketable Securities + AR' },
+      { var: 'Current Liabilities', formula: 'Current Liabilities = Quick Assets / Quick Ratio' }
+    ]
+  },
+
+  // ==================== Ch 3 — Adjusting Entries ====================
+  {
+    id: 're_supplies', chNum: 3, chapter: 'Ch 3',
+    name: 'Supplies Expense',
+    base: 'Supplies Expense = Beg Supplies + Purchases − End Supplies',
+    forms: [
+      { var: 'Supplies Expense', formula: 'Supplies Expense = Beg Supplies + Purchases − End Supplies' },
+      { var: 'Beg Supplies', formula: 'Beg Supplies = Supplies Expense + End Supplies − Purchases' },
+      { var: 'Purchases', formula: 'Purchases = Supplies Expense + End Supplies − Beg Supplies' },
+      { var: 'End Supplies', formula: 'End Supplies = Beg Supplies + Purchases − Supplies Expense' }
+    ]
+  },
+  {
+    id: 're_interest', chNum: 3, chapter: 'Ch 3 · 7',
+    name: 'Simple Interest (P × R × T)',
+    base: 'Interest = Principal × Annual Rate × (Time / 12)',
+    note: 'Time is in months. For partial years use the months elapsed.',
+    forms: [
+      { var: 'Interest', formula: 'Interest = Principal × Rate × (Time / 12)' },
+      { var: 'Principal', formula: 'Principal = Interest / (Rate × Time / 12)' },
+      { var: 'Rate', formula: 'Rate = Interest / (Principal × Time / 12)' },
+      { var: 'Time (months)', formula: 'Time = Interest × 12 / (Principal × Rate)' }
+    ]
+  },
+  {
+    id: 're_prepaid', chNum: 3, chapter: 'Ch 3',
+    name: 'Prepaid Insurance Expense',
+    base: 'Insurance Expense = (Total Premium / Total Months) × Months Elapsed',
+    forms: [
+      { var: 'Insurance Expense', formula: 'Insurance Expense = (Premium / Total Months) × Months Elapsed' },
+      { var: 'Total Premium', formula: 'Premium = (Insurance Expense × Total Months) / Months Elapsed' },
+      { var: 'Months Elapsed', formula: 'Months Elapsed = (Insurance Expense × Total Months) / Premium' }
+    ]
+  },
+
+  // ==================== Ch 4 — Receivables ====================
+  {
+    id: 're_nrv', chNum: 4, chapter: 'Ch 4',
+    name: 'Net Realizable Value of AR',
+    base: 'NRV = Gross AR − Allowance for Doubtful Accounts',
+    forms: [
+      { var: 'NRV', formula: 'NRV = Gross AR − Allowance' },
+      { var: 'Gross AR', formula: 'Gross AR = NRV + Allowance' },
+      { var: 'Allowance', formula: 'Allowance = Gross AR − NRV' }
+    ]
+  },
+  {
+    id: 're_allowance_roll', chNum: 4, chapter: 'Ch 4',
+    name: 'Allowance T-Account Roll-Forward',
+    base: 'End Allowance = Beg Allowance + Bad Debt Expense − Write-offs + Recoveries',
+    forms: [
+      { var: 'End Allowance', formula: 'End Allowance = Beg + BDE − Write-offs + Recoveries' },
+      { var: 'Beg Allowance', formula: 'Beg Allowance = End − BDE + Write-offs − Recoveries' },
+      { var: 'Bad Debt Expense', formula: 'BDE = End − Beg + Write-offs − Recoveries' },
+      { var: 'Write-offs', formula: 'Write-offs = Beg + BDE + Recoveries − End' }
+    ]
+  },
+  {
+    id: 're_ar_turnover', chNum: 4, chapter: 'Ch 4 · 12',
+    name: 'AR Turnover',
+    base: 'AR Turnover = Net Credit Sales / Average AR',
+    forms: [
+      { var: 'AR Turnover', formula: 'AR Turnover = Net Credit Sales / Average AR' },
+      { var: 'Net Credit Sales', formula: 'Net Credit Sales = AR Turnover × Average AR' },
+      { var: 'Average AR', formula: 'Average AR = Net Credit Sales / AR Turnover' }
+    ]
+  },
+  {
+    id: 're_dso', chNum: 4, chapter: 'Ch 4 · 12',
+    name: 'Days Sales Outstanding (DSO)',
+    base: 'DSO = 365 / AR Turnover',
+    forms: [
+      { var: 'DSO', formula: 'DSO = 365 / AR Turnover' },
+      { var: 'AR Turnover', formula: 'AR Turnover = 365 / DSO' }
+    ]
+  },
+
+  // ==================== Ch 5 — Inventory ====================
+  {
+    id: 're_cogs', chNum: 5, chapter: 'Ch 5',
+    name: 'COGS Equation',
+    base: 'COGS = Beg Inventory + Purchases − End Inventory',
+    forms: [
+      { var: 'COGS', formula: 'COGS = Beg Inventory + Purchases − End Inventory' },
+      { var: 'Beg Inventory', formula: 'Beg Inventory = COGS + End Inventory − Purchases' },
+      { var: 'Purchases', formula: 'Purchases = COGS + End Inventory − Beg Inventory' },
+      { var: 'End Inventory', formula: 'End Inventory = Beg Inventory + Purchases − COGS' }
+    ]
+  },
+  {
+    id: 're_gp', chNum: 5, chapter: 'Ch 2 · 5',
+    name: 'Gross Profit',
+    base: 'Gross Profit = Sales − COGS',
+    forms: [
+      { var: 'Gross Profit', formula: 'Gross Profit = Sales − COGS' },
+      { var: 'Sales', formula: 'Sales = Gross Profit + COGS' },
+      { var: 'COGS', formula: 'COGS = Sales − Gross Profit' }
+    ]
+  },
+  {
+    id: 're_gpm', chNum: 5, chapter: 'Ch 5 · 12',
+    name: 'Gross Profit Margin',
+    base: 'GP Margin = Gross Profit / Sales',
+    forms: [
+      { var: 'GP Margin', formula: 'GP Margin = Gross Profit / Sales' },
+      { var: 'Gross Profit', formula: 'Gross Profit = GP Margin × Sales' },
+      { var: 'Sales', formula: 'Sales = Gross Profit / GP Margin' }
+    ]
+  },
+  {
+    id: 're_inv_turn', chNum: 5, chapter: 'Ch 5 · 12',
+    name: 'Inventory Turnover',
+    base: 'Inventory Turnover = COGS / Average Inventory',
+    forms: [
+      { var: 'Inventory Turnover', formula: 'Inventory Turnover = COGS / Average Inventory' },
+      { var: 'COGS', formula: 'COGS = Inventory Turnover × Average Inventory' },
+      { var: 'Average Inventory', formula: 'Average Inventory = COGS / Inventory Turnover' }
+    ]
+  },
+  {
+    id: 're_lifo_reserve', chNum: 5, chapter: 'Ch 5',
+    name: 'LIFO Reserve',
+    base: 'LIFO Reserve = FIFO Inventory − LIFO Inventory',
+    forms: [
+      { var: 'LIFO Reserve', formula: 'LIFO Reserve = FIFO Inventory − LIFO Inventory' },
+      { var: 'FIFO Inventory', formula: 'FIFO Inventory = LIFO Inventory + LIFO Reserve' },
+      { var: 'LIFO Inventory', formula: 'LIFO Inventory = FIFO Inventory − LIFO Reserve' }
+    ]
+  },
+  {
+    id: 're_lifo_cogs', chNum: 5, chapter: 'Ch 5',
+    name: 'LIFO → FIFO COGS Conversion',
+    base: 'FIFO COGS = LIFO COGS − Δ LIFO Reserve',
+    forms: [
+      { var: 'FIFO COGS', formula: 'FIFO COGS = LIFO COGS − Δ LIFO Reserve' },
+      { var: 'LIFO COGS', formula: 'LIFO COGS = FIFO COGS + Δ LIFO Reserve' },
+      { var: 'Δ LIFO Reserve', formula: 'Δ LIFO Reserve = LIFO COGS − FIFO COGS' }
+    ]
+  },
+
+  // ==================== Ch 6 — Long-Term Assets ====================
+  {
+    id: 're_bv', chNum: 6, chapter: 'Ch 6',
+    name: 'Book Value',
+    base: 'Book Value = Cost − Accumulated Depreciation',
+    forms: [
+      { var: 'Book Value', formula: 'Book Value = Cost − Accumulated Depreciation' },
+      { var: 'Cost', formula: 'Cost = Book Value + Accumulated Depreciation' },
+      { var: 'Accumulated Depreciation', formula: 'Accumulated Depreciation = Cost − Book Value' }
+    ]
+  },
+  {
+    id: 're_sl', chNum: 6, chapter: 'Ch 6',
+    name: 'Straight-Line Depreciation',
+    base: 'Annual SL = (Cost − Salvage) / Useful Life',
+    forms: [
+      { var: 'Annual SL Depreciation', formula: 'Annual SL = (Cost − Salvage) / Useful Life' },
+      { var: 'Cost', formula: 'Cost = (Annual SL × Useful Life) + Salvage' },
+      { var: 'Salvage', formula: 'Salvage = Cost − (Annual SL × Useful Life)' },
+      { var: 'Useful Life', formula: 'Useful Life = (Cost − Salvage) / Annual SL' }
+    ]
+  },
+  {
+    id: 're_disposal', chNum: 6, chapter: 'Ch 6',
+    name: 'Gain/Loss on Disposal',
+    base: 'Gain/Loss = Sale Proceeds − Book Value',
+    note: 'Positive = gain. Negative = loss.',
+    forms: [
+      { var: 'Gain/Loss', formula: 'Gain/Loss = Sale Proceeds − Book Value' },
+      { var: 'Sale Proceeds', formula: 'Sale Proceeds = Book Value + Gain (or − Loss)' },
+      { var: 'Book Value', formula: 'Book Value = Sale Proceeds − Gain (or + Loss)' }
+    ]
+  },
+  {
+    id: 're_ddb', chNum: 6, chapter: 'Ch 6',
+    name: 'Double-Declining Balance Depreciation',
+    base: 'DDB Annual Dep = (2 / Useful Life) × Beginning Book Value',
+    forms: [
+      { var: 'DDB Dep', formula: 'DDB Dep = (2 / Useful Life) × Beginning Book Value' },
+      { var: 'Beginning Book Value', formula: 'Beginning BV = DDB Dep × Useful Life / 2' },
+      { var: 'Useful Life', formula: 'Useful Life = 2 × Beginning BV / DDB Dep' }
+    ]
+  },
+  {
+    id: 're_goodwill', chNum: 6, chapter: 'Ch 6',
+    name: 'Goodwill',
+    base: 'Goodwill = Purchase Price − Fair Value of Net Identifiable Assets',
+    forms: [
+      { var: 'Goodwill', formula: 'Goodwill = Purchase Price − FV of Net Identifiable Assets' },
+      { var: 'Purchase Price', formula: 'Purchase Price = Goodwill + FV of Net Identifiable Assets' },
+      { var: 'FV of Net Identifiable Assets', formula: 'FV Net Identifiable = Purchase Price − Goodwill' }
+    ]
+  },
+
+  // ==================== Ch 7 — Bonds ====================
+  {
+    id: 're_cash_int', chNum: 7, chapter: 'Ch 7',
+    name: 'Cash Interest on Bond',
+    base: 'Cash Interest = Face × Coupon Rate × (Time / 12)',
+    forms: [
+      { var: 'Cash Interest', formula: 'Cash Interest = Face × Coupon Rate × (Time / 12)' },
+      { var: 'Face', formula: 'Face = Cash Interest / (Coupon Rate × Time / 12)' },
+      { var: 'Coupon Rate', formula: 'Coupon Rate = Cash Interest / (Face × Time / 12)' },
+      { var: 'Time (months)', formula: 'Time = Cash Interest × 12 / (Face × Coupon Rate)' }
+    ]
+  },
+  {
+    id: 're_int_exp', chNum: 7, chapter: 'Ch 7',
+    name: 'Bond Interest Expense (Effective Method)',
+    base: 'Interest Expense = Carrying Value × Market Rate × (Time / 12)',
+    forms: [
+      { var: 'Interest Expense', formula: 'Interest Expense = Carrying Value × Market Rate × (Time / 12)' },
+      { var: 'Carrying Value', formula: 'Carrying Value = Interest Expense / (Market Rate × Time / 12)' },
+      { var: 'Market Rate', formula: 'Market Rate = Interest Expense / (Carrying Value × Time / 12)' }
+    ]
+  },
+  {
+    id: 're_carrying', chNum: 7, chapter: 'Ch 7',
+    name: 'Bond Carrying Value',
+    base: 'Carrying Value = Face + Premium − Discount',
+    forms: [
+      { var: 'Carrying Value', formula: 'Carrying Value = Face + Premium − Discount' },
+      { var: 'Face', formula: 'Face = Carrying Value − Premium + Discount' },
+      { var: 'Premium', formula: 'Premium = Carrying Value − Face (when CV > Face)' },
+      { var: 'Discount', formula: 'Discount = Face − Carrying Value (when CV < Face)' }
+    ]
+  },
+  {
+    id: 're_bond_retire', chNum: 7, chapter: 'Ch 7',
+    name: 'Gain/Loss on Bond Retirement',
+    base: 'Gain/Loss = Carrying Value − Cash Paid',
+    note: 'NOT (Face − Cash Paid). Use carrying value.',
+    forms: [
+      { var: 'Gain/Loss', formula: 'Gain/Loss = Carrying Value − Cash Paid' },
+      { var: 'Cash Paid', formula: 'Cash Paid = Carrying Value − Gain (or + Loss)' },
+      { var: 'Carrying Value', formula: 'Carrying Value = Cash Paid + Gain (or − Loss)' }
+    ]
+  },
+  {
+    id: 're_tie', chNum: 7, chapter: 'Ch 7 · 12',
+    name: 'Times Interest Earned (TIE)',
+    base: 'TIE = EBIT / Interest Expense',
+    forms: [
+      { var: 'TIE', formula: 'TIE = EBIT / Interest Expense' },
+      { var: 'EBIT', formula: 'EBIT = TIE × Interest Expense' },
+      { var: 'Interest Expense', formula: 'Interest Expense = EBIT / TIE' }
+    ]
+  },
+  {
+    id: 're_ebit', chNum: 7, chapter: 'Ch 7 · 12',
+    name: 'EBIT (back-out form)',
+    base: 'EBIT = Net Income + Tax + Interest',
+    forms: [
+      { var: 'EBIT', formula: 'EBIT = Net Income + Tax + Interest' },
+      { var: 'Net Income', formula: 'Net Income = EBIT − Tax − Interest' },
+      { var: 'Tax', formula: 'Tax = EBIT − Net Income − Interest' },
+      { var: 'Interest', formula: 'Interest = EBIT − Net Income − Tax' }
+    ]
+  },
+
+  // ==================== Ch 8 — Leases ====================
+  {
+    id: 're_lease_liab', chNum: 8, chapter: 'Ch 8',
+    name: 'Initial Lease Liability',
+    base: 'Lease Liability = Annual Payment × PV Annuity Factor (n, r)',
+    forms: [
+      { var: 'Lease Liability', formula: 'Lease Liability = Annual Payment × PV Annuity Factor' },
+      { var: 'Annual Payment', formula: 'Annual Payment = Lease Liability / PV Annuity Factor' },
+      { var: 'PV Annuity Factor', formula: 'PV Annuity Factor = Lease Liability / Annual Payment' }
+    ]
+  },
+  {
+    id: 're_lease_int', chNum: 8, chapter: 'Ch 8',
+    name: 'Lease Interest Expense (Year N)',
+    base: 'Interest Expense = Beginning Lease Liability × Discount Rate',
+    forms: [
+      { var: 'Interest Expense', formula: 'Interest Expense = Beginning Lease Liability × Discount Rate' },
+      { var: 'Beginning Lease Liability', formula: 'Beg Liability = Interest Expense / Discount Rate' },
+      { var: 'Discount Rate', formula: 'Discount Rate = Interest Expense / Beginning Liability' }
+    ]
+  },
+
+  // ==================== Ch 9 — Equity ====================
+  {
+    id: 're_outstanding', chNum: 9, chapter: 'Ch 9',
+    name: 'Outstanding Shares',
+    base: 'Outstanding = Issued − Treasury',
+    forms: [
+      { var: 'Outstanding', formula: 'Outstanding = Issued − Treasury' },
+      { var: 'Issued', formula: 'Issued = Outstanding + Treasury' },
+      { var: 'Treasury', formula: 'Treasury = Issued − Outstanding' }
+    ]
+  },
+  {
+    id: 're_eps', chNum: 9, chapter: 'Ch 9 · 12',
+    name: 'Basic EPS',
+    base: 'EPS = (Net Income − Preferred Dividends) / Weighted Avg Common Shares',
+    forms: [
+      { var: 'EPS', formula: 'EPS = (NI − Preferred Dividends) / Weighted Avg Common Shares' },
+      { var: 'Net Income', formula: 'NI = EPS × Weighted Avg Common Shares + Preferred Dividends' },
+      { var: 'Preferred Dividends', formula: 'Preferred Dividends = NI − (EPS × Weighted Avg Common Shares)' },
+      { var: 'Weighted Avg Common Shares', formula: 'Weighted Avg Shares = (NI − Preferred Dividends) / EPS' }
+    ]
+  },
+  {
+    id: 're_eq_method', chNum: 9, chapter: 'Ch 9',
+    name: 'Equity-Method Income',
+    base: 'Investor Income = Ownership % × Investee Net Income',
+    forms: [
+      { var: 'Investor Income', formula: 'Investor Income = Ownership % × Investee Net Income' },
+      { var: 'Ownership %', formula: 'Ownership % = Investor Income / Investee Net Income' },
+      { var: 'Investee Net Income', formula: 'Investee Net Income = Investor Income / Ownership %' }
+    ]
+  },
+
+  // ==================== Ch 10 — Investments ====================
+  {
+    id: 're_debt_inv', chNum: 10, chapter: 'Ch 10',
+    name: 'Debt Investment Cost',
+    base: 'Cost = Purchase Price + Brokerage Fees',
+    forms: [
+      { var: 'Cost', formula: 'Cost = Purchase Price + Brokerage Fees' },
+      { var: 'Purchase Price', formula: 'Purchase Price = Cost − Brokerage Fees' },
+      { var: 'Brokerage Fees', formula: 'Brokerage Fees = Cost − Purchase Price' }
+    ]
+  },
+  {
+    id: 're_debt_sale', chNum: 10, chapter: 'Ch 10',
+    name: 'Gain/Loss on Debt Investment Sale',
+    base: 'Gain/Loss = Net Proceeds − Cost',
+    forms: [
+      { var: 'Gain/Loss', formula: 'Gain/Loss = Net Proceeds − Cost' },
+      { var: 'Net Proceeds', formula: 'Net Proceeds = Cost + Gain (or − Loss)' },
+      { var: 'Cost', formula: 'Cost = Net Proceeds − Gain (or + Loss)' }
+    ]
+  },
+
+  // ==================== Ch 11 — Cash Flow ====================
+  {
+    id: 're_change_cash', chNum: 11, chapter: 'Ch 11',
+    name: 'Net Change in Cash',
+    base: 'Net Δ Cash = CFO + CFI + CFF',
+    forms: [
+      { var: 'Net Δ Cash', formula: 'Net Δ Cash = CFO + CFI + CFF' },
+      { var: 'CFO', formula: 'CFO = Net Δ Cash − CFI − CFF' },
+      { var: 'CFI', formula: 'CFI = Net Δ Cash − CFO − CFF' },
+      { var: 'CFF', formula: 'CFF = Net Δ Cash − CFO − CFI' }
+    ]
+  },
+  {
+    id: 're_end_cash', chNum: 11, chapter: 'Ch 11',
+    name: 'Ending Cash',
+    base: 'End Cash = Beg Cash + Net Δ Cash',
+    forms: [
+      { var: 'End Cash', formula: 'End Cash = Beg Cash + Net Δ Cash' },
+      { var: 'Beg Cash', formula: 'Beg Cash = End Cash − Net Δ Cash' },
+      { var: 'Net Δ Cash', formula: 'Net Δ Cash = End Cash − Beg Cash' }
+    ]
+  },
+  {
+    id: 're_fcf', chNum: 11, chapter: 'Ch 11',
+    name: 'Free Cash Flow',
+    base: 'FCF = CFO − CapEx',
+    forms: [
+      { var: 'FCF', formula: 'FCF = CFO − CapEx' },
+      { var: 'CFO', formula: 'CFO = FCF + CapEx' },
+      { var: 'CapEx', formula: 'CapEx = CFO − FCF' }
+    ]
+  },
+
+  // ==================== Ch 12 — Ratios ====================
+  {
+    id: 're_roe', chNum: 12, chapter: 'Ch 12',
+    name: 'Return on Equity (ROE)',
+    base: 'ROE = Net Income / Average Equity',
+    forms: [
+      { var: 'ROE', formula: 'ROE = Net Income / Average Equity' },
+      { var: 'Net Income', formula: 'Net Income = ROE × Average Equity' },
+      { var: 'Average Equity', formula: 'Average Equity = Net Income / ROE' }
+    ]
+  },
+  {
+    id: 're_roa', chNum: 12, chapter: 'Ch 12',
+    name: 'Return on Assets (ROA)',
+    base: 'ROA = Net Income / Average Total Assets',
+    forms: [
+      { var: 'ROA', formula: 'ROA = Net Income / Average Total Assets' },
+      { var: 'Net Income', formula: 'Net Income = ROA × Average Total Assets' },
+      { var: 'Average Total Assets', formula: 'Average Total Assets = Net Income / ROA' }
+    ]
+  },
+  {
+    id: 're_rofl', chNum: 12, chapter: 'Ch 12',
+    name: 'Return on Financial Leverage',
+    base: 'ROFL = ROE − ROA',
+    forms: [
+      { var: 'ROFL', formula: 'ROFL = ROE − ROA' },
+      { var: 'ROE', formula: 'ROE = ROFL + ROA' },
+      { var: 'ROA', formula: 'ROA = ROE − ROFL' }
+    ]
+  },
+  {
+    id: 're_dupont', chNum: 12, chapter: 'Ch 12',
+    name: 'DuPont — ROE Decomposition',
+    base: 'ROE = Profit Margin × Asset Turnover × Equity Multiplier',
+    forms: [
+      { var: 'ROE', formula: 'ROE = Profit Margin × Asset Turnover × Equity Multiplier' },
+      { var: 'Profit Margin', formula: 'Profit Margin = ROE / (Asset Turnover × Equity Multiplier)' },
+      { var: 'Asset Turnover', formula: 'Asset Turnover = ROE / (Profit Margin × Equity Multiplier)' },
+      { var: 'Equity Multiplier', formula: 'Equity Multiplier = ROE / (Profit Margin × Asset Turnover)' }
+    ]
+  },
+  {
+    id: 're_pm', chNum: 12, chapter: 'Ch 12',
+    name: 'Profit Margin',
+    base: 'Profit Margin = Net Income / Sales',
+    forms: [
+      { var: 'Profit Margin', formula: 'Profit Margin = Net Income / Sales' },
+      { var: 'Net Income', formula: 'Net Income = Profit Margin × Sales' },
+      { var: 'Sales', formula: 'Sales = Net Income / Profit Margin' }
+    ]
+  },
+  {
+    id: 're_at', chNum: 12, chapter: 'Ch 12',
+    name: 'Asset Turnover',
+    base: 'Asset Turnover = Sales / Average Total Assets',
+    forms: [
+      { var: 'Asset Turnover', formula: 'Asset Turnover = Sales / Average Total Assets' },
+      { var: 'Sales', formula: 'Sales = Asset Turnover × Average Total Assets' },
+      { var: 'Average Total Assets', formula: 'Average Total Assets = Sales / Asset Turnover' }
+    ]
+  },
+  {
+    id: 're_em', chNum: 12, chapter: 'Ch 12',
+    name: 'Equity Multiplier',
+    base: 'Equity Multiplier = Average Total Assets / Average Equity',
+    forms: [
+      { var: 'Equity Multiplier', formula: 'Equity Multiplier = Average Total Assets / Average Equity' },
+      { var: 'Average Total Assets', formula: 'Average Total Assets = Equity Multiplier × Average Equity' },
+      { var: 'Average Equity', formula: 'Average Equity = Average Total Assets / Equity Multiplier' }
+    ]
+  },
+  {
+    id: 're_ccc', chNum: 12, chapter: 'Ch 12',
+    name: 'Cash Conversion Cycle',
+    base: 'CCC = DIO + DSO − DPO',
+    forms: [
+      { var: 'CCC', formula: 'CCC = DIO + DSO − DPO' },
+      { var: 'DIO', formula: 'DIO = CCC − DSO + DPO' },
+      { var: 'DSO', formula: 'DSO = CCC − DIO + DPO' },
+      { var: 'DPO', formula: 'DPO = DIO + DSO − CCC' }
+    ]
+  },
+  {
+    id: 're_pe', chNum: 12, chapter: 'Ch 12',
+    name: 'P/E Ratio',
+    base: 'P/E = Price / EPS',
+    forms: [
+      { var: 'P/E', formula: 'P/E = Price / EPS' },
+      { var: 'Price', formula: 'Price = P/E × EPS' },
+      { var: 'EPS', formula: 'EPS = Price / P/E' }
+    ]
+  },
+  {
+    id: 're_de', chNum: 12, chapter: 'Ch 7 · 12',
+    name: 'Debt-to-Equity Ratio',
+    base: 'D/E = Total Liabilities / Total Equity',
+    forms: [
+      { var: 'D/E', formula: 'D/E = Total Liabilities / Total Equity' },
+      { var: 'Total Liabilities', formula: 'Total Liabilities = D/E × Total Equity' },
+      { var: 'Total Equity', formula: 'Total Equity = Total Liabilities / D/E' }
+    ]
+  },
+  {
+    id: 're_div_yield', chNum: 12, chapter: 'Ch 9 · 12',
+    name: 'Dividend Yield',
+    base: 'Dividend Yield = Annual DPS / Price',
+    forms: [
+      { var: 'Dividend Yield', formula: 'Dividend Yield = Annual DPS / Price' },
+      { var: 'Annual DPS', formula: 'Annual DPS = Dividend Yield × Price' },
+      { var: 'Price', formula: 'Price = Annual DPS / Dividend Yield' }
+    ]
+  },
+  {
+    id: 're_payout', chNum: 12, chapter: 'Ch 9 · 12',
+    name: 'Payout Ratio',
+    base: 'Payout Ratio = DPS / EPS',
+    forms: [
+      { var: 'Payout Ratio', formula: 'Payout Ratio = DPS / EPS' },
+      { var: 'DPS', formula: 'DPS = Payout Ratio × EPS' },
+      { var: 'EPS', formula: 'EPS = DPS / Payout Ratio' }
+    ]
+  },
+  {
+    id: 're_horizontal', chNum: 12, chapter: 'Ch 12',
+    name: 'Horizontal % Change',
+    base: '% Change = (Current − Base) / Base',
+    forms: [
+      { var: '% Change', formula: '% Change = (Current − Base) / Base' },
+      { var: 'Current', formula: 'Current = Base × (1 + % Change)' },
+      { var: 'Base', formula: 'Base = Current / (1 + % Change)' }
+    ]
+  }
+];

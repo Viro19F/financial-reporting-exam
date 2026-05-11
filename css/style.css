@@ -761,6 +761,118 @@ p.lede {
   .recipe-formula { font-size: 12.5px; }
 }
 
+/* Rearrange — every formula in all its forms */
+.rearr-block {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 22px 24px;
+  margin-bottom: 16px;
+}
+.rearr-head {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+}
+.rearr-chip {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--accent);
+  background: var(--accent-soft);
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-weight: 600;
+}
+.rearr-name {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 21px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  flex: 1;
+  min-width: 0;
+}
+.rearr-base {
+  font-family: var(--mono);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text);
+  background: var(--accent-soft);
+  border-left: 3px solid var(--accent);
+  padding: 12px 16px;
+  border-radius: 0 8px 8px 0;
+  margin-bottom: 10px;
+  word-break: break-word;
+}
+.rearr-note {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-bottom: 14px;
+  line-height: 1.5;
+}
+.rearr-divider {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-faint);
+  margin: 14px 0 10px;
+  text-align: center;
+  font-family: var(--sans);
+}
+.rearr-forms {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.rearr-form {
+  display: grid;
+  grid-template-columns: minmax(140px, 200px) 22px 1fr;
+  gap: 10px;
+  align-items: center;
+  padding: 10px 14px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  transition: background 0.12s ease, border-color 0.12s ease;
+}
+.rearr-form:hover {
+  background: var(--bg-elev);
+  border-color: var(--accent);
+}
+.rearr-var {
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.rearr-arrow {
+  font-family: var(--mono);
+  font-size: 14px;
+  color: var(--text-faint);
+  text-align: center;
+}
+.rearr-formula {
+  font-family: var(--mono);
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--accent);
+  word-break: break-word;
+  line-height: 1.4;
+}
+
+@media (max-width: 600px) {
+  .rearr-block { padding: 18px 16px; }
+  .rearr-name { font-size: 18px; }
+  .rearr-form { grid-template-columns: 1fr; gap: 4px; padding: 10px 12px; }
+  .rearr-arrow { display: none; }
+  .rearr-formula { font-size: 12.5px; }
+}
+
 /* Footer */
 .footnote {
   margin-top: 60px;
