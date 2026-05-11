@@ -4581,3 +4581,1252 @@ const APPROACH = [
     example: 'Nguyen: Want Revenue. Got Beg E, End E, Issuance, Expenses, Dividends. Connect via ΔE = NI + Issuance − Div, then NI = Rev − Exp. Solve ΔE first → NI → Rev.'
   }
 ];
+
+// =============================================================
+// CHAPTER_TERMS — detailed term definitions per chapter.
+// Each term: what / why / used / example.
+// =============================================================
+const CHAPTER_TERMS = {
+  'ch1': [
+    {
+      term: 'Accounting',
+      what: 'The process of recording, summarizing, and reporting financial transactions so people can make economic decisions.',
+      why: 'Without a common language for money, investors and lenders would have no way to compare companies or judge performance.',
+      used: 'Every filing, ratio, and ratio you compute starts from accounting numbers — it is the foundation of everything in this course.',
+      example: 'Recording a $1,000 cash sale: Cash up $1,000, Sales Revenue up $1,000 — both sides of the equation move together.'
+    },
+    {
+      term: 'Financial vs Managerial Accounting',
+      what: 'Financial accounting is for outsiders (investors, lenders); managerial accounting is for insiders (managers).',
+      why: 'Outsiders need standardized, comparable info; insiders need detailed, custom info to run the business.',
+      used: 'Exam questions ask which user type goes with which info — regulators, banks, customers = external; managers = internal.',
+      example: 'A 10-K filing is financial accounting; a monthly product-line profitability report is managerial.'
+    },
+    {
+      term: 'Accounting Equation',
+      what: 'Assets = Liabilities + Equity. The fundamental identity that always holds.',
+      why: 'It guarantees the books balance: every resource (asset) is funded either by a debt (liability) or an owner claim (equity).',
+      used: 'Use it to solve for any missing piece — and to check that any transaction keeps both sides equal.',
+      example: 'If assets go up $80K and liabilities up $30K, equity must have gone up $50K to keep the equation balanced.'
+    },
+    {
+      term: 'Four Business Activities',
+      what: 'Planning, Investing, Financing, and Operating — the four things every business does.',
+      why: 'Helps classify any transaction into a meaningful bucket so financial statements can organize them.',
+      used: 'Investing buys long-term assets; Financing raises money from debt or equity; Operating runs day-to-day.',
+      example: 'Buying a factory = investing; issuing bonds = financing; selling product = operating; setting strategy = planning.'
+    },
+    {
+      term: 'Debt vs Equity Financing',
+      what: 'Debt = borrowed money you must repay with interest; equity = money raised from owners with no repayment obligation.',
+      why: 'Each funding source has different costs and risks — debt has interest, equity dilutes ownership.',
+      used: 'Used in D/E ratio analysis and to understand a firm\'s capital structure.',
+      example: 'A bank loan is debt (must repay $100K + interest); an IPO is equity (investors take the risk).'
+    },
+    {
+      term: 'Four Financial Statements',
+      what: 'Balance Sheet, Income Statement, Statement of Stockholders\' Equity, and Statement of Cash Flows.',
+      why: 'Each captures a different angle: financial position, performance, equity changes, and cash movements.',
+      used: 'Together they tell the full story of a company in any given period.',
+      example: 'A 10-K filing contains all four, often with five-year history alongside.'
+    },
+    {
+      term: 'Balance Sheet',
+      what: 'A point-in-time snapshot of what a company owns (assets), owes (liabilities), and what\'s left over (equity).',
+      why: 'It shows the firm\'s financial position on one specific date — like a photo, not a movie.',
+      used: 'Used to compute liquidity ratios (current ratio), leverage ratios (D/E), and net worth.',
+      example: 'Apple\'s BS at Sept 30, 2023 — frozen on that one day, showing $350B of assets.'
+    },
+    {
+      term: 'Income Statement',
+      what: 'A report of revenues earned and expenses incurred over a period, ending in net income.',
+      why: 'Shows how profitable the company was during a specific time window (quarter, year).',
+      used: 'Net income flows into Retained Earnings on the balance sheet — links the statements.',
+      example: 'Revenue $500K − COGS $280K − OpEx $120K − Tax $25K = Net Income $75K for the year.'
+    },
+    {
+      term: 'Articulation',
+      what: 'The way the four statements link together — net income flows into RE, which flows into equity on the BS.',
+      why: 'Ensures the statements are internally consistent and not separate independent reports.',
+      used: 'Asked on exams: trace how a $40K profit + $10K dividend flows from IS → RE → BS.',
+      example: 'Nike\'s $2,539M NI flows into RE; minus $1,491M dividends = $1,048M RE increase; goes into BS equity.'
+    },
+    {
+      term: 'Retained Earnings',
+      what: 'The cumulative net income kept in the business after paying dividends — sits in equity.',
+      why: 'Tracks how much owners have left in the company over time vs. how much has been paid out.',
+      used: 'End RE = Beg RE + Net Income − Dividends. Appears on the Statement of Stockholders\' Equity.',
+      example: 'Beg RE $120K + NI $40K − Div $15K = End RE $145K.'
+    },
+    {
+      term: 'IFRS vs US GAAP',
+      what: 'Two competing reporting frameworks: IFRS used by 140+ countries, US GAAP used by US firms.',
+      why: 'Different accounting rules in different jurisdictions; investors need to know which one to use.',
+      used: 'Key exam differences: LIFO (banned in IFRS), PP&E revaluation (IFRS only), impairment reversal (IFRS only), R&D (IFRS allows capitalizing dev costs).',
+      example: 'A French company can write up its building if value rises (IFRS); a US firm under GAAP cannot.'
+    },
+    {
+      term: 'Return on Equity (ROE)',
+      what: 'Net Income divided by average shareholders\' equity — how well owners\' money is generating profit.',
+      why: 'The headline profitability measure — tells investors what they\'re earning on each dollar of equity.',
+      used: 'ROE = NI / Avg Equity. Higher is better. Don\'t forget to use AVERAGE equity.',
+      example: 'NI $4,200M / Avg Equity $28,000M = 15% ROE.'
+    },
+    {
+      term: 'Debt-to-Equity Ratio',
+      what: 'Total liabilities divided by total equity — how leveraged the company is.',
+      why: 'Shows whether the firm is funded mostly by creditors or owners; high D/E = higher risk.',
+      used: 'D/E = Total Liabilities / Total Equity. Average public company ≈ 1.0.',
+      example: 'D/E of 2.89 means $2.89 of debt for every $1 of equity — very leveraged.'
+    },
+    {
+      term: 'Fiscal Year',
+      what: 'A company\'s annual reporting period — doesn\'t have to be calendar year (Jan-Dec).',
+      why: 'Some industries naturally end at non-calendar dates (retailers in January, schools in June).',
+      used: 'Look at the cover of a 10-K to see fiscal year-end. Affects when statements are issued.',
+      example: 'Microsoft\'s fiscal year ends June 30; Nike\'s ends May 31; most public companies end Dec 31.'
+    },
+    {
+      term: 'Economic Entity Assumption',
+      what: 'The business is a separate entity from its owner — personal and business activities stay apart.',
+      why: 'Without this, you couldn\'t tell whether profits came from the business or the owner\'s side hustle.',
+      used: 'Foundational concept; bars owners from co-mingling personal expenses with company books.',
+      example: 'The owner\'s grocery bill never appears on the company\'s income statement.'
+    },
+    {
+      term: 'External vs Internal Users',
+      what: 'External users are anyone outside the company (investors, banks, regulators); internal users are management and employees.',
+      why: 'They need different information — externals see published financials, internals see detailed reports.',
+      used: 'Common MCQ trap: customers and regulators are EXTERNAL users, not internal.',
+      example: 'A bank deciding whether to lend = external; the CFO reviewing margins = internal.'
+    }
+  ],
+  'ch2': [
+    {
+      term: 'Current vs Non-current Assets',
+      what: 'Current = convertible to cash within 1 year; non-current = longer than 1 year.',
+      why: 'Splits assets by how quickly they can be turned into cash — critical for liquidity analysis.',
+      used: 'Inventory and AR are current; PP&E and goodwill are non-current.',
+      example: 'A $50K truck = non-current PP&E; $50K of inventory = current asset.'
+    },
+    {
+      term: 'Three Asset Capitalization Criteria',
+      what: 'To put something on the balance sheet as an asset: owned/controlled, future benefits expected, monetary value assignable.',
+      why: 'Stops companies from sticking random items on the balance sheet to inflate assets.',
+      used: 'Use these three tests when deciding if a cost should be capitalized vs expensed.',
+      example: 'Marketing spend fails the test (no measurable future benefit) → expense; a patent passes → capitalize.'
+    },
+    {
+      term: 'Three Liability Recognition Criteria',
+      what: 'Probable obligation + reasonably estimable + transaction already occurred.',
+      why: 'Prevents firms from recording (or omitting) liabilities based on guesses or hopes.',
+      used: 'Apply this to warranty obligations, lawsuits, severance — all three must be true.',
+      example: 'Lawsuit with probable $100K loss and estimable amount → recognize provision; if just "possible," only disclose.'
+    },
+    {
+      term: 'Working Capital',
+      what: 'Current Assets minus Current Liabilities — short-term financial cushion.',
+      why: 'Tells you whether a company can pay its near-term bills with its near-term resources.',
+      used: 'WC = CA − CL. Positive is generally good; negative means you owe more than you can quickly convert.',
+      example: 'CA $210, CL $80 → WC $130 (healthy).'
+    },
+    {
+      term: 'Current Ratio',
+      what: 'Current Assets divided by Current Liabilities — basic liquidity ratio.',
+      why: 'Quick gauge of short-term solvency; above 1.0 means you can cover short-term obligations.',
+      used: 'CR = CA / CL. Target retailers often run near 1.0 since inventory turns quickly.',
+      example: 'CA $450K, CL $180K → CR = 2.5 (every $1 of CL covered by $2.50 of CA).'
+    },
+    {
+      term: 'Quick Ratio',
+      what: 'Like current ratio but EXCLUDES inventory and prepaid expenses from the numerator.',
+      why: 'Inventory is slow to convert to cash, so a stricter test of liquidity strips it out.',
+      used: 'QR = (Cash + Marketable Sec + AR) / CL. Common exam trap.',
+      example: 'Cash 30 + AR 70 = 100; CL 80 → QR 1.25. Including inventory would give 2.625 (current ratio).'
+    },
+    {
+      term: 'Historical Cost vs Fair Value',
+      what: 'Historical cost = what you paid for it; fair value = what it would sell for today.',
+      why: 'Most assets stay at historical cost (reliable); some (marketable securities) use fair value (more current).',
+      used: 'Apply historical cost for PP&E, inventory; fair value for trading securities.',
+      example: 'Land bought for $1M in 1985 still shows at $1M; Apple shares held are marked to today\'s price each quarter.'
+    },
+    {
+      term: 'Operating vs Nonoperating Items',
+      what: 'Operating = from the main business; nonoperating = from financing/investing (e.g., interest).',
+      why: 'Splits "how the core business performs" from "how we\'re financed" — crucial for valuation.',
+      used: 'Operating Income (EBIT) excludes interest; pre-tax income (EBT) deducts it.',
+      example: 'Apple\'s iPhone sales = operating; interest on Apple\'s cash investments = nonoperating.'
+    },
+    {
+      term: 'Gross Profit',
+      what: 'Revenue minus Cost of Goods Sold — what\'s left after paying for the product itself.',
+      why: 'Shows the basic markup on products before any operating costs.',
+      used: 'GP = Revenue − COGS. Divide by revenue to get Gross Profit Margin.',
+      example: 'Revenue $500K − COGS $280K = $220K GP (44% margin).'
+    },
+    {
+      term: 'Operating Income (EBIT)',
+      what: 'Gross profit minus operating expenses (SG&A, R&D, depreciation) — earnings before interest and tax.',
+      why: 'Measures profit from the core business, before financing/tax decisions distort it.',
+      used: 'EBIT = GP − OpEx. Used in TIE, EV/EBIT, and many other ratios.',
+      example: 'GP $220 − SG&A $90 − Depreciation $30 = EBIT $100.'
+    },
+    {
+      term: 'Multi-step Income Statement',
+      what: 'IS format showing intermediate subtotals: Revenue → GP → EBIT → EBT → NI.',
+      why: 'Breaks down profitability layer by layer so users see where money is made and lost.',
+      used: 'Standard format under both IFRS and US GAAP; every exam IS problem uses this.',
+      example: '500 Rev − 280 COGS = 220 GP − 120 OpEx = 100 EBIT − 15 Interest = 85 EBT − 21.25 Tax = 63.75 NI.'
+    },
+    {
+      term: 'Contributed Capital',
+      what: 'Cash and other resources investors have put into the company via stock issuance.',
+      why: 'Distinguishes money from owners (contributed) vs profits the company earned (retained).',
+      used: 'Includes Common Stock (par × shares), APIC, and is reduced by Treasury Stock.',
+      example: 'Issue 1,000 shares at $20 par $5 → Common Stock $5,000 + APIC $15,000 in contributed capital.'
+    },
+    {
+      term: 'AOCI (Accumulated Other Comprehensive Income)',
+      what: 'A bucket in equity for unrealized gains/losses that bypass the income statement (FX, pensions, certain investments).',
+      why: 'Some gains/losses are too volatile to flow through NI but still need a home in equity.',
+      used: 'Sits in equity alongside Retained Earnings; changes appear in Other Comprehensive Income.',
+      example: 'A $10K unrealized gain on AFS securities goes to AOCI, not net income.'
+    },
+    {
+      term: 'Marketable Securities',
+      what: 'Short-term investments in stocks or bonds that trade in active markets.',
+      why: 'Companies park excess cash here to earn returns while keeping it liquid.',
+      used: 'Reported at FAIR VALUE on the balance sheet (one of the few assets that uses fair value).',
+      example: 'Apple holding US Treasury bills worth $20B — marked to market each quarter.'
+    },
+    {
+      term: 'Unearned (Deferred) Revenue',
+      what: 'Cash received from a customer for goods/services not yet delivered — a liability.',
+      why: 'You owe the customer either the product or their money back, so it\'s an obligation.',
+      used: 'When delivered: Dr Unearned Rev / Cr Revenue. Reduces the liability, recognizes revenue.',
+      example: 'Netflix collects $120 for annual subscription upfront → $120 unearned revenue → recognized $10/month.'
+    }
+  ],
+  'ch3': [
+    {
+      term: 'Accrual Basis Accounting',
+      what: 'Record revenues when earned and expenses when incurred — not when cash moves.',
+      why: 'Matches economic activity to the right period; cash basis distorts performance.',
+      used: 'Required by IFRS and US GAAP. All adjusting entries enforce this.',
+      example: 'Service performed in July, paid in August → revenue is JULY (when earned), regardless of cash timing.'
+    },
+    {
+      term: 'Revenue Recognition Principle',
+      what: 'Revenue is recorded when the performance obligation is satisfied — typically at delivery.',
+      why: 'Stops companies from claiming revenue early (when cash comes in) or late (when convenient).',
+      used: 'The "when" question for revenue. Pick the delivery date, not the cash date.',
+      example: 'Ron services a car on July 31; revenue is July 31, even if payment comes in August.'
+    },
+    {
+      term: 'Matching Principle',
+      what: 'Expenses are recognized in the same period as the revenues they helped generate.',
+      why: 'Pairs effort (expense) with reward (revenue) so the income statement reflects true performance.',
+      used: 'Drives accruals (bad debt, warranty) and deferrals (prepaid insurance, depreciation).',
+      example: 'Sell goods in December → record cost of goods sold and warranty expense in December, even if cash flows later.'
+    },
+    {
+      term: 'Double-Entry System',
+      what: 'Every transaction has at least two equal sides: debits = credits.',
+      why: 'Forces the accounting equation to stay balanced and catches errors quickly.',
+      used: 'Every journal entry uses it. If debits ≠ credits, something is wrong.',
+      example: 'Buy $1,000 equipment with cash: Dr Equipment 1,000 / Cr Cash 1,000.'
+    },
+    {
+      term: 'Normal Balances',
+      what: 'Assets, Expenses, Dividends, and Treasury Stock have debit balances; Liabilities, Equity, Revenues have credit balances.',
+      why: 'Tells you which side of an account is "the increase" — fundamental to journal entries.',
+      used: 'Memorize before doing journal entries. Increases an asset = debit; increases a liability = credit.',
+      example: 'Cash (asset) increases on the debit side; Accounts Payable (liability) increases on the credit side.'
+    },
+    {
+      term: 'Deferred (Prepaid) Expense',
+      what: 'Cash paid in advance for something not yet consumed — sits as an asset until used.',
+      why: 'You\'ve paid but haven\'t received the benefit yet; can\'t expense it until you do.',
+      used: 'Adjusting entry as time passes: Dr Expense / Cr Prepaid Asset.',
+      example: 'Pay $24K for 24 months of insurance on Oct 1 → Dec 31: 3 months consumed, $3K expense recorded.'
+    },
+    {
+      term: 'Deferred (Unearned) Revenue',
+      what: 'Cash received before goods/services delivered — sits as a liability until earned.',
+      why: 'You owe the customer something, so until you deliver, it\'s not your revenue.',
+      used: 'Adjusting entry when earned: Dr Unearned Rev / Cr Revenue (liability decreases).',
+      example: 'Customer pays $1,000 for 10 yoga classes upfront → revenue recognized $100 each class.'
+    },
+    {
+      term: 'Accrued Revenue',
+      what: 'Revenue earned but not yet received in cash — creates a receivable.',
+      why: 'Under accrual basis, you recognize earned revenue even before the cash arrives.',
+      used: 'Adjusting entry: Dr Receivable / Cr Revenue. Common for interest, services performed near year-end.',
+      example: '$60 interest earned by Dec 31 on a bond, payable Jan 5 → Dec 31: Dr Interest Receivable 60 / Cr Interest Income 60.'
+    },
+    {
+      term: 'Accrued Expense',
+      what: 'Expense incurred but not yet paid — creates a payable.',
+      why: 'You\'ve consumed the benefit; matching principle says recognize the expense now.',
+      used: 'Adjusting entry: Dr Expense / Cr Payable. Common for wages, interest, utilities.',
+      example: 'Employees earn $1,500 in last 3 days of December, paid in January → Dec 31: Dr Wages Exp 1,500 / Cr Wages Payable 1,500.'
+    },
+    {
+      term: 'Adjusting Entries',
+      what: 'Year-end journal entries that update the books for items not yet recorded — accruals and deferrals.',
+      why: 'Cash transactions alone miss earned-but-unbilled revenue and incurred-but-unpaid expenses.',
+      used: 'Made on the last day of the period; NEVER affect cash. Always touch one B/S and one I/S account.',
+      example: 'Record $170 monthly depreciation on equipment: Dr Dep Expense 170 / Cr Accum Dep 170.'
+    },
+    {
+      term: 'Depreciation Expense',
+      what: 'Allocating the cost of a long-lived asset to expense over its useful life.',
+      why: 'A truck doesn\'t get used up in one period — match the cost over the years it generates revenue.',
+      used: 'Straight-line: (Cost − Salvage) / Life. Recorded annually via adjusting entry.',
+      example: 'Equipment costs $10,200, 5-year life, no salvage → annual depreciation $2,040 (or $170/month).'
+    },
+    {
+      term: 'Trial Balance',
+      what: 'A list of all general ledger accounts and their balances — debits must equal credits.',
+      why: 'Quick check that the books balance before preparing financial statements.',
+      used: 'Unadjusted trial balance (before adjusting entries), then adjusted (after).',
+      example: 'Total debits $50,000 = Total credits $50,000 → books in balance.'
+    },
+    {
+      term: 'Closing Entries',
+      what: 'End-of-period entries that zero out temporary accounts (Revenues, Expenses, Dividends) into Retained Earnings.',
+      why: 'Prepares the books for a new period so each year\'s income starts fresh.',
+      used: 'Temporary accounts close to RE; permanent accounts (A, L, E) carry forward.',
+      example: 'Dr Revenue 100K / Cr RE 100K. Dr RE 60K / Cr Expenses 60K. Dr RE 10K / Cr Dividends 10K.'
+    },
+    {
+      term: 'Temporary vs Permanent Accounts',
+      what: 'Temporary = Revenues, Expenses, Dividends (reset each year); Permanent = Assets, Liabilities, Equity (carry forward).',
+      why: 'Lets each year\'s P&L start fresh while the balance sheet keeps accumulating.',
+      used: 'Closing entries zero out temporary accounts into RE; permanent accounts roll forward.',
+      example: 'Sales revenue (temporary) closes to RE; Cash (permanent) stays put.'
+    },
+    {
+      term: 'Effect of Missing Adjusting Entries',
+      what: 'Forgetting an adjustment misstates NI and balance sheet — direction depends on which entry was missed.',
+      why: 'Helps you understand which accounts move in which direction when something is missed.',
+      used: 'Common exam question: "If accrued wages are not recorded, what is the effect?" → NI overstated, liabilities understated.',
+      example: 'Forget accrued $1,500 wage: NI ↑ 1,500 (expenses understated), Liabilities ↓ 1,500 (payable missing).'
+    }
+  ],
+  'ch4': [
+    {
+      term: 'IFRS 15 / ASC 606',
+      what: 'The converged revenue recognition standard with a 5-step model for recognizing revenue.',
+      why: 'Replaced old industry-specific rules with one principles-based framework — same answer worldwide.',
+      used: 'Identify contract → performance obligations → transaction price → allocate → recognize when obligation satisfied.',
+      example: 'A 12-month software license with 2 install services → revenue is allocated across both, not recognized upfront.'
+    },
+    {
+      term: 'Performance Obligation',
+      what: 'A distinct promise to deliver a good or service to the customer.',
+      why: 'Step 2 of IFRS 15 — must identify each promise separately to time revenue correctly.',
+      used: 'Bundle a phone + 24 months of service → phone is one obligation (point-in-time), service another (over time).',
+      example: 'AT&T sells iPhone + 2-year service → split: phone revenue at delivery, service revenue over 24 months.'
+    },
+    {
+      term: 'Percentage-of-Completion Method',
+      what: 'For long-term contracts: recognize revenue as construction progresses, based on costs incurred / total costs.',
+      why: 'Recognizing revenue only at completion would distort multi-year projects with steady work.',
+      used: 'Requires signed contract, fixed price, estimable costs. Revenue = % complete × total contract.',
+      example: '$8M contract, $1.8M of $6M total costs incurred → 30% complete → recognize $2.4M revenue this year.'
+    },
+    {
+      term: 'Net Realizable Value (NRV) — for AR',
+      what: 'The amount of receivables you actually expect to collect = Gross AR − Allowance for Doubtful Accounts.',
+      why: 'Some customers won\'t pay; balance sheet should reflect realistic collection, not the wishful gross.',
+      used: 'NRV is what shows on the balance sheet as "AR, net of allowance."',
+      example: 'AR $100K, Allowance $4K → NRV $96K (cash you expect to collect).'
+    },
+    {
+      term: 'Allowance for Doubtful Accounts',
+      what: 'A contra-asset that estimates the portion of receivables you won\'t collect.',
+      why: 'Matches the bad-debt expense to the period of the sale, not to when default actually happens.',
+      used: 'Subtracted from gross AR to get NRV. Increases each period via Bad Debt Expense.',
+      example: 'AR $100K with 4% estimated uncollectible → Allowance $4K, NRV $96K.'
+    },
+    {
+      term: 'Aging of Receivables Method',
+      what: 'Categorize AR by age (current, 1-30 days, 31-60, 60+) and apply increasing uncollectible % to each bucket.',
+      why: 'Older receivables are far less likely to collect — aging gives a more accurate estimate.',
+      used: 'BDE = Required ending Allowance − Existing balance (+ write-offs).',
+      example: 'Current $41K × 1% + 1-60 $32K × 3% + 61-90 $16.5K × 4.5% + Over 90 $8.7K × 11% = $3,070 needed.'
+    },
+    {
+      term: '% of Credit Sales Method',
+      what: 'Estimate bad debt by applying a fixed % to net credit sales.',
+      why: 'Simple income-statement approach — useful for forecasting but less precise than aging.',
+      used: 'BDE = Net Credit Sales × %. Ignores existing allowance balance.',
+      example: 'Credit sales $1.8M × 1.5% = $27K Bad Debt Expense, regardless of current allowance balance.'
+    },
+    {
+      term: 'Write-off of a Specific Account',
+      what: 'When a specific customer\'s account is declared uncollectible — Dr Allowance / Cr AR.',
+      why: 'Removes the bad receivable from the books once you\'re sure it won\'t collect.',
+      used: 'Has NO effect on NRV or NI — both gross AR and allowance drop by the same amount.',
+      example: 'Write off $2,800 → AR ↓ 2,800, Allowance ↓ 2,800 → NRV unchanged.'
+    },
+    {
+      term: 'AR Turnover',
+      what: 'Net Credit Sales divided by Average AR — how many times you collect your AR balance in a year.',
+      why: 'Tells you how quickly customers pay; higher = better cash conversion.',
+      used: 'AR Turnover = Net Credit Sales / Avg AR. Pair with DSO.',
+      example: 'Amazon: Sales $469B / Avg AR $22.7B = 20.71× turnover.'
+    },
+    {
+      term: 'Days Sales Outstanding (DSO)',
+      what: 'Average number of days it takes to collect from customers after a sale.',
+      why: 'Cash-cycle measure — lower DSO = faster cash, better working capital.',
+      used: 'DSO = 365 / AR Turnover.',
+      example: 'Amazon DSO = 365 / 20.71 = 17.6 days — extremely fast.'
+    },
+    {
+      term: 'Pledging vs Factoring',
+      what: 'Pledging = using AR as collateral for a loan (you still own it); factoring = selling AR to a third party.',
+      why: 'Different ways to use AR for cash, with different balance-sheet effects.',
+      used: 'Pledging keeps AR on books; factoring removes AR (it\'s sold).',
+      example: 'Pledge $500K AR for a $400K loan → AR stays; factor $500K AR for $470K cash → AR gone.'
+    },
+    {
+      term: 'Channel Stuffing',
+      what: 'Earnings management: push extra inventory to customers near period-end to inflate sales.',
+      why: 'Boosts current-period revenue artificially — often shows up as future returns or write-offs.',
+      used: 'Red flag: spike in sales just before quarter-end followed by elevated returns.',
+      example: 'A pharma company offers heavy discounts to wholesalers in late December to book revenue, then returns flood in January.'
+    },
+    {
+      term: 'Cookie Jar Reserve',
+      what: 'Earnings management: overestimate reserves (e.g., bad debt) in good years, release them in bad years to smooth income.',
+      why: 'Creates a hidden cushion to boost future NI when results fall short.',
+      used: 'Red flag in allowance for doubtful accounts moving inconsistent with sales trends.',
+      example: 'In a great Q3, raise bad-debt estimate to 8%; in a bad Q4, drop it to 2% → Q4 NI artificially boosted.'
+    },
+    {
+      term: 'Big Bath',
+      what: 'Earnings management: take a huge one-time loss in an already-bad period to "clear the deck."',
+      why: 'Investors already discount that period — so adding more pain "frees up" future earnings.',
+      used: 'Look for unusually large write-downs in bad years (new CEO\'s first quarter often).',
+      example: 'A new CEO takes $500M of restructuring charges in Q1 to set a low bar for future quarters.'
+    },
+    {
+      term: 'Bundled Sales / Multiple-Element Arrangement',
+      what: 'A single sale with multiple performance obligations bundled at one price.',
+      why: 'Need to split the price across each element so each is recognized at the right time.',
+      used: 'Allocate price by stand-alone selling price (SSP); recognize each as obligation satisfied.',
+      example: 'Sell phone + 2-year service for $1,200 → allocate ~$700 to phone (at sale), ~$500 over 24 months for service.'
+    }
+  ],
+  'ch5': [
+    {
+      term: 'COGS (Cost of Goods Sold)',
+      what: 'The cost of inventory that was sold during the period.',
+      why: 'Matches the cost of products to the revenue from selling them.',
+      used: 'COGS = Beg Inventory + Purchases − End Inventory.',
+      example: 'Beg $8K + Purchases $28.4K − End $9.6K = COGS $26.8K.'
+    },
+    {
+      term: 'FIFO (First-In, First-Out)',
+      what: 'Cost-flow assumption: oldest costs go to COGS, newest costs stay in ending inventory.',
+      why: 'Reflects the actual physical flow for most goods (sell old stock first).',
+      used: 'In rising prices: low COGS, high gross profit, ending inventory close to current cost.',
+      example: 'Buy 100 @ $4, then 400 @ $4.50; sell 460 → FIFO COGS = 100×4 + 360×4.50 = $2,020.'
+    },
+    {
+      term: 'LIFO (Last-In, First-Out)',
+      what: 'Cost-flow assumption: newest costs go to COGS, oldest stay in inventory.',
+      why: 'In rising prices, gives high COGS → low NI → low taxes → cash savings (the main reason US firms use it).',
+      used: 'BANNED under IFRS, allowed under US GAAP.',
+      example: 'Same data: LIFO COGS = 400×4.50 + 60×4 = $2,040; ending = 40×4 = $160.'
+    },
+    {
+      term: 'Weighted-Average Cost',
+      what: 'Cost-flow assumption: assign one average cost per unit to all sales and inventory.',
+      why: 'Smooths between FIFO and LIFO; common when items are indistinguishable.',
+      used: 'Avg cost/unit = Total Cost of GAFS / Total Units Available.',
+      example: 'Total cost $3,000 / 450 units = $6.67 avg; sell 350 → COGS = 350 × $6.67 = $2,333.'
+    },
+    {
+      term: 'Lower of Cost or NRV (LCNRV)',
+      what: 'Inventory rule: carry at the LOWER of original cost or net realizable value.',
+      why: 'If inventory loses value, you can\'t pretend it\'s still worth its old cost — write it down.',
+      used: 'If NRV < Cost: Dr COGS / Cr Inventory for the difference. NRV = Sales Price − Costs to Complete & Sell.',
+      example: 'Cost $50K, NRV $42K → write down $8K; new carrying value $42K.'
+    },
+    {
+      term: 'LIFO Reserve',
+      what: 'The difference between what inventory would be under FIFO vs what it is under LIFO.',
+      why: 'Lets you "translate" a LIFO firm to FIFO basis to compare with global peers (who can\'t use LIFO).',
+      used: 'LIFO Reserve = FIFO Inv − LIFO Inv. FIFO COGS = LIFO COGS − Δ LIFO Reserve.',
+      example: 'Chevron LIFO Inv $6,334 + Reserve $3,745 = FIFO equivalent $10,079.'
+    },
+    {
+      term: 'Inventory Turnover',
+      what: 'COGS divided by average inventory — how many times you sell through inventory in a year.',
+      why: 'High turnover = efficient inventory management; low = stale or overstocked.',
+      used: 'Inventory Turnover = COGS / Avg Inventory.',
+      example: 'COGS $696K / Avg Inv $114K = 6.11× turnover.'
+    },
+    {
+      term: 'Days Inventory Outstanding (DIO)',
+      what: 'Average days to sell through inventory.',
+      why: 'Companion to turnover — easier to interpret in days.',
+      used: 'DIO = 365 / Inventory Turnover.',
+      example: 'Turnover 4 → DIO = 91 days (3 months of inventory on hand).'
+    },
+    {
+      term: 'Manufacturer\'s 3-Stage Inventory',
+      what: 'Raw Materials → Work-in-Process → Finished Goods.',
+      why: 'A manufacturer\'s inventory passes through stages, each with added labor and overhead.',
+      used: 'All three appear separately on a manufacturer\'s balance sheet.',
+      example: 'Steel (raw) → half-assembled car (WIP) → ready-to-ship car (FG).'
+    },
+    {
+      term: 'Gross Profit Margin (GPM)',
+      what: 'Gross Profit divided by Net Sales — what % of each sales dollar is left after COGS.',
+      why: 'Measures pricing power and cost discipline; tracked over time for trend.',
+      used: 'GPM = (Sales − COGS) / Sales. Higher = better.',
+      example: 'GP $480K / Sales $1.2M = 40% GPM.'
+    },
+    {
+      term: 'Goods Available for Sale (GAFS)',
+      what: 'Beginning inventory plus purchases — total inventory cost available to sell during the period.',
+      why: 'Foundation of the COGS equation; everything available either sells (COGS) or stays (ending inv).',
+      used: 'GAFS = Beg + Purchases. Then COGS = GAFS − Ending.',
+      example: 'Beg $100 + Purchases $900 = GAFS $1,000. End $200 → COGS $800.'
+    },
+    {
+      term: 'Cash Discount Terms (2/10, n/30)',
+      what: 'Pay within 10 days for a 2% discount; otherwise full price by day 30.',
+      why: 'Suppliers want fast payment; buyers can earn a high effective return by paying early.',
+      used: 'Cost of forgoing the discount ≈ 37.2% per year — almost always worth taking.',
+      example: 'A $1,000 invoice 2/10, n/30 → pay $980 by day 10 OR $1,000 by day 30.'
+    },
+    {
+      term: 'Inventory Error Effects',
+      what: 'Overstating ending inventory → understates COGS, overstates NI; reverses next period.',
+      why: 'Errors self-correct over two periods, but distort each year individually.',
+      used: 'Common exam question: identify direction of misstatement on NI, COGS, assets.',
+      example: 'Year 1 ending inv overstated by $5K → Year 1 COGS down $5K, NI up $5K; Year 2 reverses.'
+    },
+    {
+      term: 'Impact of Inventory Method on Taxes',
+      what: 'In rising prices, LIFO gives higher COGS → lower NI → lower taxes paid.',
+      why: 'The real economic benefit of LIFO is cash savings via lower current taxes.',
+      used: 'US-only tax benefit; explains why most US oil companies use LIFO.',
+      example: 'Switching from FIFO to LIFO can save millions in cash taxes in inflationary years.'
+    }
+  ],
+  'ch6': [
+    {
+      term: 'Capitalize vs Expense',
+      what: 'Capitalize = put on balance sheet as an asset; Expense = put on income statement now.',
+      why: 'Capitalizing inflates current NI and creates future depreciation; expensing hurts now.',
+      used: 'Decision rule: extends life or enhances utility → capitalize; routine repair → expense.',
+      example: 'Replace a roof ($50K, extends life) → capitalize; oil change on truck → expense.'
+    },
+    {
+      term: 'Straight-Line Depreciation',
+      what: 'Equal depreciation expense each year over the asset\'s useful life.',
+      why: 'Simplest method; matches well when usage is steady.',
+      used: 'SL Depreciation = (Cost − Salvage) / Useful Life.',
+      example: 'Truck $80K, 5-yr life, $8K salvage → (80−8)/5 = $14,400/yr.'
+    },
+    {
+      term: 'Double-Declining Balance (DDB)',
+      what: 'Accelerated depreciation: apply 2× the SL rate to the (declining) book value each year.',
+      why: 'Front-loads expense — better matches assets that lose value quickly early on.',
+      used: 'DDB Dep = (2/Life) × Beg Book Value. Stop when BV = salvage.',
+      example: 'Truck $80K, 5-yr → 40% rate. Y1: 80K×40% = $32K. Y2: 48K×40% = $19.2K. Etc.'
+    },
+    {
+      term: 'Units-of-Production Depreciation',
+      what: 'Depreciation based on actual usage (miles driven, hours operated, units produced).',
+      why: 'Matches expense to actual use rather than time — fairest for usage-dependent assets.',
+      used: 'Rate = (Cost − Salvage) / Total expected units. Annual Dep = Units × Rate.',
+      example: 'Truck $80K, 80,000-mile life, drove 18K miles → $0.90/mile × 18K = $16,200.'
+    },
+    {
+      term: 'Accumulated Depreciation',
+      what: 'A running total of all depreciation ever recorded on an asset — a contra-asset.',
+      why: 'Lets you see both original cost AND total used up — instead of just netting them together.',
+      used: 'Computed as Cost − Book Value. Increases each year by that year\'s depreciation.',
+      example: 'Truck $50K, depreciated $30K so far → Accum Dep $30K, Book Value $20K.'
+    },
+    {
+      term: 'Book Value',
+      what: 'Cost minus Accumulated Depreciation — what the asset shows on the balance sheet.',
+      why: 'Tracks how much of the asset\'s cost remains to be expensed.',
+      used: 'BV = Cost − Accum Dep. Used in gain/loss on disposal calculations.',
+      example: 'Truck cost $80K, accum dep $32K → BV $48K.'
+    },
+    {
+      term: 'Gain/Loss on Disposal',
+      what: 'When you sell a depreciable asset, the difference between proceeds and book value.',
+      why: 'If proceeds > BV, you under-depreciated; if proceeds < BV, over-depreciated.',
+      used: 'Gain/Loss = Proceeds − Book Value. Appears as "Other income/expense" on IS.',
+      example: 'Sell equipment for $80K with BV $50K → $30K gain.'
+    },
+    {
+      term: 'Change in Accounting Estimate',
+      what: 'A revised estimate (e.g., new useful life or salvage value) applied PROSPECTIVELY only.',
+      why: 'No restating past — just use new estimates going forward to avoid endless revisions.',
+      used: 'New annual dep = (Current BV − New Salvage) / New Remaining Life.',
+      example: '4 years into a truck\'s life, you extend the life by 2 years → recompute depreciation on remaining BV / new remaining years.'
+    },
+    {
+      term: 'Goodwill',
+      what: 'Premium paid in an acquisition above the fair value of identifiable net assets.',
+      why: 'Captures intangibles like brand, customer relationships, synergies — things you bought but can\'t list separately.',
+      used: 'Goodwill = Purchase Price − FV of Net Identifiable Assets. NEVER amortized; tested annually for impairment.',
+      example: 'Pay $5M for a target with $4.2M of net assets → $800K goodwill on your books.'
+    },
+    {
+      term: 'Internally Generated Goodwill',
+      what: 'The reputational value a company builds on its own — NEVER recorded on the balance sheet.',
+      why: 'Too subjective to measure reliably; only goodwill from a transaction is verifiable.',
+      used: 'Trap on exams: no matter how famous the brand, internally built goodwill stays off the books.',
+      example: 'Apple\'s brand is worth hundreds of billions, but $0 of that is internal goodwill on Apple\'s books.'
+    },
+    {
+      term: 'Impairment',
+      what: 'When an asset\'s recoverable value drops below its book value, write it down.',
+      why: 'Balance sheet must reflect economic reality — overvalued assets mislead users.',
+      used: 'Dr Impairment Loss / Cr Asset. IFRS allows reversal (except goodwill); US GAAP does NOT.',
+      example: 'Trademark BV $62K; FMV drops to $40K → $22K impairment loss.'
+    },
+    {
+      term: 'Patent',
+      what: 'Exclusive legal right to produce a product, typically 20 years.',
+      why: 'Protects R&D investment by giving the inventor a monopoly for the patent\'s life.',
+      used: 'Capitalize purchase cost; amortize over the shorter of legal or economic life.',
+      example: 'Patent purchased $80K, 5-year economic life → $16K/yr amortization.'
+    },
+    {
+      term: 'Amortization',
+      what: 'The intangibles equivalent of depreciation — allocate cost over the asset\'s useful life.',
+      why: 'Intangibles also get "used up" economically; expense should match revenue.',
+      used: 'Amortization = Cost / Useful Life. Goodwill is NEVER amortized; tested for impairment instead.',
+      example: 'Patent $80K / 5 yr life = $16K annual amortization.'
+    },
+    {
+      term: 'Capitalized Interest',
+      what: 'Interest cost on debt used to finance the construction of a long-term asset, added to the asset\'s cost.',
+      why: 'During construction, the asset isn\'t generating revenue, so interest becomes part of its capitalized cost.',
+      used: 'Apply only during the active construction period; stop when asset is ready for use.',
+      example: 'Borrow $10M at 5% to build a factory → $500K/year interest capitalized into factory cost during construction.'
+    },
+    {
+      term: 'Land (Non-Depreciable)',
+      what: 'Land has indefinite useful life and is NEVER depreciated.',
+      why: 'Unlike buildings, land doesn\'t wear out; in fact, it often appreciates.',
+      used: 'Land sits on balance sheet at historical cost forever; only buildings and equipment depreciate.',
+      example: 'Buy land for $1M in 1950 → still $1M on books today (unless impaired or sold).'
+    }
+  ],
+  'ch7': [
+    {
+      term: 'Current vs Long-term Liabilities',
+      what: 'Current = due within 1 year; long-term = due in more than 1 year.',
+      why: 'Splits short-term obligations from long-term financing for liquidity analysis.',
+      used: 'Current portion of long-term debt (payments due in next 12 months) sits in CURRENT liabilities.',
+      example: 'A 10-year mortgage has $50K principal due next year → $50K current, rest long-term.'
+    },
+    {
+      term: 'Provision',
+      what: 'A liability recognized when an obligation is probable AND amount is reasonably estimable.',
+      why: 'Captures likely future obligations (warranties, lawsuits) so financials reflect them.',
+      used: 'Recognized at most-likely amount under IFRS. Dr Expense / Cr Provision.',
+      example: 'Pending lawsuit with probable loss between $50-200K, most likely $100K → recognize $100K provision.'
+    },
+    {
+      term: 'Contingent Liability',
+      what: 'A possible obligation that isn\'t probable enough or estimable enough to recognize.',
+      why: 'Too uncertain to put on the balance sheet, but users need to know about it.',
+      used: 'Disclosed in footnotes only; not on the balance sheet.',
+      example: 'Lawsuit with possible but not probable loss → disclose, don\'t accrue.'
+    },
+    {
+      term: 'Warranty Accrual',
+      what: 'Estimated warranty costs recorded at time of sale, not when repairs happen.',
+      why: 'Matching principle — warranty expense belongs in the period of the sale.',
+      used: 'At sale: Dr Warranty Expense / Cr Warranty Payable. At repair: Dr Warranty Payable / Cr Cash.',
+      example: 'Sell $1M of goods with 2% warranty estimate → record $20K Warranty Expense and $20K Warranty Payable now.'
+    },
+    {
+      term: 'Bond — Par/Face Value',
+      what: 'The face amount of the bond, repaid to bondholders at maturity.',
+      why: 'The "principal" amount the firm owes; basis for computing cash interest.',
+      used: 'Cash interest = Face × Coupon Rate × (Time/12). Bond prices quoted as % of face.',
+      example: 'A $1,000 bond at "98" sells for $980 (98% of face).'
+    },
+    {
+      term: 'Coupon Rate vs Market Rate',
+      what: 'Coupon = stated rate that determines cash interest paid; market = yield investors demand.',
+      why: 'Bond sells at par, premium, or discount depending on relative rates.',
+      used: 'Coupon > Market → premium; Coupon < Market → discount; equal → par.',
+      example: '8% coupon bond when market wants 10% → sells at discount.'
+    },
+    {
+      term: 'Bond Premium',
+      what: 'Bond issued above face value (Coupon > Market rate).',
+      why: 'Investors pay extra upfront because the coupon is generous compared to alternatives.',
+      used: 'Premium amortized over bond life via effective-interest method; carrying value declines to face.',
+      example: '$400K 8% bond when market = 6% → sells for $434K (premium $34K).'
+    },
+    {
+      term: 'Bond Discount',
+      what: 'Bond issued below face value (Coupon < Market rate).',
+      why: 'Investors demand a price cut to make up for the below-market coupon.',
+      used: 'Discount amortized over bond life; carrying value rises to face.',
+      example: '$400K 8% bond when market = 10% → sells for $369K (discount $31K).'
+    },
+    {
+      term: 'Effective-Interest Method',
+      what: 'Interest expense each period = Beginning carrying value × Market rate per period.',
+      why: 'Gives a constant effective yield over the bond\'s life; cash interest stays flat but interest expense changes.',
+      used: 'Required for bond amortization. Difference between interest expense and cash = premium/discount amortization.',
+      example: '$369K bond × 5% per period = $18,456 interest expense; cash interest only $16K → $2,456 discount amortized.'
+    },
+    {
+      term: 'Gain/Loss on Bond Retirement',
+      what: 'When a bond is retired early: gain/loss = Carrying Value − Cash Paid.',
+      why: 'If you pay less than the bond\'s book value, you save money (gain); pay more, lose money.',
+      used: 'Gain = CV − Cash. Loss = Cash − CV (or negative gain).',
+      example: '$600K bond retired at 98 when CV $590K → Cash $588K → Gain = $590K − $588K = $2K.'
+    },
+    {
+      term: 'Times Interest Earned (TIE)',
+      what: 'EBIT divided by interest expense — how many times earnings cover interest.',
+      why: 'Solvency check: tells creditors whether the firm can service its debt.',
+      used: 'TIE = EBIT / Interest = (NI + Tax + Interest) / Interest. Higher = safer.',
+      example: 'NI $160 + Tax $60 + Interest $40 = EBIT $260 / Interest $40 = TIE 6.5×.'
+    },
+    {
+      term: 'AP Turnover & DPO',
+      what: 'AP Turnover = COGS / Avg AP; DPO = 365 / AP Turnover.',
+      why: 'How quickly you pay suppliers; higher DPO = using suppliers as free financing.',
+      used: 'Used in CCC calculation and to assess working capital management.',
+      example: 'Nestle COGS 46,647 / Avg AP 18,301 = 2.55× turnover → DPO 143 days.'
+    },
+    {
+      term: 'Cost of Forgoing a Cash Discount',
+      what: 'The implicit annualized rate of NOT taking an early-payment discount (e.g., 2/10, n/30).',
+      why: 'Skipping the discount is effectively a short-term loan at a very high effective rate.',
+      used: 'Formula: (Disc/(1−Disc)) × (365/(Net days − Disc days)). 2/10, n/30 ≈ 37.2%/yr.',
+      example: '2% discount forgone for 20 extra days → 37.2% annualized cost.'
+    },
+    {
+      term: 'Debt Ratings',
+      what: 'Letter grades assigned to debt by Moody\'s/S&P/Fitch (AAA = top, D = default).',
+      why: 'Signal credit quality; higher rating = lower borrowing cost.',
+      used: 'Affects interest rate firms must pay. AAA = investment grade; below BBB = junk.',
+      example: 'Apple rated AA+ → borrows at near-Treasury rates; a startup might be B-rated and pay 8%+.'
+    }
+  ],
+  'ch8': [
+    {
+      term: 'IFRS 16 (Single Lease Model)',
+      what: 'New rule: lessees recognize almost all leases on the balance sheet via Right-of-Use asset + Lease Liability.',
+      why: 'Old rules let operating leases stay off-balance-sheet, hiding real obligations; IFRS 16 fixes this.',
+      used: 'All leases except short-term and low-value go on the balance sheet at lease commencement.',
+      example: 'A 5-year office lease used to be just "rent expense"; now creates a $13K asset and liability.'
+    },
+    {
+      term: 'Right-of-Use (ROU) Asset',
+      what: 'An intangible-like asset representing the lessee\'s right to use the leased asset over the lease term.',
+      why: 'Makes the lease look like an owned asset on the books, with depreciation each period.',
+      used: 'Recorded at PV of lease payments; depreciated over lease term (typically straight-line).',
+      example: '5-yr lease, $3,256 annual payment, 8% rate → ROU asset $13K; depreciate $2,600/yr.'
+    },
+    {
+      term: 'Lease Liability',
+      what: 'The obligation to make future lease payments, recorded at present value.',
+      why: 'A real debt — past standards hid this; new rule makes it visible.',
+      used: 'Initial = PV of payments. Reduced each period: End = Beg + Interest − Cash Paid.',
+      example: 'PV of 5 annual $3,256 payments at 8% = $13K lease liability at commencement.'
+    },
+    {
+      term: 'Short-Term Lease Exemption',
+      what: 'Leases ≤ 12 months without purchase option can be expensed straight-line (no ROU asset).',
+      why: 'Simplification for genuinely short-term arrangements.',
+      used: 'Just record Rent Expense each period; no balance sheet recognition.',
+      example: '9-month forklift lease at $1K/month → $1K rent expense monthly; no asset or liability.'
+    },
+    {
+      term: 'Low-Value Lease Exemption',
+      what: 'Leases of low-value items (e.g., laptops, tablets) can be expensed straight-line.',
+      why: 'Avoids cluttering the balance sheet with tiny lease items.',
+      used: 'Treated like operating expense; same as short-term exemption.',
+      example: 'A 3-year laptop lease at $30/month → just expense as rent.'
+    },
+    {
+      term: 'Lease Expense Split',
+      what: 'Under IFRS 16, lease cost splits into depreciation (on ROU asset) + interest (on liability).',
+      why: 'Reflects that a lease is both using up an asset and paying interest on a loan.',
+      used: 'Year 1 total expense > cash payment (front-loaded interest); reverses over time.',
+      example: '$13K ROU, 5-yr SL → $2,600 depreciation + $1,040 interest = $3,640 Y1 expense.'
+    },
+    {
+      term: 'Front-Loaded Total Expense',
+      what: 'Under ROU model, total lease expense is higher in early years and lower in later years.',
+      why: 'Interest is highest early (when liability is biggest); depreciation is constant; total drops over time.',
+      used: 'Compare to old straight-line rent which was constant.',
+      example: 'Y1 total: $3,640. Y5 total: $2,841. Same cash payment $3,256 each year.'
+    },
+    {
+      term: 'Principal vs Interest on Lease Payment',
+      what: 'Each lease payment is split: interest part on the liability + principal reducing the liability.',
+      why: 'Lease payment works exactly like a mortgage — early payments are mostly interest, later mostly principal.',
+      used: 'Principal portion → Financing CF; interest → Operating (or financing under IFRS option).',
+      example: '$3,256 payment: $1,040 interest + $2,216 principal in Year 1; flips by Year 5.'
+    },
+    {
+      term: 'Initial Direct Costs (IDCs)',
+      what: 'Costs incurred specifically to obtain the lease (legal fees, commissions, etc.).',
+      why: 'Added to ROU asset because they\'re needed to get the lease.',
+      used: 'ROU = Lease Liability + IDCs + prepayments − incentives.',
+      example: 'Pay $500 in legal fees to sign lease → ROU asset increases by $500.'
+    },
+    {
+      term: 'Off-Balance-Sheet Financing (Pre-IFRS 16)',
+      what: 'Old operating-lease treatment that kept lease obligations off the balance sheet.',
+      why: 'Companies preferred it to flatter their ratios (lower D/E, higher asset turnover).',
+      used: 'No longer allowed under IFRS 16; everything except short-term/low-value goes on balance sheet.',
+      example: 'Airlines historically had massive off-BS aircraft leases — now all visible.'
+    },
+    {
+      term: 'Discount Rate (in Lease)',
+      what: 'The rate used to PV the lease payments — typically the rate implicit in the lease or lessee\'s incremental borrowing rate.',
+      why: 'Determines the size of the lease liability and ROU asset.',
+      used: 'PV = Payment × Annuity Factor at this rate.',
+      example: 'Phelps used 8% as the discount rate; if 10%, the liability would be smaller.'
+    }
+  ],
+  'ch9': [
+    {
+      term: 'Authorized, Issued, Outstanding Shares',
+      what: 'Authorized = max allowed; Issued = actually sold; Outstanding = Issued − Treasury (held by public).',
+      why: 'Distinct concepts that change how EPS, dividends, and voting work.',
+      used: 'EPS denominator uses OUTSTANDING (or weighted average). Memorize the three.',
+      example: 'Authorized 1M, issued 600K, treasury 120 → outstanding 599,880.'
+    },
+    {
+      term: 'Par Value',
+      what: 'A nominal value assigned to each share — has little economic meaning today.',
+      why: 'Legal artifact from old corporate law; mostly used for accounting allocation.',
+      used: 'Common Stock account = Par × Shares issued; excess goes to APIC.',
+      example: 'Issue 1,000 shares of $5 par stock at $18 → Common Stock $5K + APIC $13K = $18K cash.'
+    },
+    {
+      term: 'Additional Paid-in Capital (APIC)',
+      what: 'The amount investors paid for stock IN EXCESS of par value.',
+      why: 'Holds the "real" capital raised when shares are issued above par.',
+      used: 'APIC = (Issue Price − Par) × Shares. Increases on issuance, can absorb treasury reissue gains.',
+      example: 'Issue 500 shares of $1 par at $15 → APIC $7,000.'
+    },
+    {
+      term: 'Treasury Stock',
+      what: 'Company\'s own shares repurchased — a contra-equity (reduces total equity).',
+      why: 'Used to boost EPS, return cash to shareholders, or offset employee stock options.',
+      used: 'Recorded at cost; NEVER produces gain or loss on income statement.',
+      example: 'Repurchase 100 shares at $22 → Dr Treasury 2,200 / Cr Cash 2,200.'
+    },
+    {
+      term: 'Preferred Stock',
+      what: 'Equity with priority over common in dividends and liquidation, often with a fixed dividend rate.',
+      why: 'Trades some upside for safety — like a hybrid between debt and common stock.',
+      used: 'Cumulative preferred: missed dividends accumulate and must be paid before any common dividend.',
+      example: '1,000 shares of $10 cumulative preferred missed 2 years → must pay $30K before any common dividend.'
+    },
+    {
+      term: 'Cash Dividend',
+      what: 'A distribution of cash to shareholders — reduces RE and cash.',
+      why: 'Returns capital to owners after earnings accumulate.',
+      used: 'Declaration: Dr RE / Cr Dividends Payable. Payment: Dr Div Payable / Cr Cash. No NI effect.',
+      example: 'Declare $1/share on 100K shares → Dr RE 100K / Cr Div Payable 100K.'
+    },
+    {
+      term: 'Stock Dividend',
+      what: 'Distribution of additional shares to existing shareholders — no cash moves.',
+      why: 'Conserves cash while rewarding shareholders symbolically.',
+      used: 'Reduces RE, increases Common Stock + APIC; no balance sheet net effect.',
+      example: '10% stock dividend on 100K shares → 10K new shares issued; RE down, contributed capital up.'
+    },
+    {
+      term: 'Stock Split',
+      what: 'Splits each share into multiple shares (e.g., 2-for-1) — doubles shares, halves par.',
+      why: 'Lowers per-share price to make stock more affordable/accessible; pure cosmetics.',
+      used: 'NO journal entry, NO financial statement effect — just an annotation.',
+      example: '2-for-1 split: 1,000 shares of $20 stock becomes 2,000 shares of $10 stock. Total value same.'
+    },
+    {
+      term: 'Equity Method (20-50% Ownership)',
+      what: 'Track investment based on share of investee\'s NI and dividends.',
+      why: 'You have significant influence (but not control), so reflect that proportionate share of equity.',
+      used: 'Investment ↑ by % × Investee NI; ↓ by % × Investee dividends. Investee = "associate."',
+      example: 'Own 25% of Investee; Y earns $120K NI, pays $40K div → Inv up 30K, down 10K, net +$20K.'
+    },
+    {
+      term: 'Consolidation (>50% Ownership)',
+      what: 'Combine ALL of the subsidiary\'s assets, liabilities, revenues, and expenses with the parent.',
+      why: 'When you control a company, financial reporting should treat it as one economic entity.',
+      used: 'Subsidiary\'s books fully merged; non-controlling interest shown separately.',
+      example: 'Disney owns 100% of Marvel → all Marvel financials consolidate into Disney\'s statements.'
+    },
+    {
+      term: 'Basic EPS',
+      what: 'Net Income (minus preferred dividends) divided by weighted average common shares outstanding.',
+      why: 'Standard per-share profitability measure used by investors.',
+      used: 'EPS = (NI − Pref Div) / Weighted Avg Shares. Watch for mid-year share changes.',
+      example: 'NI $8K − pref div $1K = $7K / 7,400 weighted avg shares = $0.946 EPS.'
+    },
+    {
+      term: 'Weighted Average Shares',
+      what: 'Average shares outstanding, weighted by the fraction of the year each share count was outstanding.',
+      why: 'A share issued mid-year doesn\'t earn a full year\'s worth — pro-rate it.',
+      used: 'Σ (Shares × Fraction of Year). Used in EPS denominator.',
+      example: '8,000 shares Jan-Mar, 7,200 after Apr 1 → 8,000×3/12 + 7,200×9/12 = 7,400 weighted avg.'
+    },
+    {
+      term: 'Cumulative Preferred Stock',
+      what: 'Preferred shares where missed dividends accumulate as "dividends in arrears."',
+      why: 'Protects preferred holders from being skipped in lean years.',
+      used: 'All arrears must be paid before any common dividend can be paid.',
+      example: '$10 preferred missed 2 years → 3 years × $10 × 1,000 shares = $30K to pay before commons see a penny.'
+    },
+    {
+      term: 'Three Sources of Financing',
+      what: 'Companies fund themselves from creditors (debt), new equity issuance, or retained earnings.',
+      why: 'Each has different costs, dilution, and risk implications.',
+      used: 'Retained earnings is cheapest (no new dilution or interest); debt is tax-deductible; equity is most expensive.',
+      example: 'A startup raises Series A (equity); a mature firm pays dividends from retained earnings.'
+    }
+  ],
+  'ch10': [
+    {
+      term: 'Financial Investments',
+      what: 'Purchases of debt or equity securities issued by other companies.',
+      why: 'Companies hold securities for income, strategic stakes, or excess cash management.',
+      used: 'Treatment depends on type (debt vs equity) and ownership % (passive, significant, control).',
+      example: 'Apple holding US Treasuries (debt); Berkshire holding Coca-Cola shares (equity, 9%).'
+    },
+    {
+      term: 'Three-Tier Influence Framework',
+      what: 'Ownership %: <20% passive (fair value); 20-50% significant influence (equity method); >50% control (consolidation).',
+      why: 'Accounting treatment scales with the degree of control over the investee.',
+      used: 'Match the % to the method on every multi-choice question.',
+      example: '15% → fair value; 30% → equity method; 75% → consolidation.'
+    },
+    {
+      term: 'Passive Investment (<20%)',
+      what: 'No influence over investee; track at fair value with mark-to-market gains/losses.',
+      why: 'Just a financial position — accounting just reflects current market value.',
+      used: 'Dividends recognized as income; price changes flow through P&L or OCI.',
+      example: 'Apple owns 1% of Square → fair value with quarterly mark-to-market.'
+    },
+    {
+      term: 'Associate (20-50%)',
+      what: 'An investee where you have significant influence — accounted for via equity method.',
+      why: 'You influence the investee\'s decisions, so account for proportional share of its results.',
+      used: 'Investment moves with investee\'s NI (% × NI) and dividends (% × Div reduces investment).',
+      example: 'BMW owns 30% of a parts supplier → equity method, supplier is its "associate."'
+    },
+    {
+      term: 'Subsidiary (>50%)',
+      what: 'A controlled entity — its books are fully consolidated with the parent\'s.',
+      why: 'Control means the parent makes the decisions, so report as one economic group.',
+      used: 'Combine all financial statement line items; show non-controlling interest separately.',
+      example: 'Disney owns 100% of Marvel → consolidate all of Marvel into Disney\'s financials.'
+    },
+    {
+      term: 'Significant Influence (Substance Override)',
+      what: 'Can exist below 20% via board seats, contracts, or technology licensing.',
+      why: 'The 20% rule is a presumption — substance over form wins.',
+      used: 'If you control 3 of 7 board seats at 18% ownership → equity method.',
+      example: 'Investor owns 18% but has veto rights → use equity method despite the low %.'
+    },
+    {
+      term: 'Mark-to-Market',
+      what: 'Adjust an asset to its current market price each reporting date.',
+      why: 'Most relevant value for actively traded securities; price IS the value.',
+      used: 'For marketable securities; gains/losses flow through P&L (Trading) or OCI (AFS).',
+      example: 'Apple shares bought at $150 now trade at $180 → mark up $30/share.'
+    },
+    {
+      term: 'Mark-to-Model',
+      what: 'Use a valuation model to estimate fair value when no active market exists.',
+      why: 'For illiquid assets you can\'t observe a price for; relies on assumptions.',
+      used: 'More subjective than mark-to-market; greater earnings-management risk.',
+      example: 'Valuing an illiquid private equity investment via DCF model.'
+    },
+    {
+      term: 'Fair Value Hierarchy',
+      what: 'Three levels of inputs: Level 1 (quoted prices, active market), Level 2 (similar/observable), Level 3 (entity-specific).',
+      why: 'Tells users how reliable the fair-value estimate is; Level 1 most reliable, Level 3 most subjective.',
+      used: 'More disclosure required for Level 3 (a red flag for analysts).',
+      example: 'Apple shares on NASDAQ = Level 1; private company DCF = Level 3.'
+    },
+    {
+      term: 'Level 1 Input',
+      what: 'Quoted prices in active markets for IDENTICAL assets.',
+      why: 'Most objective — the market itself tells you the value.',
+      used: 'Used for actively traded stocks and bonds.',
+      example: 'Closing price of Tesla shares on NASDAQ.'
+    },
+    {
+      term: 'Level 2 Input',
+      what: 'Observable inputs OTHER than identical-asset quoted prices — similar assets, yield curves, etc.',
+      why: 'Reliable but indirect; use observable market data even if not for the exact asset.',
+      used: 'Common for infrequently traded bonds priced via similar securities.',
+      example: 'A corporate bond valued by reference to actively traded bonds of similar credit quality.'
+    },
+    {
+      term: 'Level 3 Input',
+      what: 'Inputs observable only to the company — management estimates and assumptions.',
+      why: 'Highest subjectivity; biggest earnings-management risk.',
+      used: 'Requires extensive disclosure of assumptions used.',
+      example: 'Valuing an impaired specialized factory via internal DCF assumptions.'
+    },
+    {
+      term: 'Cherry-Picking Gains',
+      what: 'Earnings management: sell appreciated AFS securities to realize gains, then repurchase same shares.',
+      why: 'Crystallizes paper gains into reported income without changing economic position.',
+      used: 'Red flag — IFRS requires disclosure of realized AFS gains/losses to expose this.',
+      example: 'Company sells Apple shares at gain on Dec 30, buys back on Jan 2 → income boost without real change.'
+    },
+    {
+      term: 'AFS → Trading Reclassification',
+      what: 'Moving an investment from Available-for-Sale to Trading category — shifts unrealized gains/losses from OCI to NI.',
+      why: 'Can be used to inflate NI by moving previously-unrealized gains into income.',
+      used: 'Red flag for earnings management; required disclosure.',
+      example: 'Reclassify $5M AFS portfolio with $1M unrealized gain → $1M flows from AOCI to NI.'
+    }
+  ],
+  'ch11': [
+    {
+      term: 'Statement of Cash Flows (SCF)',
+      what: 'A report that explains how cash moved through the business during the period.',
+      why: 'Income statement reflects accruals; SCF shows the ACTUAL cash story.',
+      used: 'Splits cash flows into Operating, Investing, Financing — reconciles beginning to ending cash.',
+      example: 'Net Δ cash = CFO + CFI + CFF; matches BS change in Cash + Equivalents.'
+    },
+    {
+      term: 'Operating Cash Flow (CFO)',
+      what: 'Cash from day-to-day business — receipts from customers, payments to suppliers/employees, taxes, interest.',
+      why: 'The most important number — shows if the core business actually generates cash.',
+      used: 'Computed via indirect method (start with NI, adjust) or direct (list cash items).',
+      example: 'NI $50K + Dep $7K − ΔAR $6K − ΔAP $4K + ΔUnearned $1K = $48K CFO.'
+    },
+    {
+      term: 'Investing Cash Flow (CFI)',
+      what: 'Cash from buying/selling long-term assets and other companies\' securities.',
+      why: 'Shows whether the firm is investing in growth or divesting.',
+      used: 'Negative CFI typical for growing firms (buying PP&E); positive for declining firms.',
+      example: 'PP&E purchase $200K − Equipment sale $40K = CFI of −$160K.'
+    },
+    {
+      term: 'Financing Cash Flow (CFF)',
+      what: 'Cash from owners and creditors — stock issuance/repurchase, debt issuance/repayment, dividends paid.',
+      why: 'Shows how the firm is funding itself or returning capital to investors.',
+      used: 'Negative CFF for mature firms paying dividends and buybacks; positive for growing firms raising capital.',
+      example: 'Issue $20K shares − Pay $29K dividends = CFF of −$9K.'
+    },
+    {
+      term: 'Indirect Method',
+      what: 'Compute CFO by starting with Net Income, then adjusting for non-cash items and working-capital changes.',
+      why: 'Easier to prepare since most data already on income statement and balance sheet.',
+      used: 'Used by ~99% of firms. Add depreciation, losses, AR/Inv decreases; subtract gains, AR/Inv increases.',
+      example: 'NI $145K + Dep $9K + Loss $3K + ΔAR $10K − ΔInv $5K + ΔAP $16K = $172K CFO.'
+    },
+    {
+      term: 'Direct Method',
+      what: 'List actual cash receipts and payments (from customers, to suppliers, etc.) to compute CFO.',
+      why: 'More intuitive but harder to prepare; rarely used.',
+      used: 'Same CFO as indirect; just different presentation of the operating section.',
+      example: 'Cash from customers $480K − Cash to suppliers $300K − Wages paid $80K = $100K CFO.'
+    },
+    {
+      term: 'Adjustments to Net Income',
+      what: 'In indirect method, add back non-cash items (dep, amort, losses) and adjust for WC changes.',
+      why: 'NI includes non-cash items and uses accruals; CFO needs actual cash effects.',
+      used: 'Asset UP → SUBTRACT (cash tied up); Liability UP → ADD (cash conserved). Mnemonic.',
+      example: 'AR up $5K → subtract $5K (cash not yet collected). AP up $5K → add $5K (cash not yet paid).'
+    },
+    {
+      term: 'Gain on Sale of Asset (CF treatment)',
+      what: 'Gains are SUBTRACTED in operating section; full proceeds go to investing.',
+      why: 'NI already includes the gain; full cash proceeds belong in investing — avoid double-counting.',
+      used: 'Subtract gain from NI; add full proceeds to CFI.',
+      example: 'Sell equipment BV $40K for $50K → SUBTRACT $10K gain from CFO; ADD $50K to CFI.'
+    },
+    {
+      term: 'Loss on Sale of Asset (CF treatment)',
+      what: 'Losses are ADDED back in operating section; full proceeds go to investing.',
+      why: 'Loss reduced NI but wasn\'t a cash outflow — add it back; cash proceeds go to investing.',
+      used: 'Add loss to NI; add cash proceeds to CFI.',
+      example: 'Sell equipment BV $7K for $4K → ADD $3K loss to CFO; ADD $4K to CFI.'
+    },
+    {
+      term: 'Free Cash Flow (FCF)',
+      what: 'Operating cash flow minus capital expenditures — what\'s left for investors.',
+      why: 'Shows true cash available to pay dividends, buy back stock, or pay down debt.',
+      used: 'FCF = CFO − CapEx. Tracked closely by valuation analysts.',
+      example: 'CFO $250K − CapEx $90K = FCF $160K.'
+    },
+    {
+      term: 'Noncash Transactions',
+      what: 'Transactions involving no cash (e.g., issuing stock for land, signing note for equipment).',
+      why: 'Important to know about even though they don\'t appear in main SCF sections.',
+      used: 'Disclosed in supplemental schedule, NOT in operating/investing/financing.',
+      example: 'Issue $110K bonds in exchange for land → disclosed separately, not in main SCF.'
+    },
+    {
+      term: 'Cash Equivalents',
+      what: 'Short-term, highly liquid investments with original maturity ≤ 3 months.',
+      why: 'Treated as cash for SCF purposes; combined with cash for the change reconciled.',
+      used: 'Required disclosure of company\'s policy for determining cash equivalents.',
+      example: '90-day Treasury bills = cash equivalents; 6-month CD is not.'
+    },
+    {
+      term: 'OCFCL (Operating CF to Current Liabilities)',
+      what: 'CFO divided by average current liabilities — liquidity measure.',
+      why: 'Shows whether operations alone can cover short-term obligations.',
+      used: 'OCFCL = CFO / Avg CL. > 1.0 means operations alone cover all current liabilities.',
+      example: 'CFO $120K / Avg CL $240K = 0.50 → operations cover half of CL.'
+    },
+    {
+      term: 'SCF Pattern Interpretation',
+      what: 'The sign combinations of CFO/CFI/CFF tell a company\'s lifecycle stage.',
+      why: 'Quick story-telling tool: mature companies look different from startups.',
+      used: '+CFO/−CFI/−CFF = mature; +CFO/−CFI/+CFF = growing; −CFO/−CFI/+CFF = startup; +CFO/+CFI/−CFF = declining.',
+      example: 'Apple: +CFO/−CFI/−CFF (mature, paying back capital). A startup: −CFO/−CFI/+CFF (burning cash, raising).'
+    }
+  ],
+  'ch12': [
+    {
+      term: 'Vertical (Common-Size) Analysis',
+      what: 'Express each line item as % of a base (Revenue for IS, Total Assets for BS).',
+      why: 'Lets you compare firms of different sizes on the same scale.',
+      used: 'COGS/Revenue, NI/Revenue, etc. for IS; Cash/Total Assets, Debt/Total Assets for BS.',
+      example: 'Lowe\'s COGS/Revenue = 36,665 / 56,223 = 65.21%.'
+    },
+    {
+      term: 'Horizontal Analysis',
+      what: '% change from a base period: (Current − Base) / Base.',
+      why: 'Tracks trends over time — accelerating growth, declining margins, etc.',
+      used: 'Trap: a 70% decrease means new value = base × 30%, not × 70%.',
+      example: 'Lowe\'s revenue grew (56,223 − 53,417) / 53,417 = +5.3%.'
+    },
+    {
+      term: 'Return on Assets (ROA)',
+      what: 'Net Income divided by average total assets — efficiency of asset use.',
+      why: 'How well the company turns its asset base into profit.',
+      used: 'ROA = NI / Avg Assets. Combines profitability and turnover.',
+      example: 'NI $2,698 / Avg Assets $32,280 = 8.35% ROA.'
+    },
+    {
+      term: 'DuPont Decomposition',
+      what: 'Breaks ROE into three drivers: Profit Margin × Asset Turnover × Equity Multiplier.',
+      why: 'Identifies what\'s driving (or hurting) ROE — pricing, efficiency, or leverage.',
+      used: 'ROE = (NI/Sales) × (Sales/Avg Assets) × (Avg Assets/Avg Equity).',
+      example: 'PM 8% × AT 1.5 × EM 2.0 = ROE 24%. If ROE rises, check which lever moved.'
+    },
+    {
+      term: 'Return on Financial Leverage (ROFL)',
+      what: 'The portion of ROE that comes from leverage = ROE − ROA.',
+      why: 'Quantifies how much of returns are from operations vs from using debt.',
+      used: 'Higher ROFL = more leverage helping ROE; can flip negative if leverage drags.',
+      example: 'Lowe\'s ROE 24.73% − ROA 8.35% = 16.38% from leverage (over 60% of ROE).'
+    },
+    {
+      term: 'Cash Conversion Cycle (CCC)',
+      what: 'Days Inventory + Days Sales Outstanding − Days Payable Outstanding.',
+      why: 'How long cash is tied up in working capital — lower = better.',
+      used: 'CCC = DIO + DSO − DPO. Negative CCC (rare) means suppliers fund your customers.',
+      example: 'Lowe\'s DIO 80 + DSO ~0 − DPO 51 = CCC 29 days.'
+    },
+    {
+      term: 'DPO (Days Payable Outstanding)',
+      what: 'Average days to pay suppliers.',
+      why: 'Longer DPO = using suppliers as free financing.',
+      used: 'DPO = 365 / AP Turnover. Inverse to AP Turnover.',
+      example: 'AP Turnover 2.55× → DPO 143 days (Nestle takes ~5 months to pay).'
+    },
+    {
+      term: 'Price-to-Earnings (P/E) Ratio',
+      what: 'Share price divided by earnings per share — how much investors pay per dollar of earnings.',
+      why: 'Quick valuation gauge; high P/E = growth expectations.',
+      used: 'P/E = Price / EPS. Tech stocks often 30+; mature firms often 10-15.',
+      example: 'Share price €108 / EPS €12 = P/E 9.'
+    },
+    {
+      term: 'Book Value per Share (BVPS)',
+      what: 'Common equity divided by common shares outstanding.',
+      why: 'Floor value of a share in accounting terms.',
+      used: 'BVPS = Common Equity / Shares Outstanding. Combine with price for Market-to-Book.',
+      example: 'Common equity $10B / 1B shares = $10 BVPS.'
+    },
+    {
+      term: 'Market-to-Book (M/B)',
+      what: 'Share price divided by book value per share.',
+      why: 'Tells you how much premium (or discount) the market gives over book.',
+      used: 'M/B = Price / BVPS. Apple ~10×; Bank stocks often near 1×.',
+      example: 'Price $200, BVPS $20 → M/B 10× (market values it 10× book).'
+    },
+    {
+      term: 'Dividend Yield',
+      what: 'Annual dividend per share divided by share price.',
+      why: 'Income return component of total return — important for income investors.',
+      used: 'Dividend Yield = DPS / Price. Mature companies often 2-4%.',
+      example: 'Annual dividend $2 / Price $50 = 4% yield.'
+    },
+    {
+      term: 'Payout Ratio',
+      what: 'Dividends per share divided by EPS — what % of earnings is paid out.',
+      why: 'High payout = less retention for growth; low payout = reinvestment focus.',
+      used: 'Payout = DPS / EPS. Tech often <20%; utilities often >70%.',
+      example: 'DPS $2 / EPS $5 = 40% payout (60% retained for reinvestment).'
+    },
+    {
+      term: 'Expense-to-Sales Ratio (ETS)',
+      what: 'A specific expense (e.g., SG&A) divided by sales — disaggregates the profit margin.',
+      why: 'Spots which expense category is hurting margins.',
+      used: 'ETS = Expense / Sales. Track SG&A/Sales, R&D/Sales separately.',
+      example: 'Lowe\'s SG&A $13,281 / Sales $56,223 = 23.62% SG&A ETS.'
+    },
+    {
+      term: 'PP&E Turnover',
+      what: 'Sales divided by average net PP&E — efficiency of fixed assets.',
+      why: 'High = sweating the assets well; low = excess capacity.',
+      used: 'PP&E Turnover = Sales / Avg Net PP&E.',
+      example: 'Lowe\'s Sales $56,223 / Avg PP&E $20,434 = 2.75× (every $1 of PP&E generates $2.75 of sales).'
+    },
+    {
+      term: 'Debt Covenants',
+      what: 'Restrictions in loan agreements (e.g., maintain D/E below X, cap dividends).',
+      why: 'Protect lenders by limiting risky borrower behavior.',
+      used: 'Breaching a covenant can trigger default; firms monitor key ratios carefully.',
+      example: 'Loan requires D/E < 2.0; firm hits 2.1 → technical default, lender can demand repayment.'
+    },
+    {
+      term: 'Quality of Financial Reporting',
+      what: 'How accurately the statements reflect economic reality — affected by management estimates and choices.',
+      why: 'Some firms use aggressive estimates to flatter results; analysts look for "earnings quality."',
+      used: 'Red flags: unusual margin trends, big swings in reserves, frequent accounting changes.',
+      example: 'A firm that suddenly extends useful lives to boost EPS = lower earnings quality.'
+    },
+    {
+      term: 'Industry Benchmarking',
+      what: 'Compare a firm\'s ratios to industry peers or averages.',
+      why: 'Absolute ratios mean little — context comes from comparison.',
+      used: 'Time-trend (vs own history), peer-group (vs competitors), industry (vs all peers).',
+      example: 'Lowe\'s D/E of 2.19 vs industry average of 1.10 → above-average leverage.'
+    }
+  ]
+};

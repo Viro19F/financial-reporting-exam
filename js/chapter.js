@@ -20,9 +20,38 @@
   document.getElementById('practice-link').href = `practice.html?ch=${ch.id}`;
 
   const body = document.getElementById('chapter-body');
+  const terms = (typeof CHAPTER_TERMS !== 'undefined' && CHAPTER_TERMS[ch.id]) ? CHAPTER_TERMS[ch.id] : [];
+
+  function renderTermCard(t) {
+    return `
+      <details class="term-card">
+        <summary class="term-summary">
+          <span class="term-name">${escapeHtml(t.term)}</span>
+          <span class="term-toggle">▾</span>
+        </summary>
+        <div class="term-body">
+          ${t.what ? `<div class="term-row"><div class="term-label">What it is</div><div class="term-text">${escapeHtml(t.what)}</div></div>` : ''}
+          ${t.why ? `<div class="term-row"><div class="term-label">Why we have it</div><div class="term-text">${escapeHtml(t.why)}</div></div>` : ''}
+          ${t.used ? `<div class="term-row"><div class="term-label">How it's used</div><div class="term-text">${escapeHtml(t.used)}</div></div>` : ''}
+          ${t.example ? `<div class="term-row term-example"><div class="term-label">Example</div><div class="term-text">${escapeHtml(t.example)}</div></div>` : ''}
+        </div>
+      </details>
+    `;
+  }
 
   function renderTab(tab) {
-    if (tab === 'theory') {
+    if (tab === 'terms') {
+      if (!terms.length) {
+        body.innerHTML = '<div class="empty">Detailed term definitions for this chapter are still being added.</div>';
+        return;
+      }
+      body.innerHTML = `
+        <p class="lede" style="font-size:14px;margin-bottom:18px">Click any term to expand. Each card explains <em>what it is</em>, <em>why we have it</em>, <em>how it's used</em>, plus a quick example.</p>
+        <div class="term-list">
+          ${terms.map(renderTermCard).join('')}
+        </div>
+      `;
+    } else if (tab === 'theory') {
       body.innerHTML = (ch.theory || []).map(t => `
         <div class="section-block">
           <h4>${escapeHtml(t.title)}</h4>
@@ -74,5 +103,5 @@
     });
   });
 
-  renderTab('theory');
+  renderTab('terms');
 })();
