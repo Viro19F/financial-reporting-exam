@@ -422,6 +422,37 @@ p.lede {
   display: inline-block;
   margin-right: 4px;
 }
+.exp-extras-block {
+  margin-top: 16px;
+  padding-top: 14px;
+  border-top: 1px dashed var(--border-mid);
+}
+.exp-extras-header {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-weight: 700;
+  color: var(--accent);
+  margin-bottom: 10px;
+}
+.exp-extra {
+  margin: 0 0 9px;
+  font-size: 14px;
+  line-height: 1.55;
+}
+.exp-extra-label {
+  font-weight: 700;
+  color: var(--text);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  display: inline-block;
+  margin-right: 6px;
+  background: var(--accent-soft);
+  padding: 2px 8px;
+  border-radius: 999px;
+  color: var(--accent);
+}
 .exp-line strong { color: var(--text); font-weight: 600; }
 .explanation.show { display: block; }
 .explanation strong { color: var(--accent); }
