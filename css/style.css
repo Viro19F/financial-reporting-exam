@@ -410,6 +410,19 @@ p.lede {
   color: var(--text);
   display: none;
 }
+.exp-body { margin-top: 6px; }
+.exp-line { margin: 0 0 8px; line-height: 1.6; }
+.exp-line:last-child { margin-bottom: 0; }
+.exp-label {
+  font-weight: 600;
+  color: var(--accent);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  display: inline-block;
+  margin-right: 4px;
+}
+.exp-line strong { color: var(--text); font-weight: 600; }
 .explanation.show { display: block; }
 .explanation strong { color: var(--accent); }
 .explanation .verdict { font-weight: 600; margin-bottom: 6px; }

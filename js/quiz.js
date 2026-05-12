@@ -149,7 +149,7 @@ class Quiz {
     const correctLine = q.type === 'numeric'
       ? `<div class="verdict ${correct ? 'correct' : 'wrong'}">${correct ? 'Correct.' : `Incorrect. Answer: ${formatNumber(q.answer)}${q.units ? ' ' + q.units : ''}`}</div>`
       : `<div class="verdict ${correct ? 'correct' : 'wrong'}">${correct ? 'Correct.' : `Incorrect. Correct answer: ${String.fromCharCode(97 + q.correct).toUpperCase()}) ${escapeHtml(q.options[q.correct])}`}</div>`;
-    exp.innerHTML = correctLine + (q.explanation ? `<div>${q.explanation}</div>` : '');
+    exp.innerHTML = correctLine + (q.explanation ? `<div class="exp-body">${formatExplanation(q.explanation)}</div>` : '');
     exp.classList.add('show');
     this.root.querySelector('#next').style.display = 'inline-block';
   }

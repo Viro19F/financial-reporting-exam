@@ -95,6 +95,30 @@ function escapeHtml(s) {
   return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 }
 
+// Format an explanation string with light markdown -> HTML:
+//   - newlines become paragraph breaks
+//   - **bold** becomes <strong>
+//   - Section labels (Step N, Formula chain, Common mistake, Correct, Trap, Watch out, Total) get highlighted
+function formatExplanation(raw) {
+  if (!raw) return '';
+  // Split on newlines first so each becomes its own paragraph
+  const parts = String(raw).split(/\n+/).map(s => s.trim()).filter(Boolean);
+  return parts.map(line => {
+    // escape any < > & first
+    let s = escapeHtml(line);
+    // convert **X** to <strong>X</strong>
+    s = s.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+    // detect leading label like "Step 1:", "Formula chain:", etc. and tag for styling
+    const labelMatch = s.match(/^<strong>([^<]+)<\/strong>\s*(.*)$/);
+    if (labelMatch) {
+      const label = labelMatch[1];
+      const rest = labelMatch[2];
+      return `<p class="exp-line"><span class="exp-label">${label}</span> ${rest}</p>`;
+    }
+    return `<p class="exp-line">${s}</p>`;
+  }).join('');
+}
+
 function shuffle(arr) {
   const a = arr.slice();
   for (let i = a.length - 1; i > 0; i--) {
