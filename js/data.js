@@ -6097,15 +6097,15 @@ MOCKS.push(
   {
     id: 'mock_mega_mcq',
     title: 'Mega Practice — 100 MCQ',
-    durationMinutes: 180,
-    source: 'Generated practice — exam-realistic multi-step. Covers all 12 chapters.',
+    noTimer: true,
+    source: 'Generated practice — exam-realistic multi-step. Covers all 12 chapters. Untimed.',
     questions: MEGA_MCQ
   },
   {
     id: 'mock_mega_numeric',
     title: 'Mega Practice — 100 Numeric',
-    durationMinutes: 240,
-    source: 'Generated practice — exam-realistic multi-step. Covers all 12 chapters.',
+    noTimer: true,
+    source: 'Generated practice — exam-realistic multi-step. Covers all 12 chapters. Untimed.',
     questions: MEGA_NUMERIC
   }
 );
