@@ -98,24 +98,47 @@ function escapeHtml(s) {
 // Format an explanation string with light markdown -> HTML:
 //   - newlines become paragraph breaks
 //   - **bold** becomes <strong>
-//   - Section labels (Step N, Formula chain, Common mistake, Correct, Trap, Watch out, Total) get highlighted
+//   - Section labels auto-split into their own paragraphs even when jammed inline
 function formatExplanation(raw) {
   if (!raw) return '';
-  // Split on newlines first so each becomes its own paragraph
-  const parts = String(raw).split(/\n+/).map(s => s.trim()).filter(Boolean);
+
+  let s = String(raw);
+
+  // Insert \n before known section markers when they appear mid-paragraph.
+  // BOLD markers like **Step 1:**, **Correct: C**, **Common mistake:**, **Formula chain:**, **Total:**, **Trap...**, **Watch out:**, **Note:**
+  s = s.replace(/(\S)\s+(\*\*(?:Formula chain|Step \d+|Common mistake|Correct|Trap|Total|Watch out|Note|Verify|Why|How)[^*]*?\*\*)/g, '$1\n$2');
+
+  // UNBOLDED markers: "Trap (X):", "Correct: X", "Common mistake:", "Note:", "Why:", "How to apply:"
+  s = s.replace(/(\S)\s+(Trap \([A-Za-z][A-Za-z0-9]?\):)/g, '$1\n$2');
+  s = s.replace(/(\S)\s+(Common mistake:)/g, '$1\n$2');
+  s = s.replace(/(\S)\s+(Note:)/g, '$1\n$2');
+  s = s.replace(/(\S)\s+(Watch out:)/g, '$1\n$2');
+  s = s.replace(/(\S)\s+(Why:)/g, '$1\n$2');
+  s = s.replace(/(\S)\s+(How to apply:)/g, '$1\n$2');
+  s = s.replace(/(\S)\s+(Correct(?:\s*:|\s+answer))/g, '$1\n$2');
+  s = s.replace(/(\S)\s+(Trap:)/g, '$1\n$2');
+  s = s.replace(/(\S)\s+(Step \d+[\.:])/g, '$1\n$2');
+  s = s.replace(/(\S)\s+(Equivalent:)/g, '$1\n$2');
+  s = s.replace(/(\S)\s+(Total:)/g, '$1\n$2');
+
+  // Split on any newline(s)
+  const parts = s.split(/\n+/).map(p => p.trim()).filter(Boolean);
+
   return parts.map(line => {
-    // escape any < > & first
-    let s = escapeHtml(line);
-    // convert **X** to <strong>X</strong>
-    s = s.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
-    // detect leading label like "Step 1:", "Formula chain:", etc. and tag for styling
-    const labelMatch = s.match(/^<strong>([^<]+)<\/strong>\s*(.*)$/);
-    if (labelMatch) {
-      const label = labelMatch[1];
-      const rest = labelMatch[2];
-      return `<p class="exp-line"><span class="exp-label">${label}</span> ${rest}</p>`;
+    let html = escapeHtml(line);
+    html = html.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+
+    // Pattern 1: line starts with a <strong>LABEL:</strong> — extract label + rest
+    let m = html.match(/^<strong>([^<]+?):?<\/strong>\s*\.?\s*(.*)$/);
+    if (m) {
+      return `<p class="exp-line"><span class="exp-label">${m[1].replace(/:$/, '')}</span> ${m[2]}</p>`;
     }
-    return `<p class="exp-line">${s}</p>`;
+    // Pattern 2: line starts with an unbolded label like "Trap (D):" or "Common mistake:"
+    m = html.match(/^(Trap \([A-Za-z][A-Za-z0-9]?\)|Common mistake|Note|Watch out|Why|How to apply|Correct(?: answer)?|Equivalent|Step \d+|Total):\s*(.*)$/);
+    if (m) {
+      return `<p class="exp-line"><span class="exp-label">${m[1]}</span> ${m[2]}</p>`;
+    }
+    return `<p class="exp-line">${html}</p>`;
   }).join('');
 }
 
